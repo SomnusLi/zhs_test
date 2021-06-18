@@ -34,5 +34,13 @@ class MeetingClass(RestClient):
             "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getMeetCourseTeacherSetting",
             **kwargs)
 
+    def getSelectClassInfo(self, recruitId, uuid, **kwargs):
+        # 获取开启见面课权限
+        # get方式url直接拼接 {}.format（）
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/getSelectClassInfo?recruitId={}&uuid={}&dateFormate={}".format(
+                recruitId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)
