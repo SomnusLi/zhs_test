@@ -4,6 +4,7 @@ import allure
 from operation.user.aidMenuAuth import aidMenuAuth
 from testcases.conftest import api_data
 from common.logger import logger
+from common.filedValueGenerate import add_cookies
 import requests
 
 
@@ -28,11 +29,13 @@ class TestzhsLogin():
         user_info = login_fixture_teacher
         uuid = user_info.json().get("uuid")
         account = user_info.request.body[8:19]
+        password = user_info.request.body[29:37]
         step_login(account, uuid)
-        # cookies要传str类型
+        # cookies要传dict类型
         # t = requests.utils.dict_from_cookiejar(user_info.cookies);
         # print(t)
-        result = aidMenuAuth(uuid, requests.utils.dict_from_cookiejar(user_info.cookies))
+        # cookie = requests.utils.dict_from_cookiejar(user_info.cookies)
+        result = aidMenuAuth(uuid, cookies=requests.utils.dict_from_cookiejar(user_info.cookies))
         assert result.response.status_code == 200
         logger.info("code ==>> 实际结果：{}".format(result.response.json().get("status")))
         # assert result.response.json().get("status") == except_status

@@ -94,7 +94,9 @@ def generatorNowDatetime():
     date_now = time.localtime(dateTime_now)  # 将时间戳生成时间元组
     date = time.strftime("%Y-%m-%d", date_now)  # 将时间元组转成格式化字符串（1976-05-21）
     return date
-#获取TZ格式的UTC时间
+
+
+# 获取TZ格式的UTC时间
 def get_current_time():
     """[summary] 获取当前时间
 
@@ -107,3 +109,10 @@ def get_current_time():
     data_secs = (ct - int(ct)) * 1000
     time_stamp = "%s.%03dZ" % (data_head, data_secs)
     return time_stamp
+
+
+def add_cookies(cookies):
+    cookies[
+        "CASLOGC"] = "%7B%22realName%22%3A%22%E5%88%98%E6%96%87%E5%8A%9B%22%2C%22myuniRole%22%3A1%2C%22myinstRole%22%3A0%2C%22userId%22%3A802042381%2C%22headPic%22%3A%22https%3A%2F%2Fimage.zhihuishu.com%2Fzhs%2Fablecommons%2Fcutimage%2F202009%2F72f45aa91cae4160af342c114ece5ced_s3.jpg%22%2C%22uuid%22%3A%22Vv45Mker%22%2C%22mycuRole%22%3A0%2C%22username%22%3A%224428ee860c5949a28ede8907e7a3bce7%22%7D"
+    cookies["CASTGC"] = "TGT-1174606-FHlYdLrftQhe1DUVVaMmTWbxbu5l1MCRss2EC9defSSzi0yY9Q-passport.zhihuishu.com"
+    return cookies

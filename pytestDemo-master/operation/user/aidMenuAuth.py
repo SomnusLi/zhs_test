@@ -14,9 +14,9 @@ def aidMenuAuth(uuid, cookies):
         "date": get_current_time()
     }
     header = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/x-www-form-urlencoded"
     }
-    res = user.aidMenuAuth(json=payload, headers=header, cookies=cookies)
+    res = user.aidMenuAuth(data=payload, headers=header, cookies=cookies)
     result.success = False
     if res.json()["status"] == "200":
         result.success = True

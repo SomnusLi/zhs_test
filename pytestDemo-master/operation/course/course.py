@@ -26,6 +26,7 @@ def get_courseInfo_student(uuid, cookies):
     logger.info("该学生获取课程列表 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
 
+
 def get_courseInfo_teacher(uuid, cookies):
     """
     根据用户uuid，返回课程信息 教师端
