@@ -1,6 +1,7 @@
 from core.result_base import ResultBase
 from api.meetingclass.meetingclass import MeetingClass
 from common.logger import logger
+from common.filedValueGenerate import randomRangeNum, get_current_time
 from common.filedValueGenerate import get_current_time
 
 
@@ -44,6 +45,35 @@ def getStartingMeetCourseList(uuid, couresId, cookies):
     }
 
     res = MeetingClass.getStartingMeetCourseList(data=json, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def onlineservice_getStartingMeetCourseList(uuid, cookies):
+    """
+    根据用户uuid，返回正在进行中的见面课信息 教师端
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    json = {
+        "uuid": uuid,
+        "role": 1,
+        "date": get_current_time()
+        # 调用来源，0：学生(知到)，1：老师（教师圈）
+    }
+
+    res = MeetingClass.onlineservice_getStartingMeetCourseList(data=json, headers=header, cookies=cookies)
     result.success = False
     if res.status_code == 200:
         result.success = True
@@ -106,3 +136,47 @@ def getSelectClassInfo(uuid, recruitId, cookies):
     return result
 
 
+def creatMeetCourse(uuid, courseId, classIds, recruitId, cookies):
+    """
+    创建见面课
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    res = MeetingClass.creatMeetCourse(courseId, classIds, recruitId, randomRangeNum(3, 10), uuid, headers=header,
+                                       cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def endMeetCourse(meetCourseId, uuid, cookies):
+    """
+    结束见面课
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    res = MeetingClass.endMeetCourse(meetCourseId, uuid, headers=header,
+                                     cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

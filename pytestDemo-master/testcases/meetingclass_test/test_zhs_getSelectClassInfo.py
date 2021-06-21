@@ -4,7 +4,7 @@ from operation.course.course import get_courseInfo_teacher, getRecruitIdByCourse
 from operation.meetingclass.meetingclass import getSelectClassInfo
 from testcases.conftest import api_data
 from common.logger import logger
-from common.filedValueGenerate import add_cookies
+from common.filedValueGenerate import add_cookies, randomRangeNum
 import requests
 
 
@@ -43,7 +43,9 @@ class TestGetCourseId():
         step_login(account, uuid)
         cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
         result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
-        courseId = result_get_courseInfo_teacher.response.json()["rt"]["courseList"][0]["courseId"]
+        courseList = result_get_courseInfo_teacher.response.json()["rt"]["courseList"]
+        courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
+        # courseId = courseList[0]["courseId"]
         print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
         result_getRecruitIdByCourseId = getRecruitIdByCourseId(courseId, cookies=cookies)
@@ -59,4 +61,4 @@ class TestGetCourseId():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_get_courseInfo_student.py"])
+    pytest.main(["-q", "-s", "test_zhs_getSelectClassInfo.py"])

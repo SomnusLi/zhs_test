@@ -62,4 +62,4 @@ class TestGetCourseId():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_get_courseInfo_student.py"])
+    pytest.main(["-q", "-s", "test_zhs_getUserRoleByCourseId.py"])
