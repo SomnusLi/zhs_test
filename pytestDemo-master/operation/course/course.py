@@ -48,3 +48,27 @@ def get_courseInfo_teacher(uuid, cookies):
     result.response = res
     logger.info("该老师获取课程列表 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def getRecruitIdByCourseId(courseId, cookies):
+    """
+    根据课程id，返回招生id 教师端
+
+    """
+    print(cookies)
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+    }
+    # json = {"courseId": courseId}
+
+    res = Course.getRecruitIdByCourseId(courseId, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["status"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("该课程的招生id ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

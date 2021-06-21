@@ -4,13 +4,9 @@ from operation.course.course import get_courseInfo_teacher
 from operation.meetingclass.meetingclass import getMeetCourseTeacherSetting
 from testcases.conftest import api_data
 from common.logger import logger
-from common.filedValueGenerate import add_cookies
+from common.filedValueGenerate import add_cookies, randomRangeNum
 import requests
 
-
-# @allure.step("步骤1 ==>> 根据ID修改用户信息")
-# def step_1(id):
-#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
 
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
@@ -41,17 +37,17 @@ class TestGetCourseId():
         uuid = user_info.json().get("uuid")
         account = user_info.request.body[8:19]
         step_login(account, uuid)
+        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
         result_get_courseInfo_teacher = get_courseInfo_teacher(uuid,
-                                                               cookies=add_cookies(requests.utils.dict_from_cookiejar(
-                                                                   user_info.cookies)))
-        courseId = result_get_courseInfo_teacher.response.json()["rt"]["courseList"][0]["courseId"]
+                                                               cookies=cookies)
+        # courseId = result_get_courseInfo_teacher.response.json()["rt"]["courseList"][0]["courseId"]
+        courseList = result_get_courseInfo_teacher.response.json()["rt"]["courseList"]
+        courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
         print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
 
         result_getMeetCourseTeacherSetting = getMeetCourseTeacherSetting(uuid, courseId,
-                                                                         cookies=add_cookies(
-                                                                             requests.utils.dict_from_cookiejar(
-                                                                                 user_info.cookies)))
+                                                                         cookies=cookies)
         assert result_getMeetCourseTeacherSetting.response.status_code == 200
         # logger.info("code ==>> 实际结果：{}".format(result.response.json().get("result")))
         # assert result.response.json().get("status") == except_status
@@ -60,4 +56,4 @@ class TestGetCourseId():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_get_courseInfo_student.py"])
+    pytest.main(["-q", "-s", "test_zhs_getMeetCourseTeacherSetting.py"])

@@ -25,9 +25,5 @@ class User(RestClient):
         # 获取用户登录信息
         return self.get("https://onlineservice.zhihuishu.com/login/getLoginUserInfo", **kwargs)
 
-    def login_dd(self, **kwargs):
-        # 用户登录接口
-        return self.post("https://passport.zhihuishu.com/login", **kwargs)
-
 
 user = User(api_root_url)

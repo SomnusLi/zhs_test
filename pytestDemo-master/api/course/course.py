@@ -28,5 +28,11 @@ class Course(RestClient):
                 date),
             **kwargs)
 
+    def getRecruitIdByCourseId(self, courseId, **kwargs):
+        # 获取课程的招生id
+        return self.get(
+            "https://hike.zhihuishu.com/aidedteaching/course/getRecruitIdByCourseId?courseId={}".format(courseId),
+            **kwargs)
+
 
 Course = Course(api_root_url)
