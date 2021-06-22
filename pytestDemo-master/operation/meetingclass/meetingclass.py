@@ -180,3 +180,124 @@ def endMeetCourse(meetCourseId, uuid, cookies):
     result.response = res
     logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def findMeetCourseMsg(meetCourseId, uuid, cookies):
+    """
+    查询见面课基本信息
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    res = MeetingClass.findMeetCourseMsg(meetCourseId, uuid, headers=header,
+                                         cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findMeetCourseLiveStatus(meetCourseId, uuid, cookies):
+    """
+    查询见面课直播信息
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "role": 1,  # 用户角色 1 老师 2 学生
+        "fromType": 1,  # 设备 1 pc 2 app 3 h5 非必填 默认2
+        "uuid": uuid
+    }
+    res = MeetingClass.findMeetCourseLiveStatus(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findMeetcourseUserAuthData(uuid, schoolId, meetCourseId, cookies):
+    """
+    查询见面课用户直播权限
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "schoolId": schoolId,  # 非必填
+        "isFrom": 0,  # 非必填 0默认 1直播分享
+        "uuid": uuid
+    }
+    res = MeetingClass.findMeetcourseUserAuthData(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findOnGoingSignIdsAndRushQuestionId(uuid, groupId, cookies):
+    """
+    查询见面课下进行的签到和提问
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    res = MeetingClass.findOnGoingSignIdsAndRushQuestionId(uuid, groupId, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findRecentViewFile(meetCourseId, uuid, cookies):
+    """
+    查询见面课最近打开的课堂文件
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    res = MeetingClass.findRecentViewFile(meetCourseId, uuid, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

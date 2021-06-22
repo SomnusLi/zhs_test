@@ -19,7 +19,7 @@ def step_1():
 @allure.severity(allure.severity_level.TRIVIAL)
 @allure.epic("针对单个接口的测试")
 @allure.feature("获取用户信息模块")
-class TestzhsLogin():
+class Test_login():
     """用户登录"""
 
     @allure.story("用例--模拟用户登录的test测试")
