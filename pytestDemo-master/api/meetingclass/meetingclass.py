@@ -50,7 +50,6 @@ class MeetingClass(RestClient):
 
     def creatMeetCourse(self, courseId, classIds, recruitId, hours, uuid, **kwargs):
         # 创建见面课
-        # get方式url直接拼接 {}.format（）
         return self.get(
             "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/createMeetCourse?courseId={}&classIds={}&recruitId={}&hours={}&uuid={}&dateFormate={}".format(
                 courseId, classIds, recruitId, hours, uuid, int(round(time.time() * 1000))),
@@ -58,9 +57,41 @@ class MeetingClass(RestClient):
 
     def endMeetCourse(self, meetCourseId, uuid, **kwargs):
         # 结束见面课
-        # get方式url直接拼接 {}.format（）
         return self.get(
             "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/endMeetCourseClass?meetCourseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def findMeetCourseMsg(self, meetCourseId, uuid, **kwargs):
+        # 查询见面课基本信息
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findMeetCourseMsg?meetCourseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def findMeetCourseLiveStatus(self, **kwargs):
+        # 查询见面课直播
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/findMeetCourseLiveStatus",
+            **kwargs)
+
+    def findMeetcourseUserAuthData(self, **kwargs):
+        # 查询见面课直播
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/findMeetcourseUserAuthData",
+            **kwargs)
+
+    def findOnGoingSignIdsAndRushQuestionId(self, groupId, uuid, **kwargs):
+        # 查询见面课基本信息
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/findOnGoingSignIdsAndRushQuestionId?groupId={}&uuid={}&dateFormate={}".format(
+                groupId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def findRecentViewFile(self, meetCourseId, uuid, **kwargs):
+        # 查询见面课基本信息
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findRecentViewFile?meetCourseId={}&uuid={}&dateFormate={}".format(
                 meetCourseId, uuid, int(round(time.time() * 1000))),
             **kwargs)
 

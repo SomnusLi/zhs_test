@@ -1,6 +1,7 @@
 import os
 from core.rest_client import RestClient
 from common.read_data import data
+from common.filedValueGenerate import get_current_time
 
 # 文件路径 上级目录
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -24,6 +25,13 @@ class User(RestClient):
     def getLoginInfo(self, **kwargs):
         # 获取用户登录信息
         return self.get("https://onlineservice.zhihuishu.com/login/getLoginUserInfo", **kwargs)
+
+    def queryTeacherSchoolId(self, uuid, **kwargs):
+        # 获取用户登录学校
+        return self.get(
+            "https://onlineservice.zhihuishu.com/teacher/index/queryTeacherSchoolId?uuid={}&date={}".format(uuid,
+                                                                                                            get_current_time()),
+            **kwargs)
 
 
 user = User(api_root_url)
