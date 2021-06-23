@@ -95,5 +95,37 @@ class MeetingClass(RestClient):
                 meetCourseId, uuid, int(round(time.time() * 1000))),
             **kwargs)
 
+    def getHuanxinUserMessage(self, uuid, **kwargs):
+        # 获取环信用户信息
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getHuanxinUserMessage?uuid={}&dateFormate={}".format(
+                uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def getChatroomIdByGroupId(self, groupId, **kwargs):
+        # 获取环信用户信息
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getChatroomIdByGroupId?groupId={}".format(
+                groupId), **kwargs)
+
+    def upIsHandAndSpeechByMeetingCourseId(self, **kwargs):
+        # 更新直播是否允许举手和发言
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/upIsHandAndSpeechByMeetingCourseId",
+            **kwargs)
+
+    def checkMeetCourseLivingAuthByUuid(self, **kwargs):
+        # 查询老师是否进行了直播认证
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/checkMeetCourseLivingAuthByUuid",
+            **kwargs)
+
+    def verifyMembershipFunctionPermissions(self, type, uuid, **kwargs):
+        # 校验用户的功能权限
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/verifyMembershipFunctionPermissions?functionType={}&uuid={}&dateFormate={}".format(
+                type, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

@@ -2,7 +2,6 @@ from core.result_base import ResultBase
 from api.meetingclass.meetingclass import MeetingClass
 from common.logger import logger
 from common.filedValueGenerate import randomRangeNum, get_current_time
-from common.filedValueGenerate import get_current_time
 
 
 def getUserRoleByCourseId(uuid, couresId, cookies):
@@ -292,6 +291,121 @@ def findRecentViewFile(meetCourseId, uuid, cookies):
     }
 
     res = MeetingClass.findRecentViewFile(meetCourseId, uuid, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getHuanxinUserMessage(uuid, cookies):
+    """
+    获取环信用户信息
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    res = MeetingClass.getHuanxinUserMessage(uuid, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getChatroomIdByGroupId(groupId, cookies):
+    """
+    获取环信用户信息
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    res = MeetingClass.getChatroomIdByGroupId(groupId, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def upIsHandAndSpeechByMeetingCourseId(isHandUp, meetCourseId, uuid, isInteractiveSpeech, cookies):
+    """
+    更新直播是否允许举手和发言
+    """
+    list_change = ["0", "2", "1"]
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "uuid": uuid,
+        "isHandUp": list_change[isHandUp],
+        "isInteractiveSpeech": list_change[isInteractiveSpeech]
+    }
+    res = MeetingClass.upIsHandAndSpeechByMeetingCourseId(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def checkMeetCourseLivingAuthByUuid(uuid, cookies):
+    """
+    查询老师是否进行了直播认证
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "uuid": uuid
+    }
+    res = MeetingClass.checkMeetCourseLivingAuthByUuid(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def verifyMembershipFunctionPermissions(type, uuid, cookies):
+    """
+    校验用户的功能权限
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    res = MeetingClass.verifyMembershipFunctionPermissions(type, uuid, headers=header, cookies=cookies)
     result.success = False
     if res.status_code == 200:
         result.success = True

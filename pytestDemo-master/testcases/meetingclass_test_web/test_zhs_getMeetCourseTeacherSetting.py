@@ -40,10 +40,8 @@ class TestGetCourseId():
         cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
         result_get_courseInfo_teacher = get_courseInfo_teacher(uuid,
                                                                cookies=cookies)
-        # courseId = result_get_courseInfo_teacher.response.json()["rt"]["courseList"][0]["courseId"]
         courseList = result_get_courseInfo_teacher.response.json()["rt"]["courseList"]
         courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
-        print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
 
         result_getMeetCourseTeacherSetting = getMeetCourseTeacherSetting(uuid, courseId,

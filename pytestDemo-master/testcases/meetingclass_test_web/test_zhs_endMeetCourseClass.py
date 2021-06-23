@@ -46,7 +46,6 @@ class Test_endMeetCourseClass():
         result_onlineservice_getStartingMeetCourseList = onlineservice_getStartingMeetCourseList(uuid,
                                                                                                  cookies=cookies)
         assert result_onlineservice_getStartingMeetCourseList.response.status_code == 200
-        t = result_onlineservice_getStartingMeetCourseList.response.json()
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]

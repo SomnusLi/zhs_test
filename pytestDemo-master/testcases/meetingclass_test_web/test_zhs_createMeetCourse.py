@@ -48,11 +48,10 @@ class Test_creatMeetCourse():
         assert result_get_courseInfo_teacher.response.status_code == 200
         courseList = result_get_courseInfo_teacher.response.json()["rt"]["courseList"]
         courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
-        print(courseId)
-        result_getStartingMeetCourseList = getStartingMeetCourseList(uuid, courseId,
-                                                                     cookies=cookies)
-        assert result_getStartingMeetCourseList.response.status_code == 200
-        if result_getStartingMeetCourseList.response.json()["rt"] != []:
+        result_onlineservice_getStartingMeetCourseList = onlineservice_getStartingMeetCourseList(uuid,
+                                                                                                 cookies=cookies)
+        assert result_onlineservice_getStartingMeetCourseList.response.status_code == 200
+        if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
         else:
             result_getUserRoleByCourseId = getUserRoleByCourseId(uuid, courseId,

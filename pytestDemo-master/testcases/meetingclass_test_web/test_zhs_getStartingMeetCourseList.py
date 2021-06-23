@@ -48,7 +48,6 @@ class Test_getStartingMeetCourseList():
         courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
         print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
-
         result_getStartingMeetCourseList = getStartingMeetCourseList(uuid, courseId,
                                                                      cookies=add_cookies(
                                                                          requests.utils.dict_from_cookiejar(

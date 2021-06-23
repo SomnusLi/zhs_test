@@ -1,0 +1,87 @@
+[2021-06-23 11:42:45,011][rest_client.py 52][INFO]: 接口请求地址 ==>> https://passport.zhihuishu.com/user/validateAccountAndPassword
+[2021-06-23 11:42:45,011][rest_client.py 53][INFO]: 接口请求方式 ==>> POST
+[2021-06-23 11:42:45,011][rest_client.py 55][INFO]: 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+[2021-06-23 11:42:45,011][rest_client.py 56][INFO]: 接口请求 params 参数 ==>> null
+[2021-06-23 11:42:45,011][rest_client.py 57][INFO]: 接口请求体 data 参数 ==>> {
+    "account": "13122285260",
+    "password": "Aa111111"
+}
+[2021-06-23 11:42:45,011][rest_client.py 58][INFO]: 接口请求体 json 参数 ==>> null
+[2021-06-23 11:42:45,011][rest_client.py 59][INFO]: 接口上传附件 files 参数 ==>> None
+[2021-06-23 11:42:45,012][rest_client.py 60][INFO]: 接口 cookies 参数 ==>> null
+[2021-06-23 11:42:45,172][conftest.py 44][INFO]: 前置步骤 ==>> 用户 13122285260 登录，返回信息 为：Aa111111
+[2021-06-23 11:42:45,186][test_zhs_createMeetCourse.py 38][INFO]: *************** 开始执行用例 ***************
+[2021-06-23 11:42:45,186][test_zhs_createMeetCourse.py 17][INFO]: 前置登录步骤 ==>> 用户 13122285260 登录 ==>> 返回的 uuid 为：Vv45Mker
+[2021-06-23 11:42:45,186][rest_client.py 52][INFO]: 接口请求地址 ==>> https://hike-teaching.zhihuishu.com/teachingCourse/findTeacherCourses?pageSize=1000&uuid=Vv45Mker&date=2021-06-23T11:42:45.186Z
+[2021-06-23 11:42:45,186][rest_client.py 53][INFO]: 接口请求方式 ==>> GET
+[2021-06-23 11:42:45,187][rest_client.py 55][INFO]: 接口请求头 ==>> {
+    "Content-Type": "application/json"
+}
+[2021-06-23 11:42:45,187][rest_client.py 56][INFO]: 接口请求 params 参数 ==>> null
+[2021-06-23 11:42:45,187][rest_client.py 57][INFO]: 接口请求体 data 参数 ==>> null
+[2021-06-23 11:42:45,187][rest_client.py 58][INFO]: 接口请求体 json 参数 ==>> null
+[2021-06-23 11:42:45,187][rest_client.py 59][INFO]: 接口上传附件 files 参数 ==>> None
+[2021-06-23 11:42:45,188][rest_client.py 60][INFO]: 接口 cookies 参数 ==>> null
+[2021-06-23 11:42:45,405][course.py 49][INFO]: 该老师获取课程列表 ==>> 返回结果 ==>> {"status":200,"message":"查询课程列表成功","rt":{"courseList":[{"courseId":10401063,"code":695179,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/809a0ca7a5b74ef2b351675644e8f3ac.png","courseName":"test","teachingTeam":"刘文力","reportedStudents":0,"reportableStudents":null,"createTime":1623929956000,"resources":175,"role":0,"classify":1,"copying":null,"year":"2020-2021","term":"2","syncCourse":false,"createrId":802042381},{"courseId":10393013,"code":597859,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/0c9cb067eafa459497cbac993880208f.png","courseName":"防作弊设置","teachingTeam":"刘文力、HY","reportedStudents":10,"reportableStudents":null,"createTime":1619611929000,"resources":3,"role":0,"classify":1,"copying":null,"year":"2020-2021","term":"2","syncCourse":false,"createrId":802042381},{"courseId":10389575,"code":184448,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/016b8979ecc84383a9a001673d1c6e1d.png","courseName":"错题训练库","teachingTeam":"刘文力","reportedStudents":9,"reportableStudents":null,"createTime":1618385016000,"resources":0,"role":0,"classify":1,"copying":null,"year":"2020-2021","term":"2","syncCourse":false,"createrId":802042381},{"courseId":10389565,"code":143021,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/c0a6d4b09de4445eb079a463a5f83eb7.png","courseName":"错题训练库4","teachingTeam":"刘文力","reportedStudents":3,"reportableStudents":null,"createTime":1618384128000,"resources":0,"role":0,"classify":1,"copying":null,"year":"2020-2021","term":"2","syncCourse":false,"createrId":802042381},{"courseId":10389422,"code":210599,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/016b8979ecc84383a9a001673d1c6e1d.png","courseName":"错题训练库3","teachingTeam":"刘文力","reportedStudents":2,"reportableStudents":null,"createTime":1618330031000,"resources":0,"role":0,"classify":1,"copying":null,"year":"2020-2021","term":"2","syncCourse":false,"createrId":802042381},{"courseId":10389419,"code":835994,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/0c9cb067eafa459497cbac993880208f.png","courseName":"错题训练库2","teachingTeam":"刘文力","reportedStudents":2,"reportableStudents":null,"createTime":1618328695000,"resources":0,"role":0,"classify":1,"copying":null,"year":"2020-2021","term":"2","syncCourse":false,"createrId":802042381},{"courseId":10389410,"code":615279,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/0c9cb067eafa459497cbac993880208f.png","courseName":"错题训练库","teachingTeam":"刘文力","reportedStudents":3,"reportableStudents":null,"createTime":1618323625000,"resources":0,"role":0,"classify":1,"copying":null,"year":"2020-2021","term":"2","syncCourse":false,"createrId":802042381},{"courseId":10351153,"code":635395,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/809a0ca7a5b74ef2b351675644e8f3ac.png","courseName":"20210127新建翻转课","teachingTeam":"刘文力","reportedStudents":1,"reportableStudents":null,"createTime":1611750798000,"resources":278,"role":0,"classify":1,"copying":false,"year":"2020-2021","term":"1","syncCourse":false,"createrId":802042381},{"courseId":10350351,"code":369609,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/0c9cb067eafa459497cbac993880208f.png","courseName":"新建课程测试教师名称","teachingTeam":"刘文力","reportedStudents":0,"reportableStudents":null,"createTime":1611386444000,"resources":6,"role":0,"classify":1,"copying":false,"year":"2020-2021","term":"1","syncCourse":false,"createrId":802042381},{"courseId":10347099,"code":112852,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/9e0292dd6ac144678b4dcfd7bfad3d49.png","courseName":"新课程测试分享","teachingTeam":"刘文力","reportedStudents":0,"reportableStudents":null,"createTime":1609727732000,"resources":0,"role":0,"classify":1,"copying":false,"year":"2020-2021","term":"1","syncCourse":false,"createrId":802042381},{"courseId":10340815,"code":168646,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/9e0292dd6ac144678b4dcfd7bfad3d49.png","courseName":"凛冬散尽","teachingTeam":"刘文力","reportedStudents":7,"reportableStudents":null,"createTime":1607075199000,"resources":46,"role":0,"classify":1,"copying":null,"year":null,"term":null,"syncCourse":false,"createrId":802042381},{"courseId":10336845,"code":176080,"courseCover":"https://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/0c9cb067eafa459497cbac993880208f.png","courseName":"0922测试复制","teachingTeam":"刘文力","reportedStudents":0,"reportableStudents":null,"createTime":1605677826000,"resources":45,"role":0,"classify":1,"copying":false,"year":"2020-2021","term":"3","syncCourse":false,"createrId":802042381},{"courseId":10336357,"code":974060,"courseCover":"https://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/0c9cb067eafa459497cbac993880208f.png","courseName":"0922测试1","teachingTeam":"刘文力","reportedStudents":0,"reportableStudents":null,"createTime":1605513232000,"resources":45,"role":0,"classify":1,"copying":false,"year":null,"term":null,"syncCourse":false,"createrId":802042381},{"courseId":10319985,"code":524519,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/0c9cb067eafa459497cbac993880208f.png","courseName":"0922测试","teachingTeam":"刘文力、HY","reportedStudents":2,"reportableStudents":null,"createTime":1600756338000,"resources":45,"role":0,"classify":1,"copying":false,"year":"2020-2021","term":"1","syncCourse":false,"createrId":802042381},{"courseId":10319427,"code":304065,"courseCover":"http://image.zhihuishu.com/zhs_yanfa_150820/ablecommons/demo/201910/c0a6d4b09de4445eb079a463a5f83eb7.png","courseName":"0921外网验证","teachingTeam":"刘文力、郑3","reportedStudents":5,"reportableStudents":null,"createTime":1600670811000,"resources":19,"role":0,"classify":1,"copying":false,"year":"2020-2021","term":"1","syncCourse":false,"createrId":802042381},{"courseId":10005519,"code":243491,"courseCover":"https://image.zhihuishu.com/zhs/able-commons/demo/201805/0fca8392e7494e8e951c41e69e4f1354.png","courseName":"任务标题HHHH","teachingTeam":"卓越质量管理学院","reportedStudents":1,"reportableStudents":null,"createTime":1547759560000,"resources":8,"role":1,"classify":1,"copying":false,"year":"2018-2019","term":"1","syncCourse":false,"createrId":537}],"totalCount":16}}
+[2021-06-23 11:42:45,405][rest_client.py 52][INFO]: 接口请求地址 ==>> https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/getStartingMeetCourseList
+[2021-06-23 11:42:45,405][rest_client.py 53][INFO]: 接口请求方式 ==>> POST
+[2021-06-23 11:42:45,405][rest_client.py 55][INFO]: 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+[2021-06-23 11:42:45,405][rest_client.py 56][INFO]: 接口请求 params 参数 ==>> null
+[2021-06-23 11:42:45,406][rest_client.py 57][INFO]: 接口请求体 data 参数 ==>> {
+    "courseId": 10340815,
+    "uuid": "Vv45Mker",
+    "role": 1
+}
+[2021-06-23 11:42:45,406][rest_client.py 58][INFO]: 接口请求体 json 参数 ==>> null
+[2021-06-23 11:42:45,406][rest_client.py 59][INFO]: 接口上传附件 files 参数 ==>> None
+[2021-06-23 11:42:45,406][rest_client.py 60][INFO]: 接口 cookies 参数 ==>> null
+[2021-06-23 11:42:45,583][meetingclass.py 54][INFO]: 权限查询 ==>> 返回结果 ==>> {"currentTime":1624419765759,"msg":"请求成功","rt":[],"status":"200"}
+[2021-06-23 11:42:45,583][rest_client.py 52][INFO]: 接口请求地址 ==>> https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/atUser/getUserRoleByCourseId?courseId=10340815&uuid=Vv45Mker&dateFormate=1624419765583
+[2021-06-23 11:42:45,583][rest_client.py 53][INFO]: 接口请求方式 ==>> GET
+[2021-06-23 11:42:45,583][rest_client.py 55][INFO]: 接口请求头 ==>> {
+    "Content-Type": "application/json"
+}
+[2021-06-23 11:42:45,583][rest_client.py 56][INFO]: 接口请求 params 参数 ==>> null
+[2021-06-23 11:42:45,583][rest_client.py 57][INFO]: 接口请求体 data 参数 ==>> null
+[2021-06-23 11:42:45,583][rest_client.py 58][INFO]: 接口请求体 json 参数 ==>> null
+[2021-06-23 11:42:45,583][rest_client.py 59][INFO]: 接口上传附件 files 参数 ==>> None
+[2021-06-23 11:42:45,583][rest_client.py 60][INFO]: 接口 cookies 参数 ==>> null
+[2021-06-23 11:42:45,693][meetingclass.py 25][INFO]: 权限查询 ==>> 返回结果 ==>> {"currentTime":1624419765873,"msg":"请求成功","rt":1,"status":"200"}
+[2021-06-23 11:42:45,693][rest_client.py 52][INFO]: 接口请求地址 ==>> https://hike.zhihuishu.com/aidedteaching/course/getRecruitIdByCourseId?courseId=10340815
+[2021-06-23 11:42:45,693][rest_client.py 53][INFO]: 接口请求方式 ==>> GET
+[2021-06-23 11:42:45,693][rest_client.py 55][INFO]: 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+}
+[2021-06-23 11:42:45,693][rest_client.py 56][INFO]: 接口请求 params 参数 ==>> null
+[2021-06-23 11:42:45,693][rest_client.py 57][INFO]: 接口请求体 data 参数 ==>> null
+[2021-06-23 11:42:45,693][rest_client.py 58][INFO]: 接口请求体 json 参数 ==>> null
+[2021-06-23 11:42:45,694][rest_client.py 59][INFO]: 接口上传附件 files 参数 ==>> None
+[2021-06-23 11:42:45,694][rest_client.py 60][INFO]: 接口 cookies 参数 ==>> null
+[2021-06-23 11:42:46,086][course.py 73][INFO]: 该课程的招生id ==>> 返回结果 ==>> 20340494
+[2021-06-23 11:42:46,086][rest_client.py 52][INFO]: 接口请求地址 ==>> https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/getSelectClassInfo?recruitId=20340494&uuid=Vv45Mker&dateFormate=1624419766087
+[2021-06-23 11:42:46,087][rest_client.py 53][INFO]: 接口请求方式 ==>> GET
+[2021-06-23 11:42:46,087][rest_client.py 55][INFO]: 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+[2021-06-23 11:42:46,087][rest_client.py 56][INFO]: 接口请求 params 参数 ==>> null
+[2021-06-23 11:42:46,087][rest_client.py 57][INFO]: 接口请求体 data 参数 ==>> null
+[2021-06-23 11:42:46,087][rest_client.py 58][INFO]: 接口请求体 json 参数 ==>> null
+[2021-06-23 11:42:46,087][rest_client.py 59][INFO]: 接口上传附件 files 参数 ==>> None
+[2021-06-23 11:42:46,087][rest_client.py 60][INFO]: 接口 cookies 参数 ==>> null
+[2021-06-23 11:42:46,199][meetingclass.py 134][INFO]: 权限查询 ==>> 返回结果 ==>> {"currentTime":1624419766368,"msg":"请求成功","rt":{"courseName":"凛冬散尽","teacherName":"刘文力","classInfos":[{"studentCount":6,"isHavingClass":0,"classMemberImg":["https://image.zhihuishu.com/zhs/ablecommons/demo/201809/1c91f1a980214d9caf5254d512fb65c9.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/943407494a644a19aab7d2b0c37a3b1f.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/0f7429bb4a74466d869dd23f057cdd96.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/5f7532c7e0f44414be19cecbfb7f517c.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/e87e910e8024464b8f2453ed67a22627.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/efb2b56827cf4c488803a0de23bd2e2e.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/5f7532c7e0f44414be19cecbfb7f517c.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/0f7429bb4a74466d869dd23f057cdd96.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/174e71ab1a404a7abbf4f458ce3c2831.jpg"],"assistCount":0,"name":"凛冬散尽班","noActstuNum":0,"id":656416},{"studentCount":1,"isHavingClass":0,"classMemberImg":["https://image.zhihuishu.com/zhs/ablecommons/demo/201809/efb2b56827cf4c488803a0de23bd2e2e.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/b49d4459e0c14d9f850067d34f71d358.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/fecdf068fe3444cfb5039ca458dd23b8.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/b1974ee4d48c43d9905484adac93b287.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/0f7429bb4a74466d869dd23f057cdd96.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/1333c97db4d44da3b6b316423bed1f16.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/ac7114b74411400fbeaf7257f25cb3bd.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/ce2c4e3c519c41c5b0c63a4c5160e5c5.jpg","https://image.zhihuishu.com/zhs/ablecommons/demo/201809/ac7114b74411400fbeaf7257f25cb3bd.jpg"],"assistCount":0,"name":"分班","noActstuNum":0,"id":778884}],"courseCode":168646,"teachCount ":0,"teacherAvatar":"https://image.zhihuishu.com/zhs/ablecommons/cutimage/202009/72f45aa91cae4160af342c114ece5ced.jpg"},"status":"200"}
+[2021-06-23 11:42:46,199][rest_client.py 52][INFO]: 接口请求地址 ==>> https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/createMeetCourse?courseId=10340815&classIds=656416&778884&recruitId=20340494&hours=5&uuid=Vv45Mker&dateFormate=1624419766199
+[2021-06-23 11:42:46,199][rest_client.py 53][INFO]: 接口请求方式 ==>> GET
+[2021-06-23 11:42:46,199][rest_client.py 55][INFO]: 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+[2021-06-23 11:42:46,199][rest_client.py 56][INFO]: 接口请求 params 参数 ==>> null
+[2021-06-23 11:42:46,199][rest_client.py 57][INFO]: 接口请求体 data 参数 ==>> null
+[2021-06-23 11:42:46,199][rest_client.py 58][INFO]: 接口请求体 json 参数 ==>> null
+[2021-06-23 11:42:46,199][rest_client.py 59][INFO]: 接口上传附件 files 参数 ==>> None
+[2021-06-23 11:42:46,199][rest_client.py 60][INFO]: 接口 cookies 参数 ==>> null
+[2021-06-23 11:42:46,318][meetingclass.py 157][INFO]: 权限查询 ==>> 返回结果 ==>> {"currentTime":1624419766496,"msg":"请求成功","rt":{"meetCourseId":2058843,"groupId":2867824,"resultMessage":"创建成功","status":1},"status":"200"}
+[2021-06-23 11:42:46,318][test_zhs_createMeetCourse.py 81][INFO]: *************** 结束执行用例 ***************

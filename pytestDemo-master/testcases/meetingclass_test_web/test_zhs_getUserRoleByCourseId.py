@@ -34,30 +34,22 @@ class Test_getUserRoleByCourseId():
     #                          "except_result, except_code, except_msg",
     #                          api_data["test_update_user"])
     # @pytest.mark.usefixtures("Get_courseId")
-    def test_getUserRoleByCourseId(self, login_fixture_teacher):
+    def test_zhs_getUserRoleByCourseId(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
         uuid = user_info.json().get("uuid")
         account = user_info.request.body[8:19]
         step_login(account, uuid)
-        # cookies要传str类型
-        # cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
+        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
         result_get_courseInfo_teacher = get_courseInfo_teacher(uuid,
-                                                               cookies=add_cookies(requests.utils.dict_from_cookiejar(
-                                                                   user_info.cookies)))
+                                                               cookies=cookies)
         courseId = result_get_courseInfo_teacher.response.json()["rt"]["courseList"][0]["courseId"]
-        # ["rt"]["courseList"][0]["courseId"]
-        print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
 
         result_getUserRoleByCourseId = getUserRoleByCourseId(uuid, courseId,
-                                                             cookies=add_cookies(requests.utils.dict_from_cookiejar(
-                                                                 user_info.cookies)))
+                                                             cookies=cookies)
         assert result_getUserRoleByCourseId.response.status_code == 200
-        # logger.info("code ==>> 实际结果：{}".format(result.response.json().get("result")))
-        # assert result.response.json().get("status") == except_status
-        # assert set(six.viewitems(except_msg)).issubset(set(six.viewitems(result.msg)))
         logger.info("*************** 结束执行用例 ***************")
 
 

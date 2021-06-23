@@ -42,7 +42,6 @@ class Test_findRecentViewFile():
         logger.info("getStartingMeetCourseList")
         result_onlineservice_getStartingMeetCourseList = onlineservice_getStartingMeetCourseList(uuid, cookies=cookies)
         assert result_onlineservice_getStartingMeetCourseList.response.status_code == 200
-
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]

@@ -30,10 +30,6 @@ class Test_getSelectClassInfo():
     @allure.title(
         "测试数据：上游业务获取")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
     def test_zhs_getSelectClassInfo(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
@@ -45,18 +41,12 @@ class Test_getSelectClassInfo():
         result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
         courseList = result_get_courseInfo_teacher.response.json()["rt"]["courseList"]
         courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
-        # courseId = courseList[0]["courseId"]
-        print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
         result_getRecruitIdByCourseId = getRecruitIdByCourseId(courseId, cookies=cookies)
         assert result_getRecruitIdByCourseId.response.status_code == 200
         recruitId = result_getRecruitIdByCourseId.msg
         result_getSelectClassInfo = getSelectClassInfo(uuid, recruitId, cookies=cookies)
         assert result_getSelectClassInfo.response.status_code == 200
-
-        # logger.info("code ==>> 实际结果：{}".format(result.response.json().get("result")))
-        # assert result.response.json().get("status") == except_status
-        # assert set(six.viewitems(except_msg)).issubset(set(six.viewitems(result.msg)))
         logger.info("*************** 结束执行用例 ***************")
 
 

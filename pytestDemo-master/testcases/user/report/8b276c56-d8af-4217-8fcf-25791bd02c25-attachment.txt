@@ -1,0 +1,3 @@
+INFO     log:test_zhs_seleniumlogintest.py:20 *************** 开始执行用例 ***************
+INFO     log:test_zhs_seleniumlogintest.py:23 C:\worksapce\pytest\pytestDemo-master\config\chromedriver.exe
+INFO     log:test_zhs_seleniumlogintest.py:27 C:\worksapce\pytest\pytestDemo-master\config\geckodriver.exe
