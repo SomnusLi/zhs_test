@@ -1,3 +1,0 @@
-INFO     log:test_zhs_seleniumlogintest.py:14 *************** 开始执行用例 ***************
-INFO     log:test_zhs_seleniumlogintest.py:18 C:\worksapce\pytest\pytestDemo-master\1config\setting.ini
-INFO     log:test_zhs_seleniumlogintest.py:19 *************** 结束执行用例 ***************

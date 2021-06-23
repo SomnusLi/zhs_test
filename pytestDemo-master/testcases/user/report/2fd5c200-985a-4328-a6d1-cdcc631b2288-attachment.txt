@@ -1,3 +1,0 @@
-[2021-06-23 14:56:58,852][test_zhs_seleniumlogintest.py 20][INFO]: *************** 开始执行用例 ***************
-[2021-06-23 14:56:58,852][test_zhs_seleniumlogintest.py 26][INFO]: C:\worksapce\pytest\pytestDemo-master\config\chromedriver.exe
-[2021-06-23 14:56:58,852][test_zhs_seleniumlogintest.py 27][INFO]: <selenium.webdriver.firefox.options.Options object at 0x000002B04D00CE80>

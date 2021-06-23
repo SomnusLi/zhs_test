@@ -1,3 +1,0 @@
-INFO     log:test_zhs_seleniumlogintest.py:15 *************** 开始执行用例 ***************
-INFO     log:test_zhs_seleniumlogintest.py:17 C:\worksapce\pytest\pytestDemo-master\config\chromedriver.exe
-INFO     log:test_zhs_seleniumlogintest.py:28 *************** 结束执行用例 ***************
