@@ -39,18 +39,15 @@ class TestGetCourseId():
         user_info = login_fixture_teacher
         uuid = user_info.json().get("uuid")
         account = user_info.request.body[8:19]
+        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
         step_login(account, uuid)
         result_get_courseInfo_teacher = get_courseInfo_teacher(uuid,
-                                                               cookies=add_cookies(requests.utils.dict_from_cookiejar(
-                                                                   user_info.cookies)))
+                                                               cookies=cookies)
         courseId = result_get_courseInfo_teacher.response.json()["rt"]["courseList"][0]["courseId"]
-        print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
 
         result_getRecruitIdByCourseId = getRecruitIdByCourseId(courseId,
-                                                               cookies=add_cookies(
-                                                                   requests.utils.dict_from_cookiejar(
-                                                                       user_info.cookies)))
+                                                               cookies=cookies)
         assert result_getRecruitIdByCourseId.response.status_code == 200
         # logger.info("code ==>> 实际结果：{}".format(result.response.json().get("result")))
         # assert result.response.json().get("status") == except_status

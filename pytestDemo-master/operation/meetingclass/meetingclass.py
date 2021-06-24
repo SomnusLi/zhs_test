@@ -415,3 +415,189 @@ def verifyMembershipFunctionPermissions(type, uuid, cookies):
     result.response = res
     logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def startMeetingCourseLiving(groupId, openLiveFromType, meetCourseId, uuid, cookies):
+    """
+    开启直播
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "openLiveFromType": openLiveFromType,
+        "meetCourseId": meetCourseId,
+        "uuid": uuid
+    }
+    res = MeetingClass.startMeetingCourseLiving(data=data,
+                                                headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def saveMeetCourseLivingPcFlag(meetCourseId, courseId, uuid, cookies):
+    """
+    开启直播按钮 保存直播标识 -pc
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "courseId": courseId,
+        "uuid": uuid
+    }
+    res = MeetingClass.saveMeetCourseLivingPcFlag(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def endMeetingCourseLiving(meetCourseId, openLiveFromType, uuid, cookies):
+    """
+    关闭直播
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "openLiveFromType": openLiveFromType,
+        "uuid": uuid
+    }
+    res = MeetingClass.endMeetingCourseLiving(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getMeetCourseLivingShareUrl(meetCourseId, teacherName, uuid, cookies):
+    """
+    查询直播分享链接
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "teacherName": teacherName,
+        "uuid": uuid
+    }
+    res = MeetingClass.getMeetCourseLivingShareUrl(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.json()["text"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def saveMeetCourseLivingShareUrl(shareUrl, isType, meetCourseId, dataId, id, uuid, cookies):
+    """
+    保存见面课直播分享链接
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "shareUrl": shareUrl,
+        "isType": isType,
+        "dataId": dataId,
+        "id": id,
+        "uuid": uuid
+    }
+    res = MeetingClass.saveMeetCourseLivingShareUrl(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def isCloseBarrage(meetCourseId, uuid, cookies):
+    """
+    查询弹幕是否关闭
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "uuid": uuid
+    }
+    res = MeetingClass.isCloseBarrage(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def openOrCloseBarrage(meetCourseId, status, uuid, cookies):
+    """
+    更改弹幕开始状态
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "status": status,
+        "uuid": uuid
+    }
+    res = MeetingClass.openOrCloseBarrage(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("权限查询 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

@@ -127,5 +127,42 @@ class MeetingClass(RestClient):
                 type, uuid, int(round(time.time() * 1000))),
             **kwargs)
 
+    def startMeetingCourseLiving(self, **kwargs):
+        # 开启直播
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/startMeetingCourseLiving",
+            **kwargs)
+
+    def saveMeetCourseLivingPcFlag(self, **kwargs):
+        # 开启直播按钮 保存直播标识 -pc
+        return self.post(
+            "https://hike.zhihuishu.com/aidedteaching/meetCourse/saveMeetCourseLivingPcFlag", **kwargs)
+
+    def endMeetingCourseLiving(self, **kwargs):
+        # 关闭直播
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/endMeetingCourseLiving",
+            **kwargs)
+
+    def getMeetCourseLivingShareUrl(self, **kwargs):
+        # 查询直播分享链接
+        return self.post(
+            "https://ct.zhihuishu.com/classroomTools/live/getMeetCourseLivingShareUrl", **kwargs)
+
+    def saveMeetCourseLivingShareUrl(self, **kwargs):
+        # 保存见面课直播分享链接
+        return self.post(
+            "https://ct.zhihuishu.com/classroomTools/live/saveMeetCourseLivingShareUrl", **kwargs)
+
+    def isCloseBarrage(self, **kwargs):
+        # 查询弹幕是否关闭
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/barrage/isCloseBarrage", **kwargs)
+
+    def openOrCloseBarrage(self, **kwargs):
+        # 更改弹幕开始状态
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/barrage/openOrCloseBarrage", **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)
