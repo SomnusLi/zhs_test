@@ -44,13 +44,14 @@ class Test_getHuanxinUserMessage():
         assert result_onlineservice_getStartingMeetCourseList.response.status_code == 200
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
+            logger.info("getHuanxinUserMessage")
+            result_getHuanxinUserMessage = getHuanxinUserMessage(uuid,
+                                                                 cookies=cookies)
+            assert result_getHuanxinUserMessage.response.status_code == 200
         else:
             logger.info("没有正在开启的见面课")
+
         logger.info("*************** 结束执行用例 ***************")
-        logger.info("getHuanxinUserMessage")
-        result_getHuanxinUserMessage = getHuanxinUserMessage(uuid,
-                                                             cookies=cookies)
-        assert result_getHuanxinUserMessage.response.status_code == 200
 
 
 if __name__ == '__main__':

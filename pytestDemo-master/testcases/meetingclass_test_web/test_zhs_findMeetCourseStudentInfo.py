@@ -1,10 +1,10 @@
 import pytest
 import allure
-from operation.course.course import *
+from operation.course.course import get_courseInfo_teacher
 from operation.meetingclass.meetingclass import *
 from testcases.conftest import api_data
 from common.logger import logger
-from common.filedValueGenerate import add_cookies, randomRangeNum
+from common.filedValueGenerate import add_cookies
 import requests
 
 
@@ -20,21 +20,17 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
-class Test_getChatroomIdByGroupId():
-    """根据群组id获取群聊id"""
+class Test_findMeetCourseStudentInfo():
+    """查询见面课下的学生相关信息"""
 
-    @allure.story("用例--根据群组id获取群聊id")
-    @allure.description("该用例是根据群组id获取群聊id")
+    @allure.story("用例--查询见面课下的学生相关信息")
+    @allure.description("该用例是查询见面课下的学生相关信息")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(
         "测试数据：上游业务获取")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
-    def test_zhs_getChatroomIdByGroupId(self, login_fixture_teacher):
+    def test_zhs_findMeetCourseStudentInfo(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -49,17 +45,27 @@ class Test_getChatroomIdByGroupId():
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
+            courseName = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["courseName"]
+            logger.info("get_courseInfo_teacher")
+            result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
+            for courseList in result_get_courseInfo_teacher.response.json()["rt"]["courseList"]:
+                if courseName == courseList["courseName"]:
+                    courseId = courseList["courseId"]
+                    break
+            logger.info("开启直播的courseId为{}".format(courseId))
             logger.info("findMeetCourseMsg")
             result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
                                                          cookies=cookies)
             assert result_findMeetCourseMsg.response.status_code == 200
             groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
-            result_getChatroomIdByGroupId = getChatroomIdByGroupId(groupId, cookies=cookies)
-            assert result_getChatroomIdByGroupId.response.status_code == 200
+            logger.info("findMeetCourseStudentInfo")
+            result_findMeetCourseStudentInfo = findMeetCourseStudentInfo(groupId, meetCourseId, courseId, uuid,
+                                                                         cookies=cookies)
+            assert result_findMeetCourseStudentInfo.response.status_code == 200
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_getChatroomIdByGroupId.py"])
+    pytest.main(["-q", "-s", "test_zhs_findMeetCourseStudentInfo.py"])

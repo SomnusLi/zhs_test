@@ -48,6 +48,10 @@ class Test_isCloseBarrage():
             logger.info("isCloseBarrage")
             result_isCloseBarrage = isCloseBarrage(meetCourseId, uuid, cookies=cookies)
             assert result_isCloseBarrage.response.status_code == 200
+            if result_isCloseBarrage.response.json()["rt"]:
+                logger.info("老师已开启答疑")
+            else:
+                logger.info("老师未开启答疑")
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")

@@ -20,11 +20,11 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
-class Test_getChatroomIdByGroupId():
-    """根据群组id获取群聊id"""
+class Test_isOpen():
+    """查询是否开启讨论"""
 
-    @allure.story("用例--根据群组id获取群聊id")
-    @allure.description("该用例是根据群组id获取群聊id")
+    @allure.story("用例--查询是否开启讨论")
+    @allure.description("该用例查询是否开启讨论")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(
@@ -34,7 +34,7 @@ class Test_getChatroomIdByGroupId():
     #                          "except_result, except_code, except_msg",
     #                          api_data["test_update_user"])
     # @pytest.mark.usefixtures("Get_courseId")
-    def test_zhs_getChatroomIdByGroupId(self, login_fixture_teacher):
+    def test_zhs_isOpen(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -54,12 +54,18 @@ class Test_getChatroomIdByGroupId():
                                                          cookies=cookies)
             assert result_findMeetCourseMsg.response.status_code == 200
             groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
-            result_getChatroomIdByGroupId = getChatroomIdByGroupId(groupId, cookies=cookies)
-            assert result_getChatroomIdByGroupId.response.status_code == 200
+            logger.info("isOpen")
+            result_isOpen = isOpen(groupId, uuid, cookies=cookies)
+            assert result_isOpen.response.status_code == 200
+            if result_isOpen.response.json()["rt"]:
+                logger.info("老师未开启讨论")
+            else:
+                logger.info("老师已开启讨论")
         else:
             logger.info("没有正在开启的见面课")
-        logger.info("*************** 结束执行用例 ***************")
 
+
+logger.info("*************** 结束执行用例 ***************")
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_getChatroomIdByGroupId.py"])
+    pytest.main(["-q", "-s", "test_zhs_isOpen.py"])

@@ -82,14 +82,14 @@ class MeetingClass(RestClient):
             **kwargs)
 
     def findOnGoingSignIdsAndRushQuestionId(self, groupId, uuid, **kwargs):
-        # 查询见面课基本信息
+        # 查询见面课下进行的签到和提问
         return self.get(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/findOnGoingSignIdsAndRushQuestionId?groupId={}&uuid={}&dateFormate={}".format(
                 groupId, uuid, int(round(time.time() * 1000))),
             **kwargs)
 
     def findRecentViewFile(self, meetCourseId, uuid, **kwargs):
-        # 查询见面课基本信息
+        # 查询见面课最近打开的课堂文件
         return self.get(
             "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findRecentViewFile?meetCourseId={}&uuid={}&dateFormate={}".format(
                 meetCourseId, uuid, int(round(time.time() * 1000))),
@@ -103,7 +103,7 @@ class MeetingClass(RestClient):
             **kwargs)
 
     def getChatroomIdByGroupId(self, groupId, **kwargs):
-        # 获取环信用户信息
+        # 根据群组id获取群聊id
         return self.get(
             "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getChatroomIdByGroupId?groupId={}".format(
                 groupId), **kwargs)
@@ -163,6 +163,73 @@ class MeetingClass(RestClient):
         # 更改弹幕开始状态
         return self.post(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/barrage/openOrCloseBarrage", **kwargs)
+
+    def isOpen(self, groupId, uuid, **kwargs):
+        # 查询是否开启讨论
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/discuss/isOpen?groupId={}&uuid={}&dateFormate={}".format(
+                groupId, uuid, int(round(time.time() * 1000))), **kwargs)
+
+    def openOrClose(self, **kwargs):
+        # 开启/关闭讨论
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/discuss/openOrClose", **kwargs)
+
+    def findHistoryMsg(self, **kwargs):
+        # 查询讨论的历史消息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/discuss/findHistoryMsg", **kwargs)
+
+    def screenCourseClassInteractionListV2(self, **kwargs):
+        # 查询见面课互动列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/screenCourseClassInteractionListV2",
+            **kwargs)
+
+    def findMeetCourseStudentInfo(self, groupId, meetCourseId, courseId, uuid, **kwargs):
+        # 查询见面课下的学生相关信息
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/findMeetCourseStudentInfo?groupId={}&meetCourseId={}&courseId={}&uuid={}&dateFormate={}".format(
+                groupId, meetCourseId, courseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def teacherQRCodeLink(self, **kwargs):
+        # 扫码进入课堂
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/teacherQRCodeLink",
+            **kwargs)
+
+    def raiseHandsUserIdList(self, meetCourseId, uuid, **kwargs):
+        # 查询举手的学生id列表
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/raiseHands/raiseHandsUserIdList?meetCourseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def findOpenMikeList(self, meetCourseId, meetCourseLivingId, courseId, uuid, **kwargs):
+        # 查询打开麦克风的学生信息列表
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetCourseLive/findOpenMikeList?meetCourseId={}&meetCourseLivingId={}&courseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, meetCourseLivingId, courseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def chatCreateCheck(self, **kwargs):
+        # 创建签到
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCreateCheck",
+            **kwargs)
+
+    def signUserIdsHistory(self, **kwargs):
+        # 查询已签未签学生的相关信息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/signUserIdsHistory",
+            **kwargs)
+
+    def chatCheckInfo(self, **kwargs):
+        # 查询签到信息详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCheckInfo",
+            **kwargs)
 
 
 MeetingClass = MeetingClass(api_root_url)

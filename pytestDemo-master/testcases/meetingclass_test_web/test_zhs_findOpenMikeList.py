@@ -1,16 +1,12 @@
 import pytest
 import allure
-from operation.course.course import *
+from operation.course.course import get_courseInfo_teacher
 from operation.meetingclass.meetingclass import *
 from testcases.conftest import api_data
 from common.logger import logger
-from common.filedValueGenerate import add_cookies, randomRangeNum
+from common.filedValueGenerate import add_cookies
 import requests
 
-
-# @allure.step("步骤1 ==>> 根据ID修改用户信息")
-# def step_1(id):
-#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
 
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
@@ -20,21 +16,17 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
-class Test_getChatroomIdByGroupId():
-    """根据群组id获取群聊id"""
+class Test_findOpenMikeList():
+    """查询打开麦克风的学生信息列表"""
 
-    @allure.story("用例--根据群组id获取群聊id")
-    @allure.description("该用例是根据群组id获取群聊id")
+    @allure.story("用例--查询打开麦克风的学生信息列表")
+    @allure.description("该用例是查询打开麦克风的学生信息列表")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(
         "测试数据：上游业务获取")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
-    def test_zhs_getChatroomIdByGroupId(self, login_fixture_teacher):
+    def test_zhs_findOpenMikeList(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -49,17 +41,30 @@ class Test_getChatroomIdByGroupId():
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
-            logger.info("findMeetCourseMsg")
-            result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
-                                                         cookies=cookies)
-            assert result_findMeetCourseMsg.response.status_code == 200
-            groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
-            result_getChatroomIdByGroupId = getChatroomIdByGroupId(groupId, cookies=cookies)
-            assert result_getChatroomIdByGroupId.response.status_code == 200
+            logger.info("findMeetCourseLiveStatus")
+            result_findMeetCourseLiveStatus = findMeetCourseLiveStatus(meetCourseId, uuid, cookies=cookies)
+            assert result_findMeetCourseLiveStatus.response.status_code == 200
+            courseName = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["courseName"]
+            logger.info("get_courseInfo_teacher")
+            result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
+            for courseList in result_get_courseInfo_teacher.response.json()["rt"]["courseList"]:
+                if courseName == courseList["courseName"]:
+                    courseId = courseList["courseId"]
+                    break
+            if result_findMeetCourseLiveStatus.response.json()["rt"]["isliving"] == 2:
+                meetCourseLivingId = result_findMeetCourseLiveStatus.response.json()["rt"]["meetCourseLivingId"]
+                logger.info("该用户已开启直播")
+                logger.info("findOpenMikeList")
+                result_findOpenMikeList = findOpenMikeList(meetCourseId, meetCourseLivingId, courseId, uuid,
+                                                           cookies=cookies)
+                assert result_findOpenMikeList.response.status_code == 200
+            else:
+                logger.info("该用户没有开启直播")
+
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_getChatroomIdByGroupId.py"])
+    pytest.main(["-q", "-s", "test_zhs_findOpenMikeList.py"])

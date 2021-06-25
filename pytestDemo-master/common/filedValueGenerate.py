@@ -141,3 +141,12 @@ def add_cookies(cookie):
         cookies[s["name"]] = s["value"]
     browser.quit()
     return cookies
+
+
+def getRandomCheckGesture():
+    list = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+    randomListNum = random.randint(4, 9)
+    randomList = random.sample(list, randomListNum)
+    checkGesture = ""
+    checkGesture = checkGesture.join(randomList)
+    return checkGesture

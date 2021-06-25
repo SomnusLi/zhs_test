@@ -53,8 +53,8 @@ class Test_findOnGoingSignIdsAndRushQuestionId():
             result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
                                                          cookies=cookies)
             assert result_findMeetCourseMsg.response.status_code == 200
-            gruopId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
-            result_findOnGoingSignIdsAndRushQuestionId = findOnGoingSignIdsAndRushQuestionId(gruopId, uuid,
+            groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
+            result_findOnGoingSignIdsAndRushQuestionId = findOnGoingSignIdsAndRushQuestionId(groupId, uuid,
                                                                                              cookies=cookies)
             assert result_findOnGoingSignIdsAndRushQuestionId.response.status_code == 200
         else:

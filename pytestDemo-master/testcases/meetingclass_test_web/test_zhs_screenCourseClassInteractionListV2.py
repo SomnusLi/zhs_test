@@ -8,10 +8,6 @@ from common.filedValueGenerate import add_cookies, randomRangeNum
 import requests
 
 
-# @allure.step("步骤1 ==>> 根据ID修改用户信息")
-# def step_1(id):
-#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
-
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
     logger.info("前置登录步骤 ==>> 用户 {} 登录 ==>> 返回的 uuid 为：{}".format(account, uuid))
@@ -20,11 +16,11 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
-class Test_getChatroomIdByGroupId():
-    """根据群组id获取群聊id"""
+class Test_screenCourseClassInteractionListV2():
+    """查询见面课互动列表"""
 
-    @allure.story("用例--根据群组id获取群聊id")
-    @allure.description("该用例是根据群组id获取群聊id")
+    @allure.story("用例--查询见面课互动列表")
+    @allure.description("该用例查询见面课互动列表")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(
@@ -34,7 +30,7 @@ class Test_getChatroomIdByGroupId():
     #                          "except_result, except_code, except_msg",
     #                          api_data["test_update_user"])
     # @pytest.mark.usefixtures("Get_courseId")
-    def test_zhs_getChatroomIdByGroupId(self, login_fixture_teacher):
+    def test_zhs_screenCourseClassInteractionListV2(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -49,17 +45,22 @@ class Test_getChatroomIdByGroupId():
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
-            logger.info("findMeetCourseMsg")
-            result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
-                                                         cookies=cookies)
-            assert result_findMeetCourseMsg.response.status_code == 200
-            groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
-            result_getChatroomIdByGroupId = getChatroomIdByGroupId(groupId, cookies=cookies)
-            assert result_getChatroomIdByGroupId.response.status_code == 200
+            logger.info("screenCourseClassInteractionListV2")
+            page = 0
+            pageSize = 100
+            result_screenCourseClassInteractionListV2 = screenCourseClassInteractionListV2(meetCourseId, page, pageSize,
+                                                                                           uuid,
+                                                                                           cookies=cookies)
+            assert result_screenCourseClassInteractionListV2.response.status_code == 200
+            if result_screenCourseClassInteractionListV2.response.json()["rt"]["interactionListGoing"] == []:
+                logger.info("没有正在进行中的互动")
+            if result_screenCourseClassInteractionListV2.response.json()["rt"]["InteractionDetailDtos"] == []:
+                logger.info("本见面课没有互动")
         else:
             logger.info("没有正在开启的见面课")
-        logger.info("*************** 结束执行用例 ***************")
 
+
+logger.info("*************** 结束执行用例 ***************")
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_getChatroomIdByGroupId.py"])
+    pytest.main(["-q", "-s", "test_zhs_screenCourseClassInteractionListV2.py"])

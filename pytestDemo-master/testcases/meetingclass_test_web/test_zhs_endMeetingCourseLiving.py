@@ -53,14 +53,12 @@ class Test_endMeetingCourseLiving():
             logger.info("findMeetCourseLiveStatus")
             result_findMeetCourseLiveStatus = findMeetCourseLiveStatus(meetCourseId, uuid, cookies=cookies)
             assert result_findMeetCourseLiveStatus.response.status_code == 200
-
             if result_findMeetCourseLiveStatus.response.json()["rt"]["isliving"] == 2:
                 logger.info("该用户已开启直播")
                 openLiveFromType = 1  # 1-web 2-app关闭直播 默认为1
                 result_endMeetingCourseLiving = endMeetingCourseLiving(meetCourseId, openLiveFromType, uuid,
                                                                        cookies=cookies)
                 assert result_endMeetingCourseLiving.response.status_code == 200
-
             else:
                 logger.info("该用户没有开启直播")
         else:
