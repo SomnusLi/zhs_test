@@ -231,5 +231,17 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCheckInfo",
             **kwargs)
 
+    def findUserInfoByUserIds(self, **kwargs):
+        # 通过学生uuids查询签到/未签的学生相关信息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/findUserInfoByUserIds",
+            **kwargs)
+
+    def chatCheckStatus(self, **kwargs):
+        # 更改学生签到状态
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCheckStatus",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

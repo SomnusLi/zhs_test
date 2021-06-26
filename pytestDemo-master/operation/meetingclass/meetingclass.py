@@ -1,3 +1,5 @@
+import time
+
 from core.result_base import ResultBase
 from api.meetingclass.meetingclass import MeetingClass
 from common.logger import logger
@@ -863,6 +865,60 @@ def chatCheckInfo(checkId, uuid, cookies):
         "uuid": uuid
     }
     res = MeetingClass.chatCheckInfo(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findUserInfoByUserIds(uuids, groupId, uuid, cookies):
+    """
+    通过学生uuids查询签到/未签的学生相关信息
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "uuids": uuids,
+        "groupId": groupId,
+        "uuid": uuid,
+        "dateFormate": int(round(time.time() * 1000))
+
+    }
+    res = MeetingClass.findUserInfoByUserIds(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatCheckStatus(checkId, checkType, sUuid, signRemark, uuid, cookies):
+    """
+    更改学生签到状态
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "checkId": checkId,
+        "checkType": checkType,
+        "uuid": uuid,
+        "sUuid": sUuid,
+        "signRemark": signRemark
+    }
+    res = MeetingClass.chatCheckStatus(data=data, headers=header, cookies=cookies)
     result.success = False
     if res.status_code == 200:
         result.success = True
