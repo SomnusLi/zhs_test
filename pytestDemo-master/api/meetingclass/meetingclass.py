@@ -249,5 +249,77 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatDeleteCheck",
             **kwargs)
 
+    def checkExistQuestion(self, **kwargs):
+        # 查询是否存在进行中的提问
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/checkExistQuestion",
+            **kwargs)
+
+    def findMeetCourseHours(self, meetCourseId, uuid, **kwargs):
+        # 查询是否存在进行中的提问
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findMeetCourseHours?meetCourseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def startQuestion(self, **kwargs):
+        # 创建答疑
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/startQuestion", **kwargs)
+
+    def countJoinNum(self, **kwargs):
+        # 统计讨论参与人数
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/countJoinNum", **kwargs)
+
+    def openQuestionDetail(self, **kwargs):
+        # 查询答疑详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/openQuestionDetail",
+            **kwargs)
+
+    def checkQuestionAndJoinNum(self, **kwargs):
+        # 查询问题总数量和参与人数
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/checkQuestionAndJoinNum",
+            **kwargs)
+
+    def questionListAll(self, **kwargs):
+        # 提问下的问题列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/questionListAll",
+            **kwargs)
+
+    def closeQuestion(self, **kwargs):
+        # 关闭答疑
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/closeQuestion",
+            **kwargs)
+
+    def getSimpleBrainStormList(self, groupId, type, pageSize, pageNum, uuid, **kwargs):
+        # 关闭答疑
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/brainStorm/getSimpleBrainStormList?groupId={}&type={}&pageSize={}&pageNum={}&uuid={}&dateFormate={}".format(
+                groupId, type, pageSize, pageNum, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def startRollcall(self, **kwargs):
+        # 开始点名
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/startRollcall",
+            **kwargs)
+
+    def quryRollcallDetail(self, **kwargs):
+        # 查询随机点名结果
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/quryRollcallDetail",
+            **kwargs)
+
+    def changeRollcall(self, **kwargs):
+        # 随机点名换一批
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/changeRollcall",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

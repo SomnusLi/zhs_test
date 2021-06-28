@@ -952,3 +952,291 @@ def chatDeleteCheck(checkId, uuid, cookies):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def checkExistQuestion(groupId, uuid, cookies):
+    """
+    查询是否存在进行中的提问
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid
+    }
+    res = MeetingClass.checkExistQuestion(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findMeetCourseHours(meetCourseId, uuid, cookies):
+    """
+    查询见面课时长
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    res = MeetingClass.findMeetCourseHours(meetCourseId, uuid, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def startQuestion(anonymous, groupId, courseClassId, uuid, recruitId, cookies):
+    """
+    创建答疑
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "anonymous": anonymous,
+        "groupId": groupId,
+        "courseClassId": courseClassId,
+        "uuid": uuid,
+        "recruitId": recruitId
+    }
+    res = MeetingClass.startQuestion(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def countJoinNum(rushQuestionId, uuid, cookies):
+    """
+    统计讨论参与人数
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "rushQuestionId": rushQuestionId,
+        "uuid": uuid
+    }
+    res = MeetingClass.countJoinNum(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def openQuestionDetail(rushQuestionId, uuid, cookies):
+    """
+    查询答疑详情
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "rushQuestionId": rushQuestionId,
+        "uuid": uuid
+    }
+    res = MeetingClass.openQuestionDetail(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def checkQuestionAndJoinNum(rushQuestionId, uuid, cookies):
+    """
+    查询问题总数量和参与人数
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "rushQuestionId": rushQuestionId,
+        "uuid": uuid
+    }
+    res = MeetingClass.checkQuestionAndJoinNum(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def questionListAll(pageSize, pageNum, sequenceType, rushQuestionId, uuid, cookies):
+    """
+    提问下的问题列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "pageSize": pageSize,
+        "pageNum": pageNum,
+        "sequenceType": sequenceType,
+        "rushQuestionId": rushQuestionId,
+        "uuid": uuid
+    }
+    res = MeetingClass.questionListAll(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def closeQuestion(rushQuestionId, groupId, uuid, cookies):
+    """
+    关闭答疑
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "rushQuestionId": rushQuestionId,
+        "uuid": uuid
+    }
+    res = MeetingClass.closeQuestion(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getSimpleBrainStormList(groupId, type, pageSize, pageNum, uuid, cookies):
+    """
+    查询头脑风暴列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    res = MeetingClass.getSimpleBrainStormList(groupId, type, pageSize, pageNum, uuid, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def startRollcall(groupId, count, uuid, cookies):
+    """
+    开始点名
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "count": count,
+        "uuid": uuid
+    }
+    res = MeetingClass.startRollcall(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def quryRollcallDetail(rollcallId, uuid, cookies):
+    """
+    查询随机点名结果
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "rollcallId": rollcallId,
+        "uuid": uuid
+    }
+    res = MeetingClass.quryRollcallDetail(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def changeRollcall(rollcallId, uuid, cookies):
+    """
+    随机点名换一批
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "rollcallId": rollcallId,
+        "uuid": uuid
+    }
+    res = MeetingClass.changeRollcall(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
