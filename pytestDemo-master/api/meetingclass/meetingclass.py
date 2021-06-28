@@ -243,5 +243,11 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCheckStatus",
             **kwargs)
 
+    def chatDeleteCheck(self, **kwargs):
+        # 删除签到
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatDeleteCheck",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

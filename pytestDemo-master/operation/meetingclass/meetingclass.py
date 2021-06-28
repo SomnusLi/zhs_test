@@ -928,3 +928,27 @@ def chatCheckStatus(checkId, checkType, sUuid, signRemark, uuid, cookies):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def chatDeleteCheck(checkId, uuid, cookies):
+    """
+    删除签到
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "checkId": checkId,
+        "uuid": uuid
+    }
+    res = MeetingClass.chatDeleteCheck(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

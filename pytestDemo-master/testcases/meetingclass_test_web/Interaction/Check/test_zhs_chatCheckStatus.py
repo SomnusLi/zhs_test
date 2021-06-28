@@ -63,6 +63,7 @@ class Test_chatCheckStatus():
                         checkId = ListGoing["interactionMap"]["signId"]
                         for checkType in range(1, 3):
                             userName = ""
+                            logger.info("signUserIdsHistory")
                             result_signUserIdsHistory = signUserIdsHistory(checkId, checkType, userName, groupId, uuid,
                                                                            cookies=cookies)
                             assert result_signUserIdsHistory.response.status_code == 200
@@ -70,6 +71,7 @@ class Test_chatCheckStatus():
                                 sUuid = random.sample(
                                     result_signUserIdsHistory.response.json()["rt"]["checkStudentsList"], 1)
                                 signRemark = getAutoStr(5)
+                                logger.info("chatCheckStatus")
                                 result_chatCheckStatus = chatCheckStatus(checkId, checkType, sUuid, signRemark, uuid,
                                                                          cookies=cookies)
                                 assert result_chatCheckStatus.response.status_code == 200
@@ -86,6 +88,7 @@ class Test_chatCheckStatus():
                         checkId = DetailDtos["interactionMap"]["signId"]
                         for checkType in range(1, 3):
                             userName = ""
+                            logger.info("signUserIdsHistory")
                             result_signUserIdsHistory = signUserIdsHistory(checkId, checkType, userName, groupId, uuid,
                                                                            cookies=cookies)
                             assert result_signUserIdsHistory.response.status_code == 200
@@ -93,6 +96,7 @@ class Test_chatCheckStatus():
                                 sUuid = random.sample(
                                     result_signUserIdsHistory.response.json()["rt"]["checkStudentsList"], 1)
                                 signRemark = getAutoStr(5)
+                                logger.info("chatCheckStatus")
                                 result_chatCheckStatus = chatCheckStatus(checkId, checkType, sUuid, signRemark, uuid,
                                                                          cookies=cookies)
                                 assert result_chatCheckStatus.response.status_code == 200
