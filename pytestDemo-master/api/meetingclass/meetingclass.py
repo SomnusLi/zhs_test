@@ -82,17 +82,309 @@ class MeetingClass(RestClient):
             **kwargs)
 
     def findOnGoingSignIdsAndRushQuestionId(self, groupId, uuid, **kwargs):
-        # 查询见面课基本信息
+        # 查询见面课下进行的签到和提问
         return self.get(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/findOnGoingSignIdsAndRushQuestionId?groupId={}&uuid={}&dateFormate={}".format(
                 groupId, uuid, int(round(time.time() * 1000))),
             **kwargs)
 
     def findRecentViewFile(self, meetCourseId, uuid, **kwargs):
-        # 查询见面课基本信息
+        # 查询见面课最近打开的课堂文件
         return self.get(
             "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findRecentViewFile?meetCourseId={}&uuid={}&dateFormate={}".format(
                 meetCourseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def getHuanxinUserMessage(self, uuid, **kwargs):
+        # 获取环信用户信息
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getHuanxinUserMessage?uuid={}&dateFormate={}".format(
+                uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def getChatroomIdByGroupId(self, groupId, **kwargs):
+        # 根据群组id获取群聊id
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getChatroomIdByGroupId?groupId={}".format(
+                groupId), **kwargs)
+
+    def upIsHandAndSpeechByMeetingCourseId(self, **kwargs):
+        # 更新直播是否允许举手和发言
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/upIsHandAndSpeechByMeetingCourseId",
+            **kwargs)
+
+    def checkMeetCourseLivingAuthByUuid(self, **kwargs):
+        # 查询老师是否进行了直播认证
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/checkMeetCourseLivingAuthByUuid",
+            **kwargs)
+
+    def verifyMembershipFunctionPermissions(self, type, uuid, **kwargs):
+        # 校验用户的功能权限
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/verifyMembershipFunctionPermissions?functionType={}&uuid={}&dateFormate={}".format(
+                type, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def startMeetingCourseLiving(self, **kwargs):
+        # 开启直播
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/startMeetingCourseLiving",
+            **kwargs)
+
+    def saveMeetCourseLivingPcFlag(self, **kwargs):
+        # 开启直播按钮 保存直播标识 -pc
+        return self.post(
+            "https://hike.zhihuishu.com/aidedteaching/meetCourse/saveMeetCourseLivingPcFlag", **kwargs)
+
+    def endMeetingCourseLiving(self, **kwargs):
+        # 关闭直播
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/endMeetingCourseLiving",
+            **kwargs)
+
+    def getMeetCourseLivingShareUrl(self, **kwargs):
+        # 查询直播分享链接
+        return self.post(
+            "https://ct.zhihuishu.com/classroomTools/live/getMeetCourseLivingShareUrl", **kwargs)
+
+    def saveMeetCourseLivingShareUrl(self, **kwargs):
+        # 保存见面课直播分享链接
+        return self.post(
+            "https://ct.zhihuishu.com/classroomTools/live/saveMeetCourseLivingShareUrl", **kwargs)
+
+    def isCloseBarrage(self, **kwargs):
+        # 查询弹幕是否关闭
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/barrage/isCloseBarrage", **kwargs)
+
+    def openOrCloseBarrage(self, **kwargs):
+        # 更改弹幕开始状态
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/barrage/openOrCloseBarrage", **kwargs)
+
+    def isOpen(self, groupId, uuid, **kwargs):
+        # 查询是否开启讨论
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/discuss/isOpen?groupId={}&uuid={}&dateFormate={}".format(
+                groupId, uuid, int(round(time.time() * 1000))), **kwargs)
+
+    def openOrClose(self, **kwargs):
+        # 开启/关闭讨论
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/discuss/openOrClose", **kwargs)
+
+    def findHistoryMsg(self, **kwargs):
+        # 查询讨论的历史消息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/discuss/findHistoryMsg", **kwargs)
+
+    def screenCourseClassInteractionListV2(self, **kwargs):
+        # 查询见面课互动列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/screenCourseClassInteractionListV2",
+            **kwargs)
+
+    def findMeetCourseStudentInfo(self, groupId, meetCourseId, courseId, uuid, **kwargs):
+        # 查询见面课下的学生相关信息
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/findMeetCourseStudentInfo?groupId={}&meetCourseId={}&courseId={}&uuid={}&dateFormate={}".format(
+                groupId, meetCourseId, courseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def teacherQRCodeLink(self, **kwargs):
+        # 扫码进入课堂
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/teacherQRCodeLink",
+            **kwargs)
+
+    def raiseHandsUserIdList(self, meetCourseId, uuid, **kwargs):
+        # 查询举手的学生id列表
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/raiseHands/raiseHandsUserIdList?meetCourseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def findOpenMikeList(self, meetCourseId, meetCourseLivingId, courseId, uuid, **kwargs):
+        # 查询打开麦克风的学生信息列表
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetCourseLive/findOpenMikeList?meetCourseId={}&meetCourseLivingId={}&courseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, meetCourseLivingId, courseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def chatCreateCheck(self, **kwargs):
+        # 创建签到
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCreateCheck",
+            **kwargs)
+
+    def signUserIdsHistory(self, **kwargs):
+        # 查询已签未签学生的相关信息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/signUserIdsHistory",
+            **kwargs)
+
+    def chatCheckInfo(self, **kwargs):
+        # 查询签到信息详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCheckInfo",
+            **kwargs)
+
+    def findUserInfoByUserIds(self, **kwargs):
+        # 通过学生uuids查询签到/未签的学生相关信息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/findUserInfoByUserIds",
+            **kwargs)
+
+    def chatCheckStatus(self, **kwargs):
+        # 更改学生签到状态
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatCheckStatus",
+            **kwargs)
+
+    def chatDeleteCheck(self, **kwargs):
+        # 删除签到
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/sign/chatDeleteCheck",
+            **kwargs)
+
+    def checkExistQuestion(self, **kwargs):
+        # 查询是否存在进行中的提问
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/checkExistQuestion",
+            **kwargs)
+
+    def findMeetCourseHours(self, meetCourseId, uuid, **kwargs):
+        # 查询是否存在进行中的提问
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findMeetCourseHours?meetCourseId={}&uuid={}&dateFormate={}".format(
+                meetCourseId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def startQuestion(self, **kwargs):
+        # 创建答疑
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/startQuestion", **kwargs)
+
+    def countJoinNum(self, **kwargs):
+        # 统计讨论参与人数
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/countJoinNum", **kwargs)
+
+    def openQuestionDetail(self, **kwargs):
+        # 查询答疑详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/openQuestionDetail",
+            **kwargs)
+
+    def checkQuestionAndJoinNum(self, **kwargs):
+        # 查询问题总数量和参与人数
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/checkQuestionAndJoinNum",
+            **kwargs)
+
+    def questionListAll(self, **kwargs):
+        # 提问下的问题列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/questionListAll",
+            **kwargs)
+
+    def closeQuestion(self, **kwargs):
+        # 关闭答疑
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/question/closeQuestion",
+            **kwargs)
+
+    def getSimpleBrainStormList(self, groupId, type, pageSize, pageNum, uuid, **kwargs):
+        # 关闭答疑
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/brainStorm/getSimpleBrainStormList?groupId={}&type={}&pageSize={}&pageNum={}&uuid={}&dateFormate={}".format(
+                groupId, type, pageSize, pageNum, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def startRollcall(self, **kwargs):
+        # 开始点名
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/startRollcall",
+            **kwargs)
+
+    def quryRollcallDetail(self, **kwargs):
+        # 查询随机点名结果
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/quryRollcallDetail",
+            **kwargs)
+
+    def changeRollcall(self, **kwargs):
+        # 随机点名换一批
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/changeRollcall",
+            **kwargs)
+
+    def chatVotePublishFastVote(self, **kwargs):
+        # 快速创建投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVotePublishFastVote",
+            **kwargs)
+
+    def chatVoteDetail(self, **kwargs):
+        # 查询投票详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVoteDetail",
+            **kwargs)
+
+    def getGroupMemberCount(self, **kwargs):
+        # 查询群组数量
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/getGroupMemberCount",
+            **kwargs)
+
+    def chatVoteDetailOptionCount(self, **kwargs):
+        # 查询投票选项信息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVoteDetailOptionCount",
+            **kwargs)
+
+    def chatVoteDetailOptionVotersList(self, **kwargs):
+        # 查询投票选项对应的投票人信息情况
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVoteDetailOptionVotersList",
+            **kwargs)
+
+    def unpublishedChatVotesList(self, **kwargs):
+        # 查询待发布投票列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/unpublishedChatVotesList",
+            **kwargs)
+
+    def chatDeleteVote(self, **kwargs):
+        # 删除投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatDeleteVote",
+            **kwargs)
+
+    def findRunningPreemptive(self, **kwargs):
+        # 查询群下正在进行的抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/findRunningPreemptive",
+            **kwargs)
+
+    def startRushAnswer(self, **kwargs):
+        # 创建抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/startRushAnswer",
+            **kwargs)
+
+    def quryRushAnswerDetail(self, **kwargs):
+        # 查询抢答详细
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/quryRushAnswerDetail",
+            **kwargs)
+
+    def endRushAnswer(self, **kwargs):
+        # 结束抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/endRushAnswer",
             **kwargs)
 
 

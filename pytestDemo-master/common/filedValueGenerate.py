@@ -4,6 +4,10 @@ import socket
 import time
 import timeit
 import datetime
+import os
+from common.logger import logger
+import time
+from selenium import webdriver
 
 
 def getAutoEmail():
@@ -111,8 +115,38 @@ def get_current_time():
     return time_stamp
 
 
-def add_cookies(cookies):
-    cookies[
-        "CASLOGC"] = "%7B%22realName%22%3A%22%E5%88%98%E6%96%87%E5%8A%9B%22%2C%22myuniRole%22%3A1%2C%22myinstRole%22%3A0%2C%22userId%22%3A802042381%2C%22headPic%22%3A%22https%3A%2F%2Fimage.zhihuishu.com%2Fzhs%2Fablecommons%2Fcutimage%2F202009%2F72f45aa91cae4160af342c114ece5ced_s3.jpg%22%2C%22uuid%22%3A%22Vv45Mker%22%2C%22mycuRole%22%3A0%2C%22username%22%3A%224428ee860c5949a28ede8907e7a3bce7%22%7D"
-    cookies["CASTGC"] = "TGT-2453583-xLDMCZeD5SSjhmDXhP6GMCkARCty7ccvFMLmgEyR3WV1p4hDp3-passport.zhihuishu.com"
+def add_cookies(cookie=None):
+    # cookies[
+    #     "CASLOGC"] = "%7B%22realName%22%3A%22%E5%88%98%E6%96%87%E5%8A%9B%22%2C%22myuniRole%22%3A1%2C%22myinstRole%22%3A0%2C%22userId%22%3A802042381%2C%22headPic%22%3A%22https%3A%2F%2Fimage.zhihuishu.com%2Fzhs%2Fablecommons%2Fcutimage%2F202009%2F72f45aa91cae4160af342c114ece5ced_s3.jpg%22%2C%22uuid%22%3A%22Vv45Mker%22%2C%22mycuRole%22%3A0%2C%22username%22%3A%224428ee860c5949a28ede8907e7a3bce7%22%7D"
+    # cookies["CASTGC"] = "TGT-363027-0ufZ5LXYfRra5NnfaFrPtcree4HCHmNWrBWWXZltbBjLYuRR34-passport.zhihuishu.com"
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--incognito")
+    chromedriver_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
+                                     "config\chromedriver.exe")
+    logger.info(chromedriver_path)
+    logger.info(chrome_options)
+    browser = webdriver.Chrome(chromedriver_path, options=chrome_options)
+    browser.get("https://passport.zhihuishu.com/login?service=https://onlineservice.zhihuishu.com/login/gologin")
+    time.sleep(3)
+    browser.find_element_by_xpath("//*[@id='lUsername']").send_keys("13122285260")
+    time.sleep(1)
+    browser.find_element_by_xpath("//*[@id='lPassword']").send_keys("Aa111111")
+    time.sleep(1)
+    browser.find_element_by_xpath("//*[@id='f_sign_up']/div[1]/span").click()
+    time.sleep(3)
+    list_cookies = browser.get_cookies()
+    cookies = {}
+    for s in list_cookies:
+        cookies[s["name"]] = s["value"]
+    browser.quit()
     return cookies
+
+
+def getRandomCheckGesture():
+    list = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+    randomListNum = random.randint(4, 9)
+    randomList = random.sample(list, randomListNum)
+    checkGesture = ""
+    checkGesture = checkGesture.join(randomList)
+    return checkGesture
