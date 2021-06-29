@@ -321,5 +321,71 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/changeRollcall",
             **kwargs)
 
+    def chatVotePublishFastVote(self, **kwargs):
+        # 快速创建投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVotePublishFastVote",
+            **kwargs)
+
+    def chatVoteDetail(self, **kwargs):
+        # 查询投票详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVoteDetail",
+            **kwargs)
+
+    def getGroupMemberCount(self, **kwargs):
+        # 查询群组数量
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/rollCall/getGroupMemberCount",
+            **kwargs)
+
+    def chatVoteDetailOptionCount(self, **kwargs):
+        # 查询投票选项信息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVoteDetailOptionCount",
+            **kwargs)
+
+    def chatVoteDetailOptionVotersList(self, **kwargs):
+        # 查询投票选项对应的投票人信息情况
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVoteDetailOptionVotersList",
+            **kwargs)
+
+    def unpublishedChatVotesList(self, **kwargs):
+        # 查询待发布投票列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/unpublishedChatVotesList",
+            **kwargs)
+
+    def chatDeleteVote(self, **kwargs):
+        # 删除投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatDeleteVote",
+            **kwargs)
+
+    def findRunningPreemptive(self, **kwargs):
+        # 查询群下正在进行的抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/findRunningPreemptive",
+            **kwargs)
+
+    def startRushAnswer(self, **kwargs):
+        # 创建抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/startRushAnswer",
+            **kwargs)
+
+    def quryRushAnswerDetail(self, **kwargs):
+        # 查询抢答详细
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/quryRushAnswerDetail",
+            **kwargs)
+
+    def endRushAnswer(self, **kwargs):
+        # 结束抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/endRushAnswer",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

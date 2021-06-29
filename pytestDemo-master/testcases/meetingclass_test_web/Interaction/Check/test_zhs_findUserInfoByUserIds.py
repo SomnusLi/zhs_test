@@ -53,12 +53,15 @@ class Test_findUserInfoByUserIds():
                                                                                            uuid,
                                                                                            cookies=cookies)
             assert result_screenCourseClassInteractionListV2.response.status_code == 200
+            num_going_check = False
+            num_ended_check = False
             if result_screenCourseClassInteractionListV2.response.json()["rt"]["interactionListGoing"] == []:
                 logger.info("没有正在进行中的互动")
             else:
                 for ListGoing in result_screenCourseClassInteractionListV2.response.json()["rt"][
                     "interactionListGoing"]:
                     if ListGoing["type"] == 1:
+                        num_going_check = True
                         checkId = ListGoing["interactionMap"]["signId"]
                         for checkType in range(1, 3):
                             userName = ""
@@ -82,6 +85,7 @@ class Test_findUserInfoByUserIds():
                 for DetailDtos in result_screenCourseClassInteractionListV2.response.json()["rt"][
                     "InteractionDetailDtos"]:
                     if DetailDtos["type"] == 1:
+                        num_ended_check = True
                         checkId = DetailDtos["interactionMap"]["signId"]
                         for checkType in range(1, 3):
                             userName = ""
@@ -99,6 +103,14 @@ class Test_findUserInfoByUserIds():
                                 assert result_findUserInfoByUserIds.response.status_code == 200
                             else:
                                 logger.info("没有学生")
+            if num_going_check:
+                logger.info("有正在进行中的签到")
+            else:
+                logger.info("没有正在进行中的签到")
+            if num_ended_check:
+                logger.info("有已结束的签到")
+            else:
+                logger.info("没有已结束的签到")
         else:
             logger.info("没有正在开启的见面课")
 

@@ -1240,3 +1240,275 @@ def changeRollcall(rollcallId, uuid, cookies):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def chatVotePublishFastVote(groupId, type, optionCount, limitTime, uuid, cookies):
+    """
+    快速创建投票
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupIds": groupId,
+        "type": type,
+        "optionCount": optionCount,
+        "limitTime": limitTime,
+        "uuid": uuid
+    }
+    res = MeetingClass.chatVotePublishFastVote(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatVoteDetail(voteId, uuid, cookies):
+    """
+    查询投票详情
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "voteId": voteId,
+        "uuid": uuid
+    }
+    res = MeetingClass.chatVoteDetail(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getGroupMemberCount(groupId, uuid, cookies):
+    """
+    查询群组数量
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid
+    }
+    res = MeetingClass.getGroupMemberCount(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatVoteDetailOptionCount(groupId, voteId, uuid, cookies):
+    """
+    查询投票选项信息
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "voteId": voteId,
+        "uuid": uuid
+    }
+    res = MeetingClass.chatVoteDetailOptionCount(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatVoteDetailOptionVotersList(optionId, voteId, uuid, cookies):
+    """
+    查询投票选项对应的投票人信息情况
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "optionIds": optionId,
+        "voteId": voteId,
+        "uuid": uuid
+    }
+    res = MeetingClass.chatVoteDetailOptionVotersList(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def unpublishedChatVotesList(groupId, uuid, cookies):
+    """
+    查询待发布投票列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid
+    }
+    res = MeetingClass.unpublishedChatVotesList(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatDeleteVote(voteId, uuid, cookies):
+    """
+    删除投票
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "voteId": voteId,
+        "uuid": uuid
+    }
+    res = MeetingClass.chatDeleteVote(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findRunningPreemptive(groupId, uuid, cookies):
+    """
+    查询群下正在进行的抢答
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid
+    }
+    res = MeetingClass.findRunningPreemptive(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def startRushAnswer(groupId, count, uuid, cookies):
+    """
+    创建抢答
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "count": count,
+        "uuid": uuid
+    }
+    res = MeetingClass.startRushAnswer(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def quryRushAnswerDetail(groupId, rushAnswerId, uuid, cookies):
+    """
+    查询抢答详细
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "rushAnswerId": rushAnswerId,
+        "uuid": uuid
+    }
+    res = MeetingClass.quryRushAnswerDetail(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def endRushAnswer(groupId, rushAnswerId, uuid, cookies):
+    """
+    结束抢答
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "groupId": groupId,
+        "rushAnswerId": rushAnswerId,
+        "uuid": uuid
+    }
+    res = MeetingClass.endRushAnswer(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

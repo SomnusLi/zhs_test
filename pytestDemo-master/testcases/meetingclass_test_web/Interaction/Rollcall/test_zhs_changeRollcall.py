@@ -48,12 +48,15 @@ class Test_changeRollcall():
                                                                                            uuid,
                                                                                            cookies=cookies)
             assert result_screenCourseClassInteractionListV2.response.status_code == 200
+            num_going_rollcall = False
+            num_ended_rollcall = False
             if result_screenCourseClassInteractionListV2.response.json()["rt"]["interactionListGoing"] == []:
                 logger.info("没有正在进行中的互动")
             else:
                 for ListGoing in result_screenCourseClassInteractionListV2.response.json()["rt"][
                     "interactionListGoing"]:
                     if ListGoing["type"] == 3:
+                        num_going_rollcall = True
                         rollcallId = ListGoing["interactionMap"]["rollcallId"]
                         logger.info("changeRollcall")
                         result_changeRollcall = changeRollcall(rollcallId, uuid, cookies=cookies)
@@ -64,10 +67,19 @@ class Test_changeRollcall():
                 for DetailDtos in result_screenCourseClassInteractionListV2.response.json()["rt"][
                     "InteractionDetailDtos"]:
                     if DetailDtos["type"] == 3:
+                        num_ended_rollcall = True
                         rollcallId = DetailDtos["interactionMap"]["rollcallId"]
                         logger.info("changeRollcall")
                         result_changeRollcall = changeRollcall(rollcallId, uuid, cookies=cookies)
                         assert result_changeRollcall.response.status_code == 200
+            if num_going_rollcall:
+                logger.info("有正在进行中的随机点名")
+            else:
+                logger.info("没有正在进行中的随机点名")
+            if num_ended_rollcall:
+                logger.info("有已结束的随机点名")
+            else:
+                logger.info("没有已结束的随机点名")
         else:
             logger.info("没有正在开启的见面课")
 
