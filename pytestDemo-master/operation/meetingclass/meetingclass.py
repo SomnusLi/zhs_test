@@ -6,7 +6,7 @@ from common.logger import logger
 from common.filedValueGenerate import randomRangeNum, get_current_time
 
 
-def getUserRoleByCourseId(uuid, couresId, cookies):
+def getUserRoleByCourseId(uuid, courseId, cookies):
     """
     根据用户uuid，返回课程权限信息 教师端
 
@@ -16,7 +16,7 @@ def getUserRoleByCourseId(uuid, couresId, cookies):
         "Content-Type": "application/json"
     }
 
-    res = MeetingClass.getUserRoleByCourseId(uuid, couresId, headers=header, cookies=cookies)
+    res = MeetingClass.getUserRoleByCourseId(uuid, courseId, headers=header, cookies=cookies)
     result.success = False
     if res.status_code == 200:
         result.success = True
@@ -28,7 +28,7 @@ def getUserRoleByCourseId(uuid, couresId, cookies):
     return result
 
 
-def getStartingMeetCourseList(uuid, couresId, cookies):
+def getStartingMeetCourseList(uuid, courseId, cookies):
     """
     根据用户uuid，返回正在进行中的见面课信息 教师端
 
@@ -38,14 +38,14 @@ def getStartingMeetCourseList(uuid, couresId, cookies):
         "Content-Type": "application/x-www-form-urlencoded"
     }
 
-    json = {
-        "courseId": couresId,
+    data = {
+        "courseId": courseId,
         "uuid": uuid,
         "role": 1
         # 调用来源，0：学生(知到)，1：老师（教师圈）
     }
 
-    res = MeetingClass.getStartingMeetCourseList(data=json, headers=header, cookies=cookies)
+    res = MeetingClass.getStartingMeetCourseList(data=data, headers=header, cookies=cookies)
     result.success = False
     if res.status_code == 200:
         result.success = True
@@ -86,7 +86,7 @@ def onlineservice_getStartingMeetCourseList(uuid, cookies):
     return result
 
 
-def getMeetCourseTeacherSetting(uuid, couresId, cookies):
+def getMeetCourseTeacherSetting(uuid, courseId, cookies):
     """
     根据用户uuid，返回见面课时是否需要审核的默认设置 教师端
 
@@ -97,7 +97,7 @@ def getMeetCourseTeacherSetting(uuid, couresId, cookies):
     }
 
     json = {
-        "courseId": couresId,
+        "courseId": courseId,
         "uuid": uuid,
         "role": 1
         # 调用来源，0：学生(知到)，1：老师（教师圈）

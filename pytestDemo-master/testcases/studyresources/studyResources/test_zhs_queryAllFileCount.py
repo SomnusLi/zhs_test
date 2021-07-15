@@ -1,10 +1,12 @@
+import random
 import pytest
 import allure
 from operation.course.course import get_courseInfo_teacher
+from operation.studyResources.studyResources import *
 from testcases.conftest import api_data
 from common.logger import logger
-import requests
 from common.filedValueGenerate import add_cookies
+import requests
 
 
 # @allure.step("步骤1 ==>> 根据ID修改用户信息")
@@ -18,22 +20,18 @@ def step_login(account, uuid):
 
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
-@allure.feature("课程列表模块")
-class TestGetCourseId():
-    """获取用户的课程列表"""
+@allure.feature("见面课模块")
+class Test_queryAllFileCount():
+    """查询课程下学习资源总数"""
 
-    @allure.story("用例--获取用户的课程列表")
-    @allure.description("该用例是针对获取用户修改接口的测试")
+    @allure.story("用例--查询课程下学习资源总数")
+    @allure.description("该用例是查询课程下学习资源总数")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(
         "测试数据：上游业务获取")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
-    def test_get_courseInfo_teacher(self, login_fixture_teacher):
+    def test_zhs_queryAllFileCount(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -41,15 +39,16 @@ class TestGetCourseId():
         account = user_info.request.body[8:19]
         step_login(account, uuid)
         cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
-        # cookies要传str类型
-        result = get_courseInfo_teacher(uuid, cookies=cookies)
-        print(result.response.json())
-        # assert result.response.status_code == 200
-        # logger.info("code ==>> 实际结果：{}".format(result.response.json().get("status")))
-        # assert result.response.json().get("status") == except_status
-        # assert set(six.viewitems(except_msg)).issubset(set(six.viewitems(result.msg)))
+        logger.info("get_courseInfo_teacher")
+        result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
+        courseId = random.sample(result_get_courseInfo_teacher.response.json()["rt"]["courseList"], 1)[0]["courseId"]
+        logger.info("queryAllFileCount")
+        result_queryAllFileCount = queryAllFileCount(courseId, uuid, cookies=cookies)
+        assert result_queryAllFileCount.response.status_code == 200
+        if result_queryAllFileCount.response.status_code == 200:
+            logger.info("课程下资源总数为{}".format(result_queryAllFileCount.response.json()["rt"]))
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_get_courseInfo_teacher.py"])
+    pytest.main(["-q", "-s", "test_zhs_findMeetCourseStudentInfo.py"])
