@@ -32,5 +32,23 @@ class studyResources(RestClient):
                 courseId, uuid, int(round(time.time() * 1000))),
             **kwargs)
 
+    def findFilesByFolderId(self, courseId, folderId, uuid, **kwargs):
+        # 根据FolderId查找目录下文件
+        return self.get(
+            "https://studyresources.zhihuishu.com/studyResources/mcFile/findFilesByFolderId?courseId={}&folderId={}&uuid={}&dateFormate={}".format(
+                courseId, folderId, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
+    def importOneFileToMeetCourse(self, **kwargs):
+        # 选择学习资源里的文件
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/importOneFileToMeetCourse",
+                         **kwargs)
+
+    def canUseFile(self, fileId, role, sourceId, courseId, uuid, **kwargs):
+        # 查询见面课课件使用权限
+        return self.get(
+            "https://studyresources.zhihuishu.com/studyResources/mcFile/canUseFile?fileId={}&role={}&sourceId={}&courseId={}&uuid={}&dateFormate={}".format(
+                fileId, role, sourceId, courseId, uuid, int(round(time.time() * 1000))), **kwargs)
+
 
 studyResources = studyResources(api_root_url)

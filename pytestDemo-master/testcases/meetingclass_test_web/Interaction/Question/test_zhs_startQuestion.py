@@ -38,16 +38,11 @@ class Test_startQuestion():
                                                                cookies=cookies)
 
         assert result_get_courseInfo_teacher.response.status_code == 200
-        courseList = result_get_courseInfo_teacher.response.json()["rt"]["courseList"]
-        courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
         result_onlineservice_getStartingMeetCourseList = onlineservice_getStartingMeetCourseList(uuid,
                                                                                                  cookies=cookies)
         assert result_onlineservice_getStartingMeetCourseList.response.status_code == 200
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
-            result_getRecruitIdByCourseId = getRecruitIdByCourseId(courseId, cookies=cookies)
-            assert result_getRecruitIdByCourseId.response.status_code == 200
-            recruitId = result_getRecruitIdByCourseId.msg
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
             courseClassId = meetCourseId
             logger.info("findMeetCourseMsg")
@@ -55,9 +50,14 @@ class Test_startQuestion():
                                                          cookies=cookies)
             assert result_findMeetCourseMsg.response.status_code == 200
             groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
+            courseId = result_findMeetCourseMsg.response.json()["rt"]["courseId"]
             logger.info("checkExistQuestion")
             result_checkExistQuestion = checkExistQuestion(groupId, uuid, cookies=cookies)
             assert result_checkExistQuestion.response.status_code == 200
+            logger.info("getRecruitIdByCourseId")
+            result_getRecruitIdByCourseId = getRecruitIdByCourseId(courseId, cookies=cookies)
+            assert result_getRecruitIdByCourseId.response.status_code == 200
+            recruitId = result_getRecruitIdByCourseId.msg
             if result_checkExistQuestion.response.json()["rt"]["result"] == 1:
                 rushQuestionId = result_checkExistQuestion.response.json()["rt"]["rushQuestionId"]
                 logger.info("有正在进行中的提问，提问id为{}".format(rushQuestionId))

@@ -387,5 +387,13 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/group/preemptive/endRushAnswer",
             **kwargs)
 
+    def findFilePreviewUrl(self, dataId, fileId, fileSource, meetCourseId, courseId, uuid, **kwargs):
+        # 查询web端见面课投屏地址
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/file/findFilePreviewUrl?dataId={}&fileId={}&fileSource={}&meetCourseId={}&courseId={}&stamp={}&uuid={}&dateFormate={}".format(
+                dataId, fileId, fileSource, meetCourseId, courseId, int(round(time.time() * 1000)), uuid,
+                int(round(time.time() * 1000))),
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

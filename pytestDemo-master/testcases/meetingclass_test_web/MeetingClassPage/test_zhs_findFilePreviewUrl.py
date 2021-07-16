@@ -22,16 +22,16 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
-class Test_findRecentViewFile():
-    """查询见面课下最近打开的文件"""
+class Test_findFilePreviewUrl():
+    """查询web端见面课投屏地址"""
 
-    @allure.story("用例--查询见面课下最近打开的文件")
-    @allure.description("该用例是查询见面课下最近打开的文件")
+    @allure.story("用例--查询web端见面课投屏地址")
+    @allure.description("该用例是查询web端见面课投屏地址")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title("测试数据：上游业务获取")
     @pytest.mark.single
-    def test_zhs_findRecentViewFile(self, login_fixture_teacher):
+    def test_zhs_findFilePreviewUrl(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -46,11 +46,27 @@ class Test_findRecentViewFile():
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
+            logger.info("findMeetCourseMsg")
+            result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
+                                                         cookies=cookies)
+            assert result_findMeetCourseMsg.response.status_code == 200
+            courseId = result_findMeetCourseMsg.response.json()["rt"]["courseId"]
+            logger.info("开启直播的courseId为{}".format(courseId))
             logger.info("findRecentViewFile")
             result_findRecentViewFile = findRecentViewFile(meetCourseId, uuid, cookies=cookies)
             assert result_findRecentViewFile.response.status_code == 200
             if result_findRecentViewFile.response.status_code == 200:
                 logger.info("最近打开的文件数量为{}".format(result_findRecentViewFile.response.json()["rt"]["fileNum"]))
+                if result_findRecentViewFile.response.json()["rt"]["fileNum"] == 0:
+                    logger.info("没有打开的课件")
+                else:
+                    dataId = result_findRecentViewFile.response.json()["rt"]["dataList"][0]["sourceId"]
+                    fileId = result_findRecentViewFile.response.json()["rt"]["dataList"][0]["dataId"]
+                    fileSource = 2  # 1.学习资源 2.课堂文件
+                    result_findFilePreviewUrl = findFilePreviewUrl(dataId, fileId, fileSource, meetCourseId, courseId,
+                                                                   uuid, cookies=cookies)
+                    assert result_findFilePreviewUrl.response.status_code == 200
+                    logger.info(result_findFilePreviewUrl.response.json()["rt"])
         else:
             logger.info("没有正在开启的见面课")
 
@@ -58,4 +74,4 @@ class Test_findRecentViewFile():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_findRecentViewFile.py"])
+    pytest.main(["-q", "-s", "test_zhs_findFilePreviewUrl.py"])

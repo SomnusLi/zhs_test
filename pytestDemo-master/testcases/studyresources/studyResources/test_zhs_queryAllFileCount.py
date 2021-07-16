@@ -51,4 +51,4 @@ class Test_queryAllFileCount():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_findMeetCourseStudentInfo.py"])
+    pytest.main(["-q", "-s", "test_zhs_queryAllFileCount.py"])

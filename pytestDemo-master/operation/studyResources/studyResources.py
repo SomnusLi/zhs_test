@@ -47,7 +47,7 @@ def queryAllFileCount(courseId, uuid, cookies):
         result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
-    logger.info("查询课程下学习资源 ==>> 返回结果 ==>> {}".format(result.response.text))
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
 
 
@@ -60,6 +60,73 @@ def findLastOpenFile(courseId, uuid, cookies):
         "Content-Type": "application/x-www-form-urlencoded"
     }
     res = studyResources.findLastOpenFile(courseId, uuid, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findFilesByFolderId(courseId, folderId, uuid, cookies):
+    """
+    根据FolderId查找目录下文件
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/json"
+    }
+
+    res = studyResources.findFilesByFolderId(courseId, folderId, uuid, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def importOneFileToMeetCourse(meetCourseId, dataId, uuid, cookies):
+    """
+    选择学习资源里的文件
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "dataId": dataId,
+        "uuid": uuid,
+        "dateFormate": int(round(time.time() * 1000))
+    }
+    res = studyResources.importOneFileToMeetCourse(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def canUseFile(fileId, role, sourceId, courseId, uuid, cookies):
+    """
+    查询见面课课件使用权限
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    res = studyResources.canUseFile(fileId, role, sourceId, courseId, uuid, headers=header, cookies=cookies)
     result.success = False
     if res.status_code == 200:
         result.success = True

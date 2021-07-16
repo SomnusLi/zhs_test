@@ -51,4 +51,4 @@ class Test_findFolderMenu():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_findMeetCourseStudentInfo.py"])
+    pytest.main(["-q", "-s", "test_zhs_findFolderMenu.py"])

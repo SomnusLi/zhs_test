@@ -1512,3 +1512,24 @@ def endRushAnswer(groupId, rushAnswerId, uuid, cookies):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def findFilePreviewUrl(dataId, fileId, fileSource, meetCourseId, courseId, uuid, cookies):
+    """
+    查询web端见面课投屏地址
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    res = MeetingClass.findFilePreviewUrl(dataId, fileId, fileSource, meetCourseId, courseId, uuid, headers=header,
+                                          cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
