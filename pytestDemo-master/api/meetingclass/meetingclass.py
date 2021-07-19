@@ -395,5 +395,16 @@ class MeetingClass(RestClient):
                 int(round(time.time() * 1000))),
             **kwargs)
 
+    def getOnline(self, gid, **kwargs):
+        # 学生在线情况
+        return self.get("https://hijk.zhihuishu.com/meeting/getOnline?gid={}".format(gid), **kwargs)
+
+    def openOrCloseStudentMike(self, studentId, groupId, meetCourseLivingId, meetCourseId, type, uuid, **kwargs):
+        # 邀请学生上/下麦
+        return self.get(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetCourseLive/openOrCloseStudentMike?studentId={}&groupId={}&meetCourseLivingId={}&meetCourseId={}&type={}&uuid={}&dateFormate={}".format(
+                studentId, groupId, meetCourseLivingId, meetCourseId, type, uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

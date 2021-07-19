@@ -50,5 +50,12 @@ class studyResources(RestClient):
             "https://studyresources.zhihuishu.com/studyResources/mcFile/canUseFile?fileId={}&role={}&sourceId={}&courseId={}&uuid={}&dateFormate={}".format(
                 fileId, role, sourceId, courseId, uuid, int(round(time.time() * 1000))), **kwargs)
 
+    def findResourceData(self, rootFolderId, type, meetCourseId, uuid, **kwargs):
+        # 学习资源筛选
+        return self.get(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findResourceData?rootFolderId={}&fileName=&type={}&meetCourseId={}&stamp={}&uuid={}&dateFormate={}".format(
+                rootFolderId, type, meetCourseId, int(round(time.time() * 1000)), uuid, int(round(time.time() * 1000))),
+            **kwargs)
+
 
 studyResources = studyResources(api_root_url)

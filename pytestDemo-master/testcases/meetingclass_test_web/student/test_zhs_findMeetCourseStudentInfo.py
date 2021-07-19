@@ -1,13 +1,16 @@
 import pytest
 import allure
-from operation.course.course import *
+from operation.course.course import get_courseInfo_teacher
 from operation.meetingclass.meetingclass import *
-from operation.user.getLoginInfo import queryTeacherSchoolId
 from testcases.conftest import api_data
 from common.logger import logger
-from common.filedValueGenerate import add_cookies, randomRangeNum
+from common.filedValueGenerate import add_cookies
 import requests
 
+
+# @allure.step("步骤1 ==>> 根据ID修改用户信息")
+# def step_1(id):
+#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
 
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
@@ -17,21 +20,17 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
-class Test_openOrCloseBarrage():
-    """更改弹幕开始状态"""
+class Test_findMeetCourseStudentInfo():
+    """查询见面课下的学生相关信息"""
 
-    @allure.story("用例--更改弹幕开始状态")
-    @allure.description("该用例是更改弹幕开始状态")
+    @allure.story("用例--查询见面课下的学生相关信息")
+    @allure.description("该用例是查询见面课下的学生相关信息")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(
         "测试数据：上游业务获取")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
-    def test_zhs_openOrCloseBarrage(self, login_fixture_teacher):
+    def test_zhs_findMeetCourseStudentInfo(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -40,25 +39,27 @@ class Test_openOrCloseBarrage():
         step_login(account, uuid)
         cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
         logger.info("getStartingMeetCourseList")
-        result_onlineservice_getStartingMeetCourseList = onlineservice_getStartingMeetCourseList(uuid, cookies=cookies)
+        result_onlineservice_getStartingMeetCourseList = onlineservice_getStartingMeetCourseList(uuid,
+                                                                                                 cookies=cookies)
         assert result_onlineservice_getStartingMeetCourseList.response.status_code == 200
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
-            logger.info("isCloseBarrage")
-            result_isCloseBarrage = isCloseBarrage(meetCourseId, uuid, cookies=cookies)
-
-            assert result_isCloseBarrage.response.status_code == 200
-            if result_isCloseBarrage.response.json()["rt"]:
-                status = 0
-            else:
-                status = 1
-            result_openOrCloseBarrage = openOrCloseBarrage(meetCourseId, status, uuid, cookies=cookies)
-            assert result_openOrCloseBarrage.response.status_code == 200
+            logger.info("findMeetCourseMsg")
+            result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
+                                                         cookies=cookies)
+            assert result_findMeetCourseMsg.response.status_code == 200
+            groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
+            courseId = result_findMeetCourseMsg.response.json()["rt"]["courseId"]
+            logger.info("开启直播的courseId为{}".format(courseId))
+            logger.info("findMeetCourseStudentInfo")
+            result_findMeetCourseStudentInfo = findMeetCourseStudentInfo(groupId, meetCourseId, courseId, uuid,
+                                                                         cookies=cookies)
+            assert result_findMeetCourseStudentInfo.response.status_code == 200
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_openOrCloseBarrage.py"])
+    pytest.main(["-q", "-s", "test_zhs_findMeetCourseStudentInfo.py"])

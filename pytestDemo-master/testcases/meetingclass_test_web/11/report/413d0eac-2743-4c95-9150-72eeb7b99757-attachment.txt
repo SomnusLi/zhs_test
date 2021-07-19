@@ -1,0 +1,61 @@
+INFO     log:rest_client.py:52 接口请求地址 ==>> https://passport.zhihuishu.com/user/validateAccountAndPassword
+INFO     log:rest_client.py:53 接口请求方式 ==>> POST
+INFO     log:rest_client.py:55 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+INFO     log:rest_client.py:56 接口请求 params 参数 ==>> null
+INFO     log:rest_client.py:57 接口请求体 data 参数 ==>> {
+    "account": "13122285260",
+    "password": "Aa111111"
+}
+INFO     log:rest_client.py:58 接口请求体 json 参数 ==>> null
+INFO     log:rest_client.py:59 接口上传附件 files 参数 ==>> None
+INFO     log:rest_client.py:60 接口 cookies 参数 ==>> null
+INFO     log:conftest.py:44 前置步骤 ==>> 用户 13122285260 登录，返回信息 为：Aa111111
+INFO     log:test_zhs_getOnline.py:32 *************** 开始执行用例 ***************
+INFO     log:test_zhs_getOnline.py:17 前置登录步骤 ==>> 用户 13122285260 登录 ==>> 返回的 uuid 为：Vv45Mker
+INFO     log:filedValueGenerate.py:127 C:\worksapce\pytest\pytestDemo-master\config\chromedriver.exe
+INFO     log:filedValueGenerate.py:128 <selenium.webdriver.chrome.options.Options object at 0x00000216AA84CD00>
+INFO     log:test_zhs_getOnline.py:39 getStartingMeetCourseList
+INFO     log:rest_client.py:52 接口请求地址 ==>> https://onlineservice.zhihuishu.com/teacherMeetCourse/getStartingMeetCourseList
+INFO     log:rest_client.py:53 接口请求方式 ==>> POST
+INFO     log:rest_client.py:55 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+INFO     log:rest_client.py:56 接口请求 params 参数 ==>> null
+INFO     log:rest_client.py:57 接口请求体 data 参数 ==>> {
+    "uuid": "Vv45Mker",
+    "role": 1,
+    "date": "2021-07-19T17:15:20.764Z"
+}
+INFO     log:rest_client.py:58 接口请求体 json 参数 ==>> null
+INFO     log:rest_client.py:59 接口上传附件 files 参数 ==>> None
+INFO     log:rest_client.py:60 接口 cookies 参数 ==>> null
+INFO     log:meetingclass.py:85 查询结果 ==>> 返回结果 ==>> {"currentTime":1626686120290,"msg":"请求成功","rt":[{"meetCourseId":2064699,"courseName":"0630新建引用资源测试"}],"status":"200"}
+INFO     log:test_zhs_getOnline.py:44 有正在开启的见面课
+INFO     log:test_zhs_getOnline.py:46 findMeetCourseMsg
+INFO     log:rest_client.py:52 接口请求地址 ==>> https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findMeetCourseMsg?meetCourseId=2064699&uuid=Vv45Mker&dateFormate=1626686120897
+INFO     log:rest_client.py:53 接口请求方式 ==>> GET
+INFO     log:rest_client.py:55 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+INFO     log:rest_client.py:56 接口请求 params 参数 ==>> null
+INFO     log:rest_client.py:57 接口请求体 data 参数 ==>> null
+INFO     log:rest_client.py:58 接口请求体 json 参数 ==>> null
+INFO     log:rest_client.py:59 接口上传附件 files 参数 ==>> None
+INFO     log:rest_client.py:60 接口 cookies 参数 ==>> null
+INFO     log:meetingclass.py:205 查询结果 ==>> 返回结果 ==>> {"currentTime":1626686120547,"msg":"请求成功","rt":{"courseName":"0630新建引用资源测试","hours":10,"createTime":1626682976000,"groupId":2880419,"courseStatus":2,"rootFolderId":1818452,"avatar":"https://image.zhihuishu.com/zhs/ablecommons/cutimage/202009/72f45aa91cae4160af342c114ece5ced.jpg","userName":"刘文力","courseId":10402560},"status":"200"}
+INFO     log:test_zhs_getOnline.py:51 getOnline
+INFO     log:rest_client.py:52 接口请求地址 ==>> https://hijk.zhihuishu.com/meeting/getOnline?gid=2880419
+INFO     log:rest_client.py:53 接口请求方式 ==>> GET
+INFO     log:rest_client.py:55 接口请求头 ==>> {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+INFO     log:rest_client.py:56 接口请求 params 参数 ==>> null
+INFO     log:rest_client.py:57 接口请求体 data 参数 ==>> null
+INFO     log:rest_client.py:58 接口请求体 json 参数 ==>> null
+INFO     log:rest_client.py:59 接口上传附件 files 参数 ==>> None
+INFO     log:rest_client.py:60 接口 cookies 参数 ==>> null
+INFO     log:meetingclass.py:1554 查询结果 ==>> 返回结果 ==>> {"rt":["192972303"],"interval":5,"status":200,"length":1}
+
+INFO     log:test_zhs_getOnline.py:55 在线学生id为['192972303']

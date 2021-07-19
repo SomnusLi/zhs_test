@@ -1533,3 +1533,44 @@ def findFilePreviewUrl(dataId, fileId, fileSource, meetCourseId, courseId, uuid,
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def getOnline(groupId, cookies):
+    """
+    学生在线情况
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    res = MeetingClass.getOnline(groupId, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def openOrCloseStudentMike(studentId, groupId, meetCourseLivingId, meetCourseId, type, uuid, cookies):
+    """
+    邀请学生上/下麦
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    res = MeetingClass.openOrCloseStudentMike(studentId, groupId, meetCourseLivingId, meetCourseId, type, uuid,
+                                              headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
