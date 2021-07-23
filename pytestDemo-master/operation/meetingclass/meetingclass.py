@@ -1574,3 +1574,30 @@ def openOrCloseStudentMike(studentId, groupId, meetCourseLivingId, meetCourseId,
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def getStartingMeetCourseList_app(access_token, uuid):
+    """
+    返回正在进行中的见面课信息 教师app端
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "role": 1
+        # 调用来源，0：学生(知到)，1：老师（教师圈）
+    }
+    res = MeetingClass.getStartingMeetCourseList(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

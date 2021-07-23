@@ -33,5 +33,9 @@ class User(RestClient):
                                                                                                             get_current_time()),
             **kwargs)
 
+    def zhs_app_login(self, **kwargs):
+        # app用户登录接口
+        return self.post("https://appteacher.zhihuishu.com/appteacher/teacher/base/newLoginTeacherAppV2", **kwargs)
+
 
 user = User(api_root_url)

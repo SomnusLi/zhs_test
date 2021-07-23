@@ -96,7 +96,28 @@ def login_fixture_teacher():
     login_info = user.login(data=payload, headers=header, cookies=cookies)
     step_login(account, password)
     yield login_info
-#
+
+
+@pytest.fixture(scope="session")
+def login_fixture_teacher_app():
+    account = base_data["init_user_login_teacher"]["account"]
+    password = base_data["init_user_login_teacher"]["password"]
+
+    data = {
+        "account": account,
+        "password": password,
+        "clientType": 1,
+        "appVersion": "4.4.8"
+    }
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Connection": "Keep-Alive",
+        "Content-Length": "67",
+        "Host": "appteacher.zhihuishu.com"
+    }
+    login_info_app = user.zhs_app_login(data=data, headers=header)
+    step_login(account, password)
+    yield login_info_app
 #
 # @pytest.fixture(scope="function")
 # def insert_delete_user():
