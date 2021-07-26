@@ -4,6 +4,7 @@ from operation.course.course import get_courseInfo_teacher
 from testcases.conftest import api_data
 from common.logger import logger
 import requests
+from common.filedValueGenerate import add_cookies
 
 
 # @allure.step("步骤1 ==>> 根据ID修改用户信息")
@@ -39,8 +40,9 @@ class TestGetCourseId():
         uuid = user_info.json().get("uuid")
         account = user_info.request.body[8:19]
         step_login(account, uuid)
+        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
         # cookies要传str类型
-        result = get_courseInfo_teacher(uuid, requests.utils.dict_from_cookiejar(user_info.cookies))
+        result = get_courseInfo_teacher(uuid, cookies=cookies)
         print(result.response.json())
         # assert result.response.status_code == 200
         # logger.info("code ==>> 实际结果：{}".format(result.response.json().get("status")))

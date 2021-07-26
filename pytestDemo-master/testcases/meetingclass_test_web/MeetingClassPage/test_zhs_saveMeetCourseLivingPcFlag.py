@@ -50,13 +50,11 @@ class Test_saveMeetCourseLivingPcFlag():
         if result_onlineservice_getStartingMeetCourseList.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
-            courseName = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["courseName"]
-            logger.info("get_courseInfo_teacher")
-            result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
-            for courseList in result_get_courseInfo_teacher.response.json()["rt"]["courseList"]:
-                if courseName == courseList["courseName"]:
-                    courseId = courseList["courseId"]
-                    break
+            logger.info("findMeetCourseMsg")
+            result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
+                                                         cookies=cookies)
+            assert result_findMeetCourseMsg.response.status_code == 200
+            courseId = result_findMeetCourseMsg.response.json()["rt"]["courseId"]
             logger.info("开启直播的courseId为{}".format(courseId))
             result_saveMeetCourseLivingPcFlag = saveMeetCourseLivingPcFlag(meetCourseId, courseId, uuid,
                                                                            cookies=cookies)

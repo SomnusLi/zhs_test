@@ -143,10 +143,16 @@ def add_cookies(cookie=None):
     return cookies
 
 
-def getRandomCheckGesture():
+def getRandomCheckGesture(num):
     list = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
-    randomListNum = random.randint(4, 9)
+    randomListNum = random.randint(num, len(list))
     randomList = random.sample(list, randomListNum)
     checkGesture = ""
     checkGesture = checkGesture.join(randomList)
     return checkGesture
+
+
+def getRandomList(num):
+    list = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
+    randomList = random.sample(list, num)
+    return randomList

@@ -42,15 +42,17 @@ class Test_findOpenMikeList():
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
             logger.info("findMeetCourseLiveStatus")
-            result_findMeetCourseLiveStatus = findMeetCourseLiveStatus(meetCourseId, uuid, cookies=cookies)
+            fromType = 1
+            role = 1
+            result_findMeetCourseLiveStatus = findMeetCourseLiveStatus(meetCourseId, role, fromType, uuid,
+                                                                       cookies=cookies)
             assert result_findMeetCourseLiveStatus.response.status_code == 200
-            courseName = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["courseName"]
-            logger.info("get_courseInfo_teacher")
-            result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
-            for courseList in result_get_courseInfo_teacher.response.json()["rt"]["courseList"]:
-                if courseName == courseList["courseName"]:
-                    courseId = courseList["courseId"]
-                    break
+            logger.info("findMeetCourseMsg")
+            result_findMeetCourseMsg = findMeetCourseMsg(meetCourseId, uuid,
+                                                         cookies=cookies)
+            assert result_findMeetCourseMsg.response.status_code == 200
+            courseId = result_findMeetCourseMsg.response.json()["rt"]["courseId"]
+            logger.info("开启直播的courseId为{}".format(courseId))
             if result_findMeetCourseLiveStatus.response.json()["rt"]["isliving"] == 2:
                 meetCourseLivingId = result_findMeetCourseLiveStatus.response.json()["rt"]["meetCourseLivingId"]
                 logger.info("该用户已开启直播")

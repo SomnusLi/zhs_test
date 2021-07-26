@@ -53,7 +53,7 @@ class Test_chatCreateCheck():
             groupId = result_findMeetCourseMsg.response.json()["rt"]["groupId"]
             checkType = 2  # 签到类型 1 位置 2 手势
             checkDurationTime = random.randint(5, 60) * 60 * 1000
-            checkGesture = getRandomCheckGesture()
+            checkGesture = getRandomCheckGesture(4)
             locationName = ""
             longitude = ""
             latitude = ""

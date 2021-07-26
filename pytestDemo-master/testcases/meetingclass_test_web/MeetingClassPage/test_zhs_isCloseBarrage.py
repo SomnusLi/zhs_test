@@ -18,19 +18,13 @@ def step_login(account, uuid):
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
 class Test_isCloseBarrage():
-    """查询见面课最近打开的课堂文件"""
+    """查询弹幕是否关闭"""
 
-    @allure.story("用例--查询见面课最近打开的课堂文件")
-    @allure.description("该用例是查询见面课最近打开的课堂文件")
-    @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
+    @allure.story("用例--查询弹幕是否关闭")
+    @allure.description("该用例是查询弹幕是否关闭")
     @allure.title(
         "测试数据：上游业务获取")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
     def test_zhs_isCloseBarrage(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录

@@ -34,5 +34,15 @@ class Course(RestClient):
             "https://hike.zhihuishu.com/aidedteaching/course/getRecruitIdByCourseId?courseId={}".format(courseId),
             **kwargs)
 
+    def aidTeachingCourseListV4(self, **kwargs):
+        # app获取老师的课程列表
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/teacher/course/aidTeachingCourseListV4", **kwargs)
+
+    def aidTeachingCourseClasses_app(self, **kwargs):
+        # app查询用户课程下的班级
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/teacher/class/aidTeachingCourseClasses", **kwargs)
+
 
 Course = Course(api_root_url)

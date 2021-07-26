@@ -72,3 +72,54 @@ def getRecruitIdByCourseId(courseId, cookies):
     result.response = res
     logger.info("该课程的招生id ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def aidTeachingCourseListV4(access_token, uuid):
+    """
+    app获取老师的课程列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid
+    }
+    res = Course.aidTeachingCourseListV4(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def aidTeachingCourseClasses_app(access_token, recruitId, uuid):
+    """
+    app查询用户课程下的班级
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "recruitId": recruitId,
+        "pageNum": 0,
+        "pageSize": 100
+    }
+    res = Course.aidTeachingCourseClasses_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
