@@ -21,14 +21,11 @@ def step_login(account, uuid):
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
 class Test_endMeetCourseClass():
-    """创建见面课"""
+    """结束见面课"""
 
-    @allure.story("用例--创建见面课")
-    @allure.description("该用例是针对创建见面课")
-    @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
-    @allure.title(
-        "测试数据：上游业务获取")
+    @allure.story("用例--结束见面课")
+    @allure.description("该用例是结束见面课")
+    @allure.title("测试数据：上游业务获取")
     @pytest.mark.single
     # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
     #                          "except_result, except_code, except_msg",

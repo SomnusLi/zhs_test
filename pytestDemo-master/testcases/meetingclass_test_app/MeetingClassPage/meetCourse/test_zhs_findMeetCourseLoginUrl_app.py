@@ -16,17 +16,17 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
-class Test_getStartingMeetCourseList_app():
-    """查询用户是否有进行中的见面课"""
+class Test_findMeetCourseLoginUrl_app():
+    """app获取扫码投屏地址"""
 
-    @allure.story("用例--查询用户是否有进行中的见面课")
-    @allure.description("该用例是查询用户是否有进行中的见面课")
+    @allure.story("用例--app获取扫码投屏地址")
+    @allure.description("该用例是app获取扫码投屏地址")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(
         "测试数据：上游业务获取")
     @pytest.mark.single
-    def test_zhs_getStartingMeetCourseList_app(self, login_fixture_teacher_app):
+    def test_zhs_findMeetCourseLoginUrl_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -39,10 +39,14 @@ class Test_getStartingMeetCourseList_app():
         assert result_getStartingMeetCourseList_app.response.status_code == 200
         if result_getStartingMeetCourseList_app.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
+            logger.info("findMeetCourseLoginUrl_app")
+            result_findMeetCourseLoginUrl_app = findMeetCourseLoginUrl_app(access_token)
+            assert result_findMeetCourseLoginUrl_app.response.status_code == 200
+            logger.info(result_findMeetCourseLoginUrl_app.response.json()["rt"])
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_getStartingMeetCourseList_app.py"])
+    pytest.main(["-q", "-s", "test_zhs_findMeetCourseLoginUrl_app.py"])

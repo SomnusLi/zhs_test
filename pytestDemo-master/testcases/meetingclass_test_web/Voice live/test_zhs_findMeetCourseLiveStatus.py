@@ -45,7 +45,10 @@ class Test_findMeetCourseLiveStatus():
             logger.info("有正在开启的见面课")
             meetCourseId = result_onlineservice_getStartingMeetCourseList.response.json()["rt"][0]["meetCourseId"]
             logger.info("findMeetCourseLiveStatus")
-            result_findMeetCourseLiveStatus = findMeetCourseLiveStatus(meetCourseId, uuid, cookies=cookies)
+            fromType = 1
+            role = 1
+            result_findMeetCourseLiveStatus = findMeetCourseLiveStatus(meetCourseId, role, fromType, uuid,
+                                                                       cookies=cookies)
             assert result_findMeetCourseLiveStatus.response.status_code == 200
         else:
             logger.info("没有正在开启的见面课")

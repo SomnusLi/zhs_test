@@ -406,5 +406,47 @@ class MeetingClass(RestClient):
                 studentId, groupId, meetCourseLivingId, meetCourseId, type, uuid, int(round(time.time() * 1000))),
             **kwargs)
 
+    def getMeetCourseTeacherSetting_app(self, **kwargs):
+        # app查询见面课审核状态
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getMeetCourseTeacherSetting",
+                         **kwargs)
+
+    def updateMeetCourseTeacherSetting_app(self, **kwargs):
+        # app更改见面课审核状态
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/updateMeetCourseTeacherSetting",
+                         **kwargs)
+
+    def createMeetCourse_app(self, **kwargs):
+        # app创建见面课
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/createMeetCourse", **kwargs)
+
+    def getMeetCourseInfo_app(self, **kwargs):
+        # app查询正在进行中的见面课信息
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getMeetCourseInfo", **kwargs)
+
+    def saveOrGetBottomTypeRequest_app(self, **kwargs):
+        # app查询/修改常用工具列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetScreen/saveOrGetBottomTypeRequest",
+            **kwargs)
+
+    def screenCourseClassInteractionListV2_app(self, **kwargs):
+        # app获取互动列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/screenCourseClassInteractionListV2",
+            **kwargs)
+
+    def chatGroupPersonalUserInfo_app(self, **kwargs):
+        # app查询群聊信息
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/chatGroupPersonalUserInfo",
+            **kwargs)
+
+    def findMeetCourseLoginUrl_app(self, **kwargs):
+        # app获取扫码投屏地址
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findMeetCourseLoginUrl",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

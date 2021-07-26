@@ -160,14 +160,15 @@ def creatMeetCourse(uuid, courseId, classIds, recruitId, cookies):
     return result
 
 
-def endMeetCourse(meetCourseId, uuid, cookies):
+def endMeetCourse(meetCourseId, uuid, cookies=None, access_token=None):
     """
     结束见面课
 
     """
     result = ResultBase()
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
     }
 
     res = MeetingClass.endMeetCourse(meetCourseId, uuid, headers=header,
@@ -206,19 +207,20 @@ def findMeetCourseMsg(meetCourseId, uuid, cookies):
     return result
 
 
-def findMeetCourseLiveStatus(meetCourseId, uuid, cookies):
+def findMeetCourseLiveStatus(meetCourseId, role, fromType, uuid, cookies=None, access_token=None):
     """
     查询见面课直播信息
 
     """
     result = ResultBase()
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
     }
     data = {
         "meetCourseId": meetCourseId,
-        "role": 1,  # 用户角色 1 老师 2 学生
-        "fromType": 1,  # 设备 1 pc 2 app 3 h5 非必填 默认2
+        "role": role,  # 用户角色 1 老师 2 学生
+        "fromType": fromType,  # 设备 1 pc 2 app 3 h5 非必填 默认2
         "uuid": uuid
     }
     res = MeetingClass.findMeetCourseLiveStatus(data=data, headers=header, cookies=cookies)
@@ -727,14 +729,15 @@ def findMeetCourseStudentInfo(groupId, meetCourseId, courseId, uuid, cookies):
     return result
 
 
-def teacherQRCodeLink(uuid, cookies):
+def teacherQRCodeLink(uuid, cookies=None, access_token=None):
     """
     扫码进入课堂
     """
 
     result = ResultBase()
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
     }
     data = {"uuid": uuid}
     res = MeetingClass.teacherQRCodeLink(data=data, headers=header, cookies=cookies)
@@ -1592,6 +1595,214 @@ def getStartingMeetCourseList_app(access_token, uuid):
         # 调用来源，0：学生(知到)，1：老师（教师圈）
     }
     res = MeetingClass.getStartingMeetCourseList(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getMeetCourseTeacherSetting_app(access_token, courseId, uuid):
+    """
+    app查询见面课审核状态
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "courseId": courseId
+
+    }
+    res = MeetingClass.getMeetCourseTeacherSetting_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def updateMeetCourseTeacherSetting_app(access_token, courseId, isAuditMeetingCourse, uuid):
+    """
+    app更改见面课审核状态
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "courseId": courseId,
+        "isAuditMeetingCourse": 1 if isAuditMeetingCourse == 0 else 0
+
+    }
+    res = MeetingClass.updateMeetCourseTeacherSetting_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def createMeetCourse_app(access_token, classIds, courseId, hours, recruitId, uuid):
+    """
+    app创建见面课
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "courseId": courseId,
+        "classIds": classIds,
+        "hours": hours,
+        "recruitId": recruitId
+
+    }
+    res = MeetingClass.createMeetCourse_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getMeetCourseInfo_app(access_token, meetCourseId, role, uuid):
+    """
+    app查询正在进行中的见面课信息
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "meetCourseId": meetCourseId,
+        "role": role
+    }
+    res = MeetingClass.getMeetCourseInfo_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def saveOrGetBottomTypeRequest_app(access_token, type, uuid, typeStr=None):
+    """
+    app查询/修改常用工具列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "type": type,
+        "typeStr": typeStr
+    }
+    res = MeetingClass.saveOrGetBottomTypeRequest_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def screenCourseClassInteractionListV2_app(access_token, courseClassId, page, pageSize, showClassType, uuid):
+    """
+    app获取互动列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "courseClassId": courseClassId,
+        "page": page,
+        "pageSize": pageSize,
+        "showClassType": showClassType
+    }
+    res = MeetingClass.screenCourseClassInteractionListV2_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatGroupPersonalUserInfo_app(access_token, groupId, uuid):
+    """
+    app查询群聊信息
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "groupId": groupId
+    }
+    res = MeetingClass.chatGroupPersonalUserInfo_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findMeetCourseLoginUrl_app(access_token):
+    """
+    app获取扫码投屏地址
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    res = MeetingClass.findMeetCourseLoginUrl_app(headers=header)
     result.success = False
     if res.status_code == 200:
         result.success = True
