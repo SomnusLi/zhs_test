@@ -1,3 +1,0 @@
-[2021-07-28 17:15:26,707][read_data.py 21][INFO]: 加载 C:\worksapce\pytest\pytestDemo-master\data\cookies_test_data.yml 文件......
-[2021-07-28 17:15:26,708][read_data.py 24][INFO]: 读到数据 ==>>  None 
-[2021-07-28 17:15:26,708][test.py 60][INFO]: None

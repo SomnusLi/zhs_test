@@ -1,1 +1,0 @@
-INFO     log:test.py:55 C:\worksapce\pytest\pytestDemo-master
