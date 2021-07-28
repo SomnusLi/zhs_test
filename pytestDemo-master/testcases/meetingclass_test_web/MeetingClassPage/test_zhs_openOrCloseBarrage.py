@@ -18,10 +18,10 @@ def step_login(account, uuid):
 @allure.epic("业务流程测试")
 @allure.feature("见面课模块")
 class Test_openOrCloseBarrage():
-    """更改弹幕开始状态"""
+    """更改弹幕开启状态"""
 
-    @allure.story("用例--更改弹幕开始状态")
-    @allure.description("该用例是更改弹幕开始状态")
+    @allure.story("用例--更改弹幕开启状态")
+    @allure.description("该用例是更改弹幕开启状态")
     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
     @allure.title(

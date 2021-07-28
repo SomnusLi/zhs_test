@@ -583,7 +583,7 @@ def isCloseBarrage(meetCourseId, uuid, cookies):
 
 def openOrCloseBarrage(meetCourseId, status, uuid, cookies):
     """
-    更改弹幕开始状态
+    更改弹幕开启状态
     """
 
     result = ResultBase()
@@ -957,13 +957,14 @@ def chatDeleteCheck(checkId, uuid, cookies):
     return result
 
 
-def checkExistQuestion(groupId, uuid, cookies):
+def checkExistQuestion(groupId, uuid=None, cookies=None, access_token=None):
     """
     查询是否存在进行中的提问
     """
     result = ResultBase()
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
     }
     data = {
         "groupId": groupId,
@@ -1803,6 +1804,107 @@ def findMeetCourseLoginUrl_app(access_token):
         "access_token": access_token
     }
     res = MeetingClass.findMeetCourseLoginUrl_app(headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def checkExistQuestion_app(groupId, uuid=None, cookies=None, access_token=None):
+    """
+    app查询是否存在进行中的提问
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid
+    }
+    res = MeetingClass.checkExistQuestion_app(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def startQuestion_app(anonymous, groupId, recruitId, uuid, access_token):
+    """
+    app创建答疑
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "anonymous": anonymous,
+        "groupId": groupId,
+        "uuid": uuid,
+        "recruitId": recruitId
+    }
+    res = MeetingClass.startQuestion_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def closeQuestion_app(rushQuestionId, uuid, access_token):
+    """
+    app关闭答疑
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "rushQuestionId": rushQuestionId,
+        "uuid": uuid
+    }
+    res = MeetingClass.closeQuestion_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def openQuestionDetail_app(rushQuestionId, access_token):
+    """
+    app查询答疑详情
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "rushQuestionId": rushQuestionId
+    }
+    res = MeetingClass.openQuestionDetail_app(data=data, headers=header)
     result.success = False
     if res.status_code == 200:
         result.success = True

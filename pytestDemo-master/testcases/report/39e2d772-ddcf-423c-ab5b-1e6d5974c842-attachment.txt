@@ -1,0 +1,6 @@
+[2021-07-28 17:36:04,067][read_data.py 21][INFO]: 加载 C:\worksapce\pytest\pytestDemo-master\data\cookies_test_data.yml 文件......
+[2021-07-28 17:36:04,067][read_data.py 24][INFO]: 读到数据 ==>>  None 
+[2021-07-28 17:36:04,067][test.py 32][INFO]: None
+[2021-07-28 17:36:04,067][test.py 34][INFO]: 文件无内容
+[2021-07-28 17:36:04,068][test.py 40][INFO]: C:\worksapce\pytest\pytestDemo-master\config\chromedriver.exe
+[2021-07-28 17:36:04,068][test.py 41][INFO]: <selenium.webdriver.chrome.options.Options object at 0x000001D2E368B7C0>

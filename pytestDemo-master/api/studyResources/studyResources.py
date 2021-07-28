@@ -57,5 +57,24 @@ class studyResources(RestClient):
                 rootFolderId, type, meetCourseId, int(round(time.time() * 1000)), uuid, int(round(time.time() * 1000))),
             **kwargs)
 
+    def getMeetCourseFileList_app(self, **kwargs):
+        # app查询投屏课件历史
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getMeetCourseFileList",
+                         **kwargs)
+
+    def getMeetCourseFileInfo_app(self, **kwargs):
+        # app查询当前投屏文件信息
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/getMeetCourseFileInfo",
+                         **kwargs)
+
+    def aidTeachingFolderId_app(self, **kwargs):
+        # 获取学习资源根目录FolderId
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/teacher/course/aidTeachingFolderId",
+                         **kwargs)
+
+    def findResourceData_app(self, **kwargs):
+        # app查询学习资源文件列表
+        return self.post("https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/findResourceData", **kwargs)
+
 
 studyResources = studyResources(api_root_url)

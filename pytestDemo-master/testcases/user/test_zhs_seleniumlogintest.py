@@ -39,7 +39,6 @@ class Test_seleniumlogintest():
         for s in list_cookies:
             cookies[s["name"]] = s["value"]
         logger.info(cookies)
-        browser.quit()
         logger.info("*************** 结束执行用例 ***************")
 
 

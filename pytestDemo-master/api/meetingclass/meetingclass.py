@@ -160,7 +160,7 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/barrage/isCloseBarrage", **kwargs)
 
     def openOrCloseBarrage(self, **kwargs):
-        # 更改弹幕开始状态
+        # 更改弹幕开启状态
         return self.post(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/barrage/openOrCloseBarrage", **kwargs)
 
@@ -297,7 +297,7 @@ class MeetingClass(RestClient):
             **kwargs)
 
     def getSimpleBrainStormList(self, groupId, type, pageSize, pageNum, uuid, **kwargs):
-        # 关闭答疑
+        # 查询头脑风暴列表
         return self.get(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/brainStorm/getSimpleBrainStormList?groupId={}&type={}&pageSize={}&pageNum={}&uuid={}&dateFormate={}".format(
                 groupId, type, pageSize, pageNum, uuid, int(round(time.time() * 1000))),
@@ -446,6 +446,30 @@ class MeetingClass(RestClient):
         # app获取扫码投屏地址
         return self.post(
             "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/findMeetCourseLoginUrl",
+            **kwargs)
+
+    def checkExistQuestion_app(self, **kwargs):
+        # app查询是否存在进行中的提问
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/checkExistQuestion",
+            **kwargs)
+
+    def startQuestion_app(self, **kwargs):
+        # app创建答疑
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/startQuestion",
+            **kwargs)
+
+    def closeQuestion_app(self, **kwargs):
+        # app关闭答疑
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/closeQuestion",
+            **kwargs)
+
+    def openQuestionDetail_app(self, **kwargs):
+        # app查询答疑详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/openQuestionDetail",
             **kwargs)
 
 

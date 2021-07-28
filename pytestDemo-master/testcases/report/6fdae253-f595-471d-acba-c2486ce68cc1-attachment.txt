@@ -1,0 +1,3 @@
+INFO     log:read_data.py:21 加载 C:\worksapce\pytest\pytestDemo-master\data\cookies_test_data.yml 文件......
+INFO     log:read_data.py:24 读到数据 ==>>  None 
+INFO     log:test.py:60 None

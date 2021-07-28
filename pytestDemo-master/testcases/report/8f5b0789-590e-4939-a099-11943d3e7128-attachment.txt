@@ -1,0 +1,172 @@
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 1083, in emit
+    msg = self.format(record)
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 927, in format
+    return fmt.format(record)
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 663, in format
+    record.message = record.getMessage()
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 367, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "C:\Program Files\JetBrains\PyCharm 2021.1\plugins\python\helpers\pycharm\_jb_pytest_runner.py", line 46, in <module>
+    sys.exit(pytest.main(args, plugins_to_load + [Plugin]))
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\config\__init__.py", line 162, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 316, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 269, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 323, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 348, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 109, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 126, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 215, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 254, in call_runtest_hook
+    return CallInfo.from_call(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 311, in from_call
+    result: Optional[TResult] = func()
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 255, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 162, in pytest_runtest_call
+    item.runtest()
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\python.py", line 1641, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\python.py", line 183, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "C:\worksapce\pytest\pytestDemo-master\testcases\test.py", line 68, in test_test
+    logger.info(account, password)
+Message: '13122285260'
+Arguments: ('Aa111111',)
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 1083, in emit
+    msg = self.format(record)
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 927, in format
+    return fmt.format(record)
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 663, in format
+    record.message = record.getMessage()
+  File "C:\Users\able\AppData\Local\Programs\Python\Python39\lib\logging\__init__.py", line 367, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "C:\Program Files\JetBrains\PyCharm 2021.1\plugins\python\helpers\pycharm\_jb_pytest_runner.py", line 46, in <module>
+    sys.exit(pytest.main(args, plugins_to_load + [Plugin]))
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\config\__init__.py", line 162, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 316, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 269, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 323, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\main.py", line 348, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 109, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 126, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 215, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 254, in call_runtest_hook
+    return CallInfo.from_call(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 311, in from_call
+    result: Optional[TResult] = func()
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 255, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\runner.py", line 162, in pytest_runtest_call
+    item.runtest()
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\python.py", line 1641, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\pluggy\callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\worksapce\pytest\pytestDemo-master\venv\lib\site-packages\_pytest\python.py", line 183, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "C:\worksapce\pytest\pytestDemo-master\testcases\test.py", line 68, in test_test
+    logger.info(account, password)
+Message: '13122285260'
+Arguments: ('Aa111111',)
