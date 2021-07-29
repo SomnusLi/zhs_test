@@ -13,14 +13,14 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("app教师端")
 class Test_openQuestionDetail_app():
     """app查询答疑详情"""
 
-    @allure.story("用例--app查询答疑详情")
-    @allure.description("该用例是app查询答疑详情")
-    @allure.title("测试数据：上游业务获取")
+    @allure.story("互动-答疑")
+    @allure.description("app查询答疑详情")
+    @allure.title("app查询答疑详情")
     @pytest.mark.single
     def test_zhs_openQuestionDetail_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")

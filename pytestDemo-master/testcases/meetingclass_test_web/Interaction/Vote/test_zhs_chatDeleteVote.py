@@ -14,17 +14,16 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("web教师端")
 class Test_chatDeleteVote():
     """删除投票"""
 
-    @allure.story("用例--删除投票")
-    @allure.description("该用例删除投票")
-    @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
-    @allure.title(
-        "测试数据：上游业务获取")
+    @allure.story("互动-投票")
+    @allure.description("删除投票")
+    @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")
+    @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
+    @allure.title("删除投票")
     @pytest.mark.single
     def test_zhs_chatDeleteVote(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")

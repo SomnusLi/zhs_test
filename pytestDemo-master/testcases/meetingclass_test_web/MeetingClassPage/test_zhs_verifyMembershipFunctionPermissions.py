@@ -8,32 +8,23 @@ from common.filedValueGenerate import add_cookies
 import requests
 
 
-# @allure.step("步骤1 ==>> 根据ID修改用户信息")
-# def step_1(id):
-#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
-
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
     logger.info("前置登录步骤 ==>> 用户 {} 登录 ==>> 返回的 uuid 为：{}".format(account, uuid))
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("web教师端")
 class Test_verifyMembershipFunctionPermissions():
     """校验用户的功能权限"""
 
-    @allure.story("用例--校验用户的功能权限")
-    @allure.description("该用例是针对校验用户的功能权限")
-    @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
-    @allure.title(
-        "测试数据：上游业务获取")
+    @allure.story("见面课信息")
+    @allure.description("校验用户的功能权限")
+    @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")
+    @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
+    @allure.title("校验用户的功能权限")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
     def test_zhs_verifyMembershipFunctionPermissions(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录

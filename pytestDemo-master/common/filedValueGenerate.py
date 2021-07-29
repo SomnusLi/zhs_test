@@ -147,12 +147,17 @@ def add_cookies(cookie=None):
         now_time = int(round(time.time()))
         if cookies_time != None:
             logger.info("cookies_time:{},now_time:{}".format(cookies_time, now_time))
+            # logger.info(
+            #     "保存的cookies中时间为：{}".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(cookies_time))))
+            # logger.info("现在的时间：{}".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(now_time))))
+            now_time_change = time.strftime("%Y-%m-%d", time.localtime(now_time))
+            cookies_time_change = time.strftime("%Y-%m-%d", time.localtime(cookies_time))
             logger.info(
-                "保存的cookies中时间为：{}".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(cookies_time))))
-            logger.info("现在的时间：{}".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(now_time))))
+                "保存的cookies中时间为：{}".format(cookies_time_change))
+            logger.info("现在的时间：{}".format(now_time_change))
             days_diff = (now_time - cookies_time) / 3600 / 24
             logger.info("相差天数{}".format(days_diff))
-            if days_diff > 1:
+            if now_time_change > cookies_time_change:
                 is_cookies_expired = True
             elif cookies_data["cookies"] == None:
                 is_cookies_expired = True

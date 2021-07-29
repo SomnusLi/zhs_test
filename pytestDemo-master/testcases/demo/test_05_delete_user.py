@@ -21,11 +21,11 @@
 # class TestUserDelete():
 #     """删除用户"""
 #
-#     @allure.story("用例--删除用户信息")
+#     @allure.story("删除用户信息")
 #     @allure.description("该用例是针对获取用户删除接口的测试")
 #     @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
 #     @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-#     @allure.title("测试数据：【 {username}，{except_result}，{except_code}，{except_msg} 】")
+#     @allure.title("【 {username}，{except_result}，{except_code}，{except_msg} 】")
 #     @pytest.mark.single
 #     @pytest.mark.parametrize("username, except_result, except_code, except_msg",
 #                              api_data["test_delete_user"])

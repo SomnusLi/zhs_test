@@ -19,17 +19,16 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("学习资源模块")
+@allure.feature("教师端学习资源")
 class Test_findLastOpenFile():
     """查询见面课最后打开的文件"""
 
-    @allure.story("用例--查询见面课最后打开的文件")
-    @allure.description("该用例是查询见面课最后打开的文件")
-    @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
-    @allure.title(
-        "测试数据：上游业务获取")
+    @allure.story("查询见面课最后打开的文件")
+    @allure.description("查询见面课最后打开的文件")
+    @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")
+    @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
+    @allure.title("查询见面课最后打开的文件")
     @pytest.mark.single
     def test_zhs_findLastOpenFile(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")

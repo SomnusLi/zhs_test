@@ -8,25 +8,20 @@ from common.filedValueGenerate import add_cookies, randomRangeNum
 import requests
 
 
-# @allure.step("步骤1 ==>> 根据ID修改用户信息")
-# def step_1(id):
-#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
-
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
     logger.info("前置登录步骤 ==>> 用户 {} 登录 ==>> 返回的 uuid 为：{}".format(account, uuid))
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("web教师端")
 class Test_getOnline():
     """学生在线情况"""
 
-    @allure.story("用例--学生在线情况")
-    @allure.description("该用例学生在线情况")
-    @allure.title(
-        "测试数据：上游业务获取")
+    @allure.story("学生信息")
+    @allure.description("学生在线情况")
+    @allure.title("学生在线情况")
     @pytest.mark.single
     def test_zhs_getOnline(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")

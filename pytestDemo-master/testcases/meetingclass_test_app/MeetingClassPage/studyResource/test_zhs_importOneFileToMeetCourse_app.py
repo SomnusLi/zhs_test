@@ -15,14 +15,14 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("app教师端")
 class Test_importOneFileToMeetCourse_app():
     """app选择文件投屏"""
 
-    @allure.story("用例--app选择文件投屏")
-    @allure.description("该用例是app选择文件投屏")
-    @allure.title("测试数据：上游业务获取")
+    @allure.story("见面课学习资源")
+    @allure.description("app选择文件投屏")
+    @allure.title("app选择文件投屏")
     @pytest.mark.single
     def test_zhs_importOneFileToMeetCourse_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")

@@ -13,14 +13,14 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("app教师端")
 class Test_checkExistQuestion_app():
     """app查询是否存在进行中的提问"""
 
-    @allure.story("用例--app查询是否存在进行中的提问")
-    @allure.description("该用例是app查询是否存在进行中的提问")
-    @allure.title("测试数据：上游业务获取")
+    @allure.story("互动-答疑")
+    @allure.description("app查询是否存在进行中的提问")
+    @allure.title("app查询是否存在进行中的提问")
     @pytest.mark.single
     def test_zhs_checkExistQuestion_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")

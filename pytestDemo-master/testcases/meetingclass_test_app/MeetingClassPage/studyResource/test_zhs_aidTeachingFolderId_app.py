@@ -13,14 +13,14 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("app教师端")
 class Test_aidTeachingFolderId_app():
     """获取学习资源根目录FolderId"""
 
-    @allure.story("用例--app查询投屏课件历史")
-    @allure.description("该用例是app查询投屏课件历史")
-    @allure.title("测试数据：上游业务获取")
+    @allure.story("见面课学习资源")
+    @allure.description("获取学习资源根目录FolderId")
+    @allure.title("获取学习资源根目录FolderId")
     @pytest.mark.single
     def test_zhs_aidTeachingFolderId_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")

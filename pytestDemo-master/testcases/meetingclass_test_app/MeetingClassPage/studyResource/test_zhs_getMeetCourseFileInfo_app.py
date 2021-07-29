@@ -13,14 +13,14 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("app教师端")
 class Test_getMeetCourseFileInfo_app():
     """app查询当前投屏文件信息"""
 
-    @allure.story("用例--app查询当前投屏文件信息")
-    @allure.description("该用例是app查询当前投屏文件信息")
-    @allure.title("测试数据：上游业务获取")
+    @allure.story("见面课学习资源")
+    @allure.description("app查询当前投屏文件信息")
+    @allure.title("app查询当前投屏文件信息")
     @pytest.mark.single
     def test_zhs_getMeetCourseFileInfo_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")

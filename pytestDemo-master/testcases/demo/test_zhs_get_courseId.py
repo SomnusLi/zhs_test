@@ -16,17 +16,17 @@
 #
 #
 # @allure.severity(allure.severity_level.NORMAL)
-# @allure.epic("业务流程测试")
+# @allure.epic("见面课模块")
 # @allure.feature("课程列表模块")
 # class TestGetCourseId():
 #     """获取用户的课程列表"""
 #
-#     @allure.story("用例--获取用户的课程列表")
+#     @allure.story("获取用户的课程列表")
 #     @allure.description("该用例是针对获取用户修改接口的测试")
-#     @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
-#     @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
+#     @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")
+#     @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
 #     @allure.title(
-#         "测试数据：上游业务获取")
+#         "上游业务获取")
 #     @pytest.mark.single
 #     # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
 #     #                          "except_result, except_code, except_msg",

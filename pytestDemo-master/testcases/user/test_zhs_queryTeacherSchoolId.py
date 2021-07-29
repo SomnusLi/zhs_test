@@ -14,15 +14,16 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.TRIVIAL)
-@allure.epic("针对单个接口的测试")
-@allure.feature("获取用户信息模块")
+@allure.epic("用户模块")
+@allure.feature("获取用户信息")
 class Test_queryTeacherSchoolId():
     """获取教师学校ID"""
 
-    @allure.story("用例--获取教师学校ID")
+    @allure.story("获取教师学校ID")
     @allure.description("获取教师学校ID")
     @allure.issue("https://passport.zhihuishu.com/user/validateAccountAndPassword", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://passport.zhihuishu.com/user/validateAccountAndPassword", name="点击，跳转到对应用例的链接地址")
+    @allure.title("获取教师学校ID")
     def test_zhs_queryTeacherSchoolId(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
@@ -40,11 +41,11 @@ class Test_queryTeacherSchoolId():
         # assert set(six.viewitems(except_msg)).issubset(set(six.viewitems(result.msg)))
         logger.info("*************** 结束执行用例 ***************")
 
-    # @allure.story("用例--获取某个用户信息")
+    # @allure.story("获取某个用户信息")
     # @allure.description("该用例是针对获取单个用户信息接口的测试")
     # @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
     # @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-    # @allure.title("测试数据：【 {username}，{except_result}，{except_code}，{except_msg} 】")
+    # @allure.title("【 {username}，{except_result}，{except_code}，{except_msg} 】")
     # @pytest.mark.single
     # @pytest.mark.parametrize("username, except_result, except_code, except_msg",
     #                          api_data["test_get_get_one_user_info"])

@@ -21,7 +21,7 @@
 # class TestGetUserInfo():
 #     """获取用户信息模块"""
 #
-#     @allure.story("用例--获取全部用户信息")
+#     @allure.story("获取全部用户信息")
 #     @allure.description("该用例是针对获取所有用户信息接口的测试")
 #     @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
 #     @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
@@ -40,11 +40,11 @@
 #         assert except_msg in result.msg
 #         logger.info("*************** 结束执行用例 ***************")
 #
-#     @allure.story("用例--获取某个用户信息")
+#     @allure.story("获取某个用户信息")
 #     @allure.description("该用例是针对获取单个用户信息接口的测试")
 #     @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
 #     @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-#     @allure.title("测试数据：【 {username}，{except_result}，{except_code}，{except_msg} 】")
+#     @allure.title("【 {username}，{except_result}，{except_code}，{except_msg} 】")
 #     @pytest.mark.single
 #     @pytest.mark.parametrize("username, except_result, except_code, except_msg",
 #                              api_data["test_get_get_one_user_info"])

@@ -14,17 +14,16 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("web教师端")
 class Test_teacherQRCodeLink():
     """扫码进入课堂"""
 
-    @allure.story("用例--扫码进入课堂")
-    @allure.description("该用例扫码进入课堂")
-    @allure.issue("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseLis", name="点击，跳转到对应用例的链接地址")
-    @allure.title(
-        "测试数据：上游业务获取")
+    @allure.story("见面课信息")
+    @allure.description("扫码进入课堂")
+    @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")
+    @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
+    @allure.title("扫码进入课堂")
     @pytest.mark.single
     def test_zhs_teacherQRCodeLink(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
