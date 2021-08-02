@@ -15,14 +15,14 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("见面课模块")
 @allure.feature("app教师端")
-class Test_closeQuestion_app():
-    """app关闭答疑"""
+class Test_saveBarrageOpenStatus_app():
+    """app开/关答疑弹幕"""
 
     @allure.story("互动-答疑")
-    @allure.description("app关闭答疑")
-    @allure.title("app关闭答疑")
+    @allure.description("app开/关答疑弹幕")
+    @allure.title("app开/关答疑弹幕")
     @pytest.mark.single
-    def test_zhs_closeQuestion_app(self, login_fixture_teacher_app):
+    def test_zhs_saveBarrageOpenStatus_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -48,11 +48,21 @@ class Test_closeQuestion_app():
                 logger.info(
                     "有正在进行中的提问，提问id为{}".format(result_checkExistQuestion_app.response.json()["rt"]["rushQuestionId"]))
                 rushQuestionId = result_checkExistQuestion_app.response.json()["rt"]["rushQuestionId"]
-                logger.info("closeQuestion_app")
-                result_closeQuestion_app = closeQuestion_app(rushQuestionId, uuid, access_token=access_token)
-                assert result_closeQuestion_app.response.status_code == 200
-                if result_closeQuestion_app.response.json()["rt"]["resultStatus"] == 1:
-                    logger.info("{}".format(result_closeQuestion_app.response.json()["rt"]["resultMessage"]))
+
+                logger.info("findBarrageOpenStatus_app")
+                result_findBarrageOpenStatus_app = findBarrageOpenStatus_app(rushQuestionId, access_token=access_token)
+                assert result_findBarrageOpenStatus_app.response.status_code == 200
+                if result_findBarrageOpenStatus_app.response.json()["rt"]["resultStatus"] == 1:
+                    logger.info("答疑弹幕开启状态为:{}".format(
+                        "弹幕开启" if result_findBarrageOpenStatus_app.response.json()["rt"]["danmOpen"] == 1 else "弹幕关闭"))
+                logger.info("saveBarrageOpenStatus_app")
+                openStatus = 0 if result_findBarrageOpenStatus_app.response.json()["rt"][
+                                      "danmOpen"] == 1 else 1  # 0 关闭 1开启
+                result_saveBarrageOpenStatus_app = saveBarrageOpenStatus_app(rushQuestionId, openStatus,
+                                                                             access_token=access_token)
+                assert result_saveBarrageOpenStatus_app.response.status_code == 200
+                if result_saveBarrageOpenStatus_app.response.json()["rt"]["resultStatus"] == 1:
+                    logger.info("{}".format(result_saveBarrageOpenStatus_app.response.json()["rt"]["resultMessage"]))
             elif result_checkExistQuestion_app.response.json()["rt"]["result"] == 2:
                 logger.info("没有正在进行的提问")
             else:
@@ -63,4 +73,4 @@ class Test_closeQuestion_app():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_closeQuestion_app.py"])
+    pytest.main(["-q", "-s", "test_zhs_saveBarrageOpenStatus_app.py"])

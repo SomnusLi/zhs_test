@@ -41,7 +41,7 @@ class Test_checkExistQuestion_app():
             result_getMeetCourseInfo_app = getMeetCourseInfo_app(access_token, meetCourseId, role, uuid)
             assert result_getMeetCourseInfo_app.response.status_code == 200
             groupId = result_getMeetCourseInfo_app.response.json()["rt"]["groupId"]
-            logger.info("checkExistQuestion")
+            logger.info("checkExistQuestion_app")
             result_checkExistQuestion_app = checkExistQuestion_app(groupId=groupId, access_token=access_token)
             assert result_checkExistQuestion_app.response.status_code == 200
             if result_checkExistQuestion_app.response.json()["rt"]["result"] == 1:

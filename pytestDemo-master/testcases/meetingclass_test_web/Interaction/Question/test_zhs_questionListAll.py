@@ -56,7 +56,7 @@ class Test_questionListAll():
                 pageSize = 100
                 pageNum = 0
                 sequenceType = randomRangeNum(1, 2)  # 排序规则 1疑问数倒叙 2时间顺序
-                result_questionListAll = questionListAll(pageSize, pageNum, sequenceType, rushQuestionId, uuid,
+                result_questionListAll = questionListAll(pageSize, pageNum, rushQuestionId, uuid, sequenceType,
                                                          cookies=cookies)
                 assert result_questionListAll.response.status_code == 200
             elif result_checkExistQuestion.response.json()["rt"]["result"] == 2:

@@ -21,7 +21,7 @@ def getUserRoleByCourseId(uuid, courseId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -50,7 +50,7 @@ def getStartingMeetCourseList(uuid, courseId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -79,7 +79,7 @@ def onlineservice_getStartingMeetCourseList(uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -108,7 +108,7 @@ def getMeetCourseTeacherSetting(uuid, courseId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -130,7 +130,7 @@ def getSelectClassInfo(uuid, recruitId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -153,7 +153,7 @@ def creatMeetCourse(uuid, courseId, classIds, recruitId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -177,7 +177,7 @@ def endMeetCourse(meetCourseId, uuid, cookies=None, access_token=None):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -200,7 +200,7 @@ def findMeetCourseMsg(meetCourseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -228,7 +228,7 @@ def findMeetCourseLiveStatus(meetCourseId, role, fromType, uuid, cookies=None, a
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -255,7 +255,7 @@ def findMeetcourseUserAuthData(uuid, schoolId, meetCourseId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -277,7 +277,7 @@ def findOnGoingSignIdsAndRushQuestionId(uuid, groupId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -299,7 +299,7 @@ def findRecentViewFile(meetCourseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -321,7 +321,7 @@ def getHuanxinUserMessage(uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -342,7 +342,7 @@ def getChatroomIdByGroupId(groupId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -369,7 +369,7 @@ def upIsHandAndSpeechByMeetingCourseId(isHandUp, meetCourseId, uuid, isInteracti
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -393,7 +393,7 @@ def checkMeetCourseLivingAuthByUuid(uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -414,7 +414,7 @@ def verifyMembershipFunctionPermissions(type, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -442,7 +442,7 @@ def startMeetingCourseLiving(groupId, openLiveFromType, meetCourseId, uuid, cook
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -468,7 +468,7 @@ def saveMeetCourseLivingPcFlag(meetCourseId, courseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -494,7 +494,7 @@ def endMeetingCourseLiving(meetCourseId, openLiveFromType, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -549,7 +549,7 @@ def saveMeetCourseLivingShareUrl(shareUrl, isType, meetCourseId, dataId, id, uui
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -574,7 +574,7 @@ def isCloseBarrage(meetCourseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -600,7 +600,7 @@ def openOrCloseBarrage(meetCourseId, status, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -621,7 +621,7 @@ def isOpen(groupId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -647,7 +647,7 @@ def openOrClose(groupId, status, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -673,7 +673,7 @@ def findHistoryMsg(chatroomId, pageSize, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -700,7 +700,7 @@ def screenCourseClassInteractionListV2(courseClassId, page, pageSize, uuid, cook
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -722,7 +722,7 @@ def findMeetCourseStudentInfo(groupId, meetCourseId, courseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -745,7 +745,7 @@ def teacherQRCodeLink(uuid, cookies=None, access_token=None):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -766,7 +766,7 @@ def raiseHandsUserIdList(meetCourseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -788,7 +788,7 @@ def findOpenMikeList(meetCourseId, meetCourseLivingId, courseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -821,7 +821,7 @@ def chatCreateCheck(groupId, checkType, checkDurationTime, checkGesture, locatio
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -848,7 +848,7 @@ def signUserIdsHistory(checkId, checkType, userName, groupId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -872,7 +872,7 @@ def chatCheckInfo(checkId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -899,7 +899,7 @@ def findUserInfoByUserIds(uuids, groupId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -926,7 +926,7 @@ def chatCheckStatus(checkId, checkType, sUuid, signRemark, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -950,7 +950,7 @@ def chatDeleteCheck(checkId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -975,7 +975,7 @@ def checkExistQuestion(groupId, uuid=None, cookies=None, access_token=None):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -995,7 +995,7 @@ def findMeetCourseHours(meetCourseId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1022,7 +1022,7 @@ def startQuestion(anonymous, groupId, courseClassId, uuid, recruitId, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1046,7 +1046,7 @@ def countJoinNum(rushQuestionId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1070,7 +1070,7 @@ def openQuestionDetail(rushQuestionId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1094,20 +1094,21 @@ def checkQuestionAndJoinNum(rushQuestionId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
 
 
-def questionListAll(pageSize, pageNum, sequenceType, rushQuestionId, uuid, cookies):
+def questionListAll(pageSize, pageNum, rushQuestionId, uuid, sequenceType=None, cookies=None, access_token=None):
     """
     提问下的问题列表
     """
     result = ResultBase()
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
     }
     data = {
         "pageSize": pageSize,
@@ -1121,7 +1122,7 @@ def questionListAll(pageSize, pageNum, sequenceType, rushQuestionId, uuid, cooki
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1146,7 +1147,7 @@ def closeQuestion(rushQuestionId, groupId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1166,7 +1167,7 @@ def getSimpleBrainStormList(groupId, type, pageSize, pageNum, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1191,7 +1192,7 @@ def startRollcall(groupId, count, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1215,7 +1216,7 @@ def quryRollcallDetail(rollcallId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1239,7 +1240,7 @@ def changeRollcall(rollcallId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1266,7 +1267,7 @@ def chatVotePublishFastVote(groupId, type, optionCount, limitTime, uuid, cookies
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1290,7 +1291,7 @@ def chatVoteDetail(voteId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1314,7 +1315,7 @@ def getGroupMemberCount(groupId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1339,7 +1340,7 @@ def chatVoteDetailOptionCount(groupId, voteId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1364,7 +1365,7 @@ def chatVoteDetailOptionVotersList(optionId, voteId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1388,7 +1389,7 @@ def unpublishedChatVotesList(groupId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1412,7 +1413,7 @@ def chatDeleteVote(voteId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1436,7 +1437,7 @@ def findRunningPreemptive(groupId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1461,7 +1462,7 @@ def startRushAnswer(groupId, count, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1486,7 +1487,7 @@ def quryRushAnswerDetail(groupId, rushAnswerId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1511,7 +1512,7 @@ def endRushAnswer(groupId, rushAnswerId, uuid, cookies):
     if res.status_code == 200:
         result.success = True
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["message"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
     result.msg = res.json()
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
@@ -1905,6 +1906,289 @@ def openQuestionDetail_app(rushQuestionId, access_token):
         "rushQuestionId": rushQuestionId
     }
     res = MeetingClass.openQuestionDetail_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def saveBarrageOpenStatus_app(rushQuestionId, openStatus, access_token):
+    """
+    app开/关答疑弹幕
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "rushQuestionId": rushQuestionId,
+        "openStatus": openStatus
+    }
+    res = MeetingClass.saveBarrageOpenStatus_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def questionList_app(pageSize, pageNum, rushQuestionId, sequenceType, access_token=None):
+    """
+    app提问下的问题列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "pageSize": pageSize,
+        "pageNum": pageNum,
+        "rushQuestionId": rushQuestionId,
+        "sequenceType": sequenceType
+    }
+    res = MeetingClass.questionList_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findBarrageOpenStatus_app(rushQuestionId, cookies=None, access_token=None):
+    """
+    app查询答疑弹幕开关状态
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "rushQuestionId": rushQuestionId
+    }
+    res = MeetingClass.findBarrageOpenStatus_app(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def checkQuestionAndJoinNum_app(rushQuestionId, cookies=None, access_token=None):
+    """
+    app查询问题总数量和参与人数
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "rushQuestionId": rushQuestionId
+    }
+    res = MeetingClass.checkQuestionAndJoinNum_app(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getAnswerOrTroubleNum_app(questionId, access_token):
+    """
+    app提问有疑惑/想回答人数
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "questionId": questionId
+    }
+    res = MeetingClass.getAnswerOrTroubleNum_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def questionDetail_app(groupId, questionId, recruitId, uuid, access_token):
+    """
+    app提问下的问题详情
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "questionId": questionId,
+        "groupId": groupId,
+        "recruitId": recruitId,
+        "uuid": uuid
+    }
+    res = MeetingClass.questionDetail_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def answerOrTroubleMemberList_app(groupId, pageNum, pageSize, questionId, type, access_token):
+    """
+    app问题想回答/有疑问学生列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "questionId": questionId,
+        "pageNum": pageNum,
+        "pageSize": pageSize,
+        "type": type,
+        "groupId": groupId
+    }
+    res = MeetingClass.answerOrTroubleMemberList_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def updateQuestionToQa_app(groupId, questionId, recruitId, rushQuestionId, uuid, access_token):
+    """
+    app同步问题至问答
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "questionId": questionId,
+        "groupId": groupId,
+        "recruitId": recruitId,
+        "rushQuestionId": rushQuestionId,
+        "uuid": uuid
+    }
+    res = MeetingClass.updateQuestionToQa_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getGroupMemberCount_app(groupId, uuid, access_token):
+    """
+    app查询群组数量
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid
+    }
+    res = MeetingClass.getGroupMemberCount_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def startRollcall_app(count, groupId, uuid, access_token):
+    """
+    app开始随机点名
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid,
+        "count": count
+    }
+    res = MeetingClass.startRollcall_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def changeRollcall_app(rollcallId, uuid, access_token):
+    """
+    app随机点名换一换
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "rollcallId": rollcallId,
+        "uuid": uuid
+    }
+    res = MeetingClass.changeRollcall_app(data=data, headers=header)
     result.success = False
     if res.status_code == 200:
         result.success = True

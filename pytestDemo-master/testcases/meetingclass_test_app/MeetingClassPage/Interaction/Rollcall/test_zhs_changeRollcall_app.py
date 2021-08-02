@@ -15,14 +15,14 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("见面课模块")
 @allure.feature("app教师端")
-class Test_closeQuestion_app():
-    """app关闭答疑"""
+class Test_changeRollcall_app():
+    """app随机点名换一换"""
 
-    @allure.story("互动-答疑")
-    @allure.description("app关闭答疑")
-    @allure.title("app关闭答疑")
+    @allure.story("互动-点名")
+    @allure.description("app随机点名换一换")
+    @allure.title("app随机点名换一换")
     @pytest.mark.single
-    def test_zhs_closeQuestion_app(self, login_fixture_teacher_app):
+    def test_zhs_changeRollcall_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -41,26 +41,20 @@ class Test_closeQuestion_app():
             result_getMeetCourseInfo_app = getMeetCourseInfo_app(access_token, meetCourseId, role, uuid)
             assert result_getMeetCourseInfo_app.response.status_code == 200
             groupId = result_getMeetCourseInfo_app.response.json()["rt"]["groupId"]
-            logger.info("checkExistQuestion_app")
-            result_checkExistQuestion_app = checkExistQuestion_app(groupId=groupId, access_token=access_token)
-            assert result_checkExistQuestion_app.response.status_code == 200
-            if result_checkExistQuestion_app.response.json()["rt"]["result"] == 1:
-                logger.info(
-                    "有正在进行中的提问，提问id为{}".format(result_checkExistQuestion_app.response.json()["rt"]["rushQuestionId"]))
-                rushQuestionId = result_checkExistQuestion_app.response.json()["rt"]["rushQuestionId"]
-                logger.info("closeQuestion_app")
-                result_closeQuestion_app = closeQuestion_app(rushQuestionId, uuid, access_token=access_token)
-                assert result_closeQuestion_app.response.status_code == 200
-                if result_closeQuestion_app.response.json()["rt"]["resultStatus"] == 1:
-                    logger.info("{}".format(result_closeQuestion_app.response.json()["rt"]["resultMessage"]))
-            elif result_checkExistQuestion_app.response.json()["rt"]["result"] == 2:
-                logger.info("没有正在进行的提问")
-            else:
-                logger.info("提问已结束")
+            # count = randomRangeNum(0, result_getMeetCourseInfo_app.response.json()["rt"]["joinStudentNum"])
+            count = 1
+            logger.info("startRollcall_app")
+            result_startRollcall_app = startRollcall_app(count, groupId, uuid, access_token=access_token)
+            assert result_startRollcall_app.response.status_code == 200
+            logger.info("随机点名详情：{}".format(result_startRollcall_app.response.json()["rt"]["personList"]))
+            rollcallId = result_startRollcall_app.response.json()["rt"]["rollcallId"]
+            result_changeRollcall_app = changeRollcall_app(rollcallId, uuid, access_token=access_token)
+            assert result_changeRollcall_app.response.status_code == 200
+            logger.info("更换后随机点名详情：{}".format(result_changeRollcall_app.response.json()["rt"]["personList"]))
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_closeQuestion_app.py"])
+    pytest.main(["-q", "-s", "test_zhs_changeRollcall_app.py"])

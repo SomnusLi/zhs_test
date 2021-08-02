@@ -23,6 +23,7 @@ class TestGetCourseId():
     @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
     @allure.title("获取用户(学生)的课程列表")
     @pytest.mark.single
+    @pytest.mark.skip
     def test_get_courseInfo_student(self, login_fixture_student):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录

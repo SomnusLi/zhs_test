@@ -472,5 +472,70 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/openQuestionDetail",
             **kwargs)
 
+    def saveBarrageOpenStatus_app(self, **kwargs):
+        # app开/关答疑弹幕
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/saveBarrageOpenStatus",
+            **kwargs)
+
+    def findBarrageOpenStatus_app(self, **kwargs):
+        # app查询答疑弹幕开关状态
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/findBarrageOpenStatus",
+            **kwargs)
+
+    def checkQuestionAndJoinNum_app(self, **kwargs):
+        # app查询问题总数量和参与人数
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/checkQuestionAndJoinNum",
+            **kwargs)
+
+    def questionList_app(self, **kwargs):
+        # app提问下的问题列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/questionList", **kwargs)
+
+    def getAnswerOrTroubleNum_app(self, **kwargs):
+        # app提问有疑惑/想回答人数
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/getAnswerOrTroubleNum",
+            **kwargs)
+
+    def questionDetail_app(self, **kwargs):
+        # app提问下的问题详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/questionDetail",
+            **kwargs)
+
+    def answerOrTroubleMemberList_app(self, **kwargs):
+        # app问题想回答/有疑问学生列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/answerOrTroubleMemberList",
+            **kwargs)
+
+    def updateQuestionToQa_app(self, **kwargs):
+        # app同步问题至问答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/question/updateQuestionToQa",
+            **kwargs)
+
+    def getGroupMemberCount_app(self, **kwargs):
+        # app查询群组数量
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/rollCall/getGroupMemberCount",
+            **kwargs)
+
+    def startRollcall_app(self, **kwargs):
+        # app开始随机点名
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/rollCall/startRollcall",
+            **kwargs)
+
+    def changeRollcall_app(self, **kwargs):
+        # app随机点名换一换
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/rollCall/changeRollcall",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

@@ -18,6 +18,7 @@ def step_login(account, uuid):
 class Test_startQuestion_app():
     """app创建答疑"""
 
+
     @allure.story("互动-答疑")
     @allure.description("app创建答疑")
     @allure.title("app创建答疑")

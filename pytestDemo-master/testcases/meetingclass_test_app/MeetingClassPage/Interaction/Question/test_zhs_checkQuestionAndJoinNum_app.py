@@ -15,14 +15,14 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("见面课模块")
 @allure.feature("app教师端")
-class Test_closeQuestion_app():
-    """app关闭答疑"""
+class Test_checkQuestionAndJoinNum_app():
+    """app查询问题总数量和参与人数"""
 
     @allure.story("互动-答疑")
-    @allure.description("app关闭答疑")
-    @allure.title("app关闭答疑")
+    @allure.description("app查询问题总数量和参与人数")
+    @allure.title("app查询问题总数量和参与人数")
     @pytest.mark.single
-    def test_zhs_closeQuestion_app(self, login_fixture_teacher_app):
+    def test_zhs_checkQuestionAndJoinNum_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -48,11 +48,14 @@ class Test_closeQuestion_app():
                 logger.info(
                     "有正在进行中的提问，提问id为{}".format(result_checkExistQuestion_app.response.json()["rt"]["rushQuestionId"]))
                 rushQuestionId = result_checkExistQuestion_app.response.json()["rt"]["rushQuestionId"]
-                logger.info("closeQuestion_app")
-                result_closeQuestion_app = closeQuestion_app(rushQuestionId, uuid, access_token=access_token)
-                assert result_closeQuestion_app.response.status_code == 200
-                if result_closeQuestion_app.response.json()["rt"]["resultStatus"] == 1:
-                    logger.info("{}".format(result_closeQuestion_app.response.json()["rt"]["resultMessage"]))
+                logger.info("checkQuestionAndJoinNum_app")
+                result_checkQuestionAndJoinNum_app = checkQuestionAndJoinNum_app(rushQuestionId,
+                                                                                 access_token=access_token)
+                assert result_checkQuestionAndJoinNum_app.response.status_code == 200
+                if result_checkQuestionAndJoinNum_app.response.json()["rt"]["resultStatus"] == 1:
+                    logger.info("\n答疑题目总数量为:{}\n答疑总人数为{}".format(
+                        result_checkQuestionAndJoinNum_app.response.json()["rt"]["questionNum"],
+                        result_checkQuestionAndJoinNum_app.response.json()["rt"]["joinNum"]))
             elif result_checkExistQuestion_app.response.json()["rt"]["result"] == 2:
                 logger.info("没有正在进行的提问")
             else:
@@ -63,4 +66,4 @@ class Test_closeQuestion_app():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_closeQuestion_app.py"])
+    pytest.main(["-q", "-s", "test_zhs_checkQuestionAndJoinNum_app.py"])
