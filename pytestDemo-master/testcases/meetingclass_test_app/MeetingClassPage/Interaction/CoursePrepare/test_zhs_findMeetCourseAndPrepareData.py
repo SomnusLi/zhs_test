@@ -15,14 +15,14 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("见面课模块")
 @allure.feature("app教师端")
-class Test_startRollcall_app():
-    """app开始随机点名"""
+class Test_findMeetCourseAndPrepareData():
+    """app查询当前见面课备课id"""
 
-    @allure.story("互动-点名")
-    @allure.description("app开始随机点名")
-    @allure.title("app开始随机点名")
+    @allure.story("互动-备课")
+    @allure.description("app查询当前见面课备课id")
+    @allure.title("app查询当前见面课备课id")
     @pytest.mark.single
-    def test_zhs_startRollcall_app(self, login_fixture_teacher_app):
+    def test_zhs_findMeetCourseAndPrepareData(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -36,24 +36,15 @@ class Test_startRollcall_app():
         if result_getStartingMeetCourseList_app.response.json()["rt"] != []:
             logger.info("有正在开启的见面课")
             meetCourseId = result_getStartingMeetCourseList_app.response.json()["rt"][0]["meetCourseId"]
-            role = 1
-            logger.info("getMeetCourseInfo_app")
-            result_getMeetCourseInfo_app = getMeetCourseInfo_app(access_token, meetCourseId, role, uuid)
-            assert result_getMeetCourseInfo_app.response.status_code == 200
-            groupId = result_getMeetCourseInfo_app.response.json()["rt"]["groupId"]
-            logger.info("getGroupMemberCount_app")
-            result_getGroupMemberCount_app = getGroupMemberCount_app(groupId, uuid, access_token=access_token)
-            assert result_getGroupMemberCount_app.response.status_code == 200
-            logger.info("群组数量为：{}".format(result_getGroupMemberCount_app.response.json()["rt"]["sumCount"]))
-            count = randomRangeNum(1, result_getGroupMemberCount_app.response.json()["rt"]["sumCount"] - 1)
-            logger.info("startRollcall_app")
-            result_startRollcall_app = startRollcall_app(count, groupId, uuid, access_token=access_token)
-            assert result_startRollcall_app.response.status_code == 200
-            logger.info("随机点名详情：{}".format(result_startRollcall_app.response.json()["rt"]["personList"]))
+            logger.info("findMeetCourseAndPrepareData")
+            result_findMeetCourseAndPrepareData = findMeetCourseAndPrepareData(meetCourseId, access_token=access_token)
+            assert result_findMeetCourseAndPrepareData.response.status_code == 200
+            if result_findMeetCourseAndPrepareData.response.status_code == 200:
+                logger.info("当前见面课备课id为：{}".format(result_findMeetCourseAndPrepareData.response.json()["rt"]))
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_startRollcall_app.py"])
+    pytest.main(["-q", "-s", "test_zhs_findMeetCourseAndPrepareData.py"])

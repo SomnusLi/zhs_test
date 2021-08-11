@@ -2198,3 +2198,209 @@ def changeRollcall_app(rollcallId, uuid, access_token):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def findRunningPreemptive_app(groupId, uuid, access_token):
+    """
+    app获取正在进行中的抢答
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid
+    }
+    res = MeetingClass.findRunningPreemptive_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def startRushAnswer_app(count, groupId, uuid, access_token):
+    """
+    app创建抢答
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid,
+        "count": count
+    }
+    res = MeetingClass.startRushAnswer_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def endRushAnswer_app(rushAnswerId, groupId, uuid, access_token):
+    """
+    app结束抢答
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid,
+        "rushAnswerId": rushAnswerId
+    }
+    res = MeetingClass.endRushAnswer_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def quryRushAnswerDetail_app(rushAnswerId, groupId, uuid, access_token):
+    """
+    app查询抢答详细
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "groupId": groupId,
+        "uuid": uuid,
+        "rushAnswerId": rushAnswerId
+    }
+    res = MeetingClass.quryRushAnswerDetail_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findCoursePrepareApp(uuid, access_token):
+    """
+    app查询备课计划
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid
+    }
+    res = MeetingClass.findCoursePrepareApp(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def saveCoursePrepareOperater(coursePreparId, intervalTime, publishStatus, operateTime, uuid, meetCourseId,
+                              access_token):
+    """
+    app保存备课状态
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "coursePreparId": coursePreparId,
+        "intervalTime": intervalTime,
+        "publishStatus": publishStatus,
+        "operateTime": operateTime,
+        "meetCourseId": meetCourseId
+    }
+    res = MeetingClass.saveCoursePrepareOperater(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findMeetCourseAndPrepareData(meetCourseId, access_token):
+    """
+    app查询当前见面课备课id
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "meetCourseId": meetCourseId
+    }
+    res = MeetingClass.findMeetCourseAndPrepareData(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def updateMeetCourseAndPrepare(coursePreparId, meetCourseId, access_token):
+    """
+    app更新当前见面课备课id
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "coursePreparId": coursePreparId
+    }
+    res = MeetingClass.updateMeetCourseAndPrepare(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

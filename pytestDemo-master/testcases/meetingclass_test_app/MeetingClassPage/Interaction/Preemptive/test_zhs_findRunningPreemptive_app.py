@@ -15,14 +15,14 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("见面课模块")
 @allure.feature("app教师端")
-class Test_changeRollcall_app():
-    """app随机点名换一换"""
+class Test_findRunningPreemptive_app():
+    """app获取正在进行中的抢答"""
 
-    @allure.story("互动-点名")
-    @allure.description("app随机点名换一换")
-    @allure.title("app随机点名换一换")
+    @allure.story("互动-抢答")
+    @allure.description("app获取正在进行中的抢答")
+    @allure.title("app获取正在进行中的抢答")
     @pytest.mark.single
-    def test_zhs_changeRollcall_app(self, login_fixture_teacher_app):
+    def test_zhs_findRunningPreemptive_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -41,23 +41,19 @@ class Test_changeRollcall_app():
             result_getMeetCourseInfo_app = getMeetCourseInfo_app(access_token, meetCourseId, role, uuid)
             assert result_getMeetCourseInfo_app.response.status_code == 200
             groupId = result_getMeetCourseInfo_app.response.json()["rt"]["groupId"]
-            logger.info("getGroupMemberCount_app")
-            result_getGroupMemberCount_app = getGroupMemberCount_app(groupId, uuid, access_token=access_token)
-            assert result_getGroupMemberCount_app.response.status_code == 200
-            logger.info("群组数量为：{}".format(result_getGroupMemberCount_app.response.json()["rt"]["sumCount"]))
-            count = randomRangeNum(1, result_getGroupMemberCount_app.response.json()["rt"]["sumCount"] - 1)
-            logger.info("startRollcall_app")
-            result_startRollcall_app = startRollcall_app(count, groupId, uuid, access_token=access_token)
-            assert result_startRollcall_app.response.status_code == 200
-            logger.info("随机点名详情：{}".format(result_startRollcall_app.response.json()["rt"]["personList"]))
-            rollcallId = result_startRollcall_app.response.json()["rt"]["rollcallId"]
-            result_changeRollcall_app = changeRollcall_app(rollcallId, uuid, access_token=access_token)
-            assert result_changeRollcall_app.response.status_code == 200
-            logger.info("更换后随机点名详情：{}".format(result_changeRollcall_app.response.json()["rt"]["personList"]))
+            logger.info("findRunningPreemptive_app")
+            result_findRunningPreemptive_app = findRunningPreemptive_app(groupId, uuid, access_token=access_token)
+            assert result_findRunningPreemptive_app.response.status_code == 200
+            if result_findRunningPreemptive_app.response.status_code == 200:
+                if result_findRunningPreemptive_app.response.json()["rt"]["rushAnswerId"] != "":
+                    logger.info("有正在进行中的抢答，抢答id为：{}".format(
+                        result_findRunningPreemptive_app.response.json()["rt"]["rushAnswerId"]))
+                else:
+                    logger.info("没有正在进行中的抢答")
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_changeRollcall_app.py"])
+    pytest.main(["-q", "-s", "test_zhs_findRunningPreemptive_app.py"])

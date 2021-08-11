@@ -537,5 +537,53 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/rollCall/changeRollcall",
             **kwargs)
 
+    def findRunningPreemptive_app(self, **kwargs):
+        # app获取正在进行中的抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/preemptive/findRunningPreemptive",
+            **kwargs)
+
+    def startRushAnswer_app(self, **kwargs):
+        # app创建抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/preemptive/startRushAnswer",
+            **kwargs)
+
+    def endRushAnswer_app(self, **kwargs):
+        # app结束抢答
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/preemptive/endRushAnswer",
+            **kwargs)
+
+    def quryRushAnswerDetail_app(self, **kwargs):
+        # app查询抢答详细
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/group/preemptive/quryRushAnswerDetail",
+            **kwargs)
+
+    def findCoursePrepareApp(self, **kwargs):
+        # app查询备课计划
+        return self.post(
+            "https://hike-teaching.zhihuishu.com/coursePrepare/findCoursePrepareApp",
+            **kwargs)
+
+    def saveCoursePrepareOperater(self, **kwargs):
+        # app查询备课计划
+        return self.post(
+            "https://hike-teaching.zhihuishu.com/coursePrepare/saveCoursePrepareOperater",
+            **kwargs)
+
+    def findMeetCourseAndPrepareData(self, **kwargs):
+        # app查询当前见面课备课id
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/findMeetCourseAndPrepareData",
+            **kwargs)
+
+    def updateMeetCourseAndPrepare(self, **kwargs):
+        # app更新当前见面课备课id
+        return self.post(
+            "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/updateMeetCourseAndPrepare",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)
