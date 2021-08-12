@@ -13,9 +13,18 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 
+@allure.severity(allure.severity_level.TRIVIAL)
+@allure.epic("用户模块")
+@allure.feature("用户登录测试")
 class Test_seleniumlogintest():
-    """用户登录"""
+    """selenium用户登录"""
 
+    @allure.story("selenium用户登录")
+    @allure.description("selenium用户登录")
+    @allure.issue("https://passport.zhihuishu.com/user/validateAccountAndPassword", name="点击，跳转到对应BUG的链接地址")
+    @allure.testcase("https://passport.zhihuishu.com/user/validateAccountAndPassword", name="点击，跳转到对应用例的链接地址")
+    @allure.title("selenium用户登录")
+    @pytest.mark.skip()
     def test_zhs_seleniumlogintest(self):
         logger.info("*************** 开始执行用例 ***************")
         chrome_options = webdriver.ChromeOptions()
@@ -39,7 +48,6 @@ class Test_seleniumlogintest():
         for s in list_cookies:
             cookies[s["name"]] = s["value"]
         logger.info(cookies)
-        browser.quit()
         logger.info("*************** 结束执行用例 ***************")
 
 

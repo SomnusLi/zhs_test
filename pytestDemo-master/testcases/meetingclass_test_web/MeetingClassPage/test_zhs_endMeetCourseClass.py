@@ -8,37 +8,29 @@ from common.filedValueGenerate import add_cookies, randomRangeNum
 import requests
 
 
-# @allure.step("步骤1 ==>> 根据ID修改用户信息")
-# def step_1(id):
-#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
-
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
     logger.info("前置登录步骤 ==>> 用户 {} 登录 ==>> 返回的 uuid 为：{}".format(account, uuid))
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("web教师端")
 class Test_endMeetCourseClass():
     """结束见面课"""
 
-    @allure.story("用例--结束见面课")
-    @allure.description("该用例是结束见面课")
-    @allure.title("测试数据：上游业务获取")
+    @allure.story("见面课信息")
+    @allure.description("结束见面课")
+    @allure.title("结束见面课")
     @pytest.mark.single
-    # @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-    #                          "except_result, except_code, except_msg",
-    #                          api_data["test_update_user"])
-    # @pytest.mark.usefixtures("Get_courseId")
     def test_zhs_endMeetCourseClass(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
-        uuid = user_info.json().get("uuid")
-        account = user_info.request.body[8:19]
+        uuid = user_info.uuid
+        account = user_info.account
         step_login(account, uuid)
-        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
+        cookies = user_info.cookies
         logger.info("getStartingMeetCourseList")
         result_onlineservice_getStartingMeetCourseList = onlineservice_getStartingMeetCourseList(uuid,
                                                                                                  cookies=cookies)

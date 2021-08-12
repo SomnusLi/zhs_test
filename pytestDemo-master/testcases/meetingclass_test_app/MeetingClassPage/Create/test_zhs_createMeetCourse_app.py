@@ -16,15 +16,14 @@ def step_login(account, uuid):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@allure.epic("业务流程测试")
-@allure.feature("见面课模块")
+@allure.epic("见面课模块")
+@allure.feature("app教师端")
 class Test_createMeetCourse_app():
     """app创建见面课"""
 
-    @allure.story("用例--app创建见面课")
-    @allure.description("该用例是app创建见面课")
-    @allure.title(
-        "测试数据：上游业务获取")
+    @allure.story("创建见面课")
+    @allure.description("app创建见面课")
+    @allure.title("app创建见面课")
     @pytest.mark.single
     def test_zhs_createMeetCourse_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")

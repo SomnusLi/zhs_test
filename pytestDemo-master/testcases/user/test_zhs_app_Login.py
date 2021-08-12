@@ -11,21 +11,17 @@ def step_1():
     logger.info("步骤1 ==>> 登录")
 
 
-# @allure.step("步骤1 ==>> 获取某个用户信息")
-# def step_2(username):
-#     logger.info("步骤1 ==>> 获取某个用户信息：{}".format(username))
-
-
 @allure.severity(allure.severity_level.TRIVIAL)
-@allure.epic("针对单个接口的测试")
-@allure.feature("获取用户信息模块")
+@allure.epic("用户模块")
+@allure.feature("用户登录")
 class Test_login():
     """app用户登录"""
 
-    @allure.story("用例--app用户登录")
-    @allure.description("该用例app用户登录")
+    @allure.story("app用户登录")
+    @allure.description("app用户登录")
     @allure.issue("https://passport.zhihuishu.com/user/validateAccountAndPassword", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://passport.zhihuishu.com/user/validateAccountAndPassword", name="点击，跳转到对应用例的链接地址")
+    @allure.title("app用户登录")
     @pytest.mark.single
     @pytest.mark.parametrize("account,password", api_data["test_zhs_app_login"])
     def test_zhs_login(self, account, password):

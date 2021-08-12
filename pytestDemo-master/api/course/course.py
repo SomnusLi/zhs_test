@@ -16,7 +16,7 @@ class Course(RestClient):
         # 获取学生端的课程列表
         # get方式url直接拼接 {}.format（）
         return self.get(
-            "https://hikeservice.zhihuishu.com/student/course/aided/getMyCourseList?uuid={}&date={}".format(uuid,
+            "https://www.zhihuishu.com/t?uuid={}&date={}".format(uuid,
                                                                                                             date),
             **kwargs)
 
