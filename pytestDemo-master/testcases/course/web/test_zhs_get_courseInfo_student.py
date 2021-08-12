@@ -28,8 +28,8 @@ class TestGetCourseId():
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_student
-        uuid = user_info.json().get("uuid")
-        account = user_info.request.body[8:19]
+        uuid = user_info.uuid
+        account = user_info.account
         step_login(account, uuid)
         result = get_courseInfo_student(uuid, requests.utils.dict_from_cookiejar(user_info.cookies))
         assert result.response.status_code == 200

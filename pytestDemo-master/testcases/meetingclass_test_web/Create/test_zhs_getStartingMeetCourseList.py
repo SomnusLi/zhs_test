@@ -29,20 +29,16 @@ class Test_getStartingMeetCourseList():
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
-        uuid = user_info.json().get("uuid")
-        account = user_info.request.body[8:19]
+        uuid = user_info.uuid
+        account = user_info.account
         step_login(account, uuid)
-        result_get_courseInfo_teacher = get_courseInfo_teacher(uuid,
-                                                               cookies=add_cookies(requests.utils.dict_from_cookiejar(
-                                                                   user_info.cookies)))
+        cookies = user_info.cookies
+        result_get_courseInfo_teacher = get_courseInfo_teacher(uuid, cookies=cookies)
         courseList = result_get_courseInfo_teacher.response.json()["rt"]["courseList"]
         courseId = courseList[randomRangeNum(0, len(courseList) - 1)]["courseId"]
         print(courseId)
         assert result_get_courseInfo_teacher.response.status_code == 200
-        result_getStartingMeetCourseList = getStartingMeetCourseList(uuid, courseId,
-                                                                     cookies=add_cookies(
-                                                                         requests.utils.dict_from_cookiejar(
-                                                                             user_info.cookies)))
+        result_getStartingMeetCourseList = getStartingMeetCourseList(uuid, courseId, cookies=cookies)
         assert result_getStartingMeetCourseList.response.status_code == 200
         logger.info("*************** 结束执行用例 ***************")
 

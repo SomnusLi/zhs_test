@@ -28,8 +28,8 @@ class Test_aidMenuAuth():
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
-        uuid = user_info.json().get("uuid")
-        account = user_info.request.body[8:19]
+        uuid = user_info.uuid
+        account = user_info.account
         password = user_info.request.body[29:37]
         step_login(account, uuid)
         result = aidMenuAuth(uuid, cookies=requests.utils.dict_from_cookiejar(user_info.cookies))

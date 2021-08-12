@@ -7,9 +7,7 @@ from common.logger import logger
 import requests
 
 
-# @allure.step("步骤1 ==>> 根据ID修改用户信息")
-# def step_1(id):
-#     logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
+
 
 @allure.step("前置登录步骤 ==>> 用户登录")
 def step_login(account, uuid):
@@ -32,9 +30,9 @@ class TestGetCourseId():
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
-        uuid = user_info.json().get("uuid")
-        account = user_info.request.body[8:19]
-        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
+        uuid = user_info.uuid
+        account = user_info.account
+        cookies = user_info.cookies
         step_login(account, uuid)
         result_get_courseInfo_teacher = get_courseInfo_teacher(uuid,
                                                                cookies=cookies)

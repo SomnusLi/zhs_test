@@ -29,10 +29,10 @@ class Test_verifyMembershipFunctionPermissions():
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
-        uuid = user_info.json().get("uuid")
-        account = user_info.request.body[8:19]
+        uuid = user_info.uuid
+        account = user_info.account
         step_login(account, uuid)
-        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
+        cookies = user_info.cookies
         type = "3&8"
         # 功能点id：1.资源库会员 2.资源库选课会员 3.视频直播(手机版) 4.直播白板 5.直播录屏 6.师说会员 7.数据中心 8.设备直播(手机端) 9.金课评审会员 10.共享题库 11.管理者教学指挥中心 12.数据联动 13.单点登录 14.学校门户(PC版本) 15.学校门户(手机版本) 16.防作弊管理 17.校内加速 18.定制服务 19.专业版期末报告 20.校资源库 21.校内spoc教学 22.视频监考 23.AI监考
         result_verifyMembershipFunctionPermissions = verifyMembershipFunctionPermissions(type, uuid,

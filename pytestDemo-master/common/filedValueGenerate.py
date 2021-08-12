@@ -11,6 +11,7 @@ from selenium import webdriver
 from ruamel import yaml
 from common.read_data import data
 import pytest
+from selenium.webdriver.common.action_chains import ActionChains
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
@@ -176,15 +177,60 @@ def add_cookies(cookie=None):
         logger.info(chromedriver_path)
         logger.info(chrome_options)
         browser = webdriver.Chrome(chromedriver_path, options=chrome_options)
+        browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+            "source": """
+            Object.defineProperty(navigator, 'webdriver', {
+              get: () => undefined
+            })
+          """
+        })
         browser.get(
             "https://passport.zhihuishu.com/login?service=https://onlineservice.zhihuishu.com/login/gologin")
+        try:
+            t = browser.find_element_by_class_name("waf-nc-title").get_attribute("textContent")
+            logger.info(t)
+            if t == "安全验证":
+                logger.info("需要安全验证")
+                move_element = browser.find_element_by_xpath("//*[@id='nc_1_n1z']")
+                logger.info("按住滑块")
+                ActionChains(browser).click_and_hold(on_element=move_element).perform()
+                time.sleep(3)
+                # 滑块x轴距离根据屏幕分辨率调整
+                ActionChains(browser).move_to_element_with_offset(to_element=move_element, xoffset=300,
+                                                                  yoffset=0).perform()
+                logger.info("滑块滑到最右侧")
+                ActionChains(browser).release(on_element=move_element).perform()
+            else:
+                logger.info("没有找到登录验证元素，无需登录验证")
+        except:
+            logger.info("无需登录验证")
         time.sleep(3)
+        browser.find_element_by_xpath("//*[@id='lUsername']").clear()
         browser.find_element_by_xpath("//*[@id='lUsername']").send_keys("13122285260")
         time.sleep(1)
+        browser.find_element_by_xpath("//*[@id='lPassword']").clear()
         browser.find_element_by_xpath("//*[@id='lPassword']").send_keys("Aa111111")
         time.sleep(1)
         browser.find_element_by_xpath("//*[@id='f_sign_up']/div[1]/span").click()
-        time.sleep(3)
+        try:
+            t = browser.find_element_by_class_name("waf-nc-title").get_attribute("textContent")
+            logger.info(t)
+            if t == "安全验证":
+                logger.info("需要安全验证")
+                move_element = browser.find_element_by_xpath("//*[@id='nc_1_n1z']")
+                ActionChains(browser).click_and_hold(on_element=move_element).perform()
+                logger.info("按住滑块")
+                time.sleep(3)
+                # 滑块x轴距离根据屏幕分辨率调整
+                ActionChains(browser).move_to_element_with_offset(to_element=move_element, xoffset=300,
+                                                                  yoffset=0).perform()
+                logger.info("滑块滑到最右侧")
+                ActionChains(browser).release(on_element=move_element).perform()
+            else:
+                logger.info("没有找到登录验证元素，无需登录验证")
+        except:
+            logger.info("无需登录验证")
+        time.sleep(10)
         list_cookies = browser.get_cookies()
         cookies = {}
         for s in list_cookies:

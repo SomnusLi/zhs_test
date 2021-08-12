@@ -9,6 +9,7 @@ init_user_login_student:
 init_user_login_teacher:
   account: "13122285260"
   password: "Aa111111"
+  uuid: "Vv45Mker"
 
 init_sql:
   insert_delete_user:

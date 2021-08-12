@@ -28,10 +28,10 @@ class TestGetCourseId():
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
-        uuid = user_info.json().get("uuid")
-        account = user_info.request.body[8:19]
+        uuid = user_info.uuid
+        account = user_info.account
         step_login(account, uuid)
-        cookies = add_cookies(requests.utils.dict_from_cookiejar(user_info.cookies))
+        cookies = user_info.cookies
         result = get_courseInfo_teacher(uuid, cookies=cookies)
         logger.info(result.response.text)
         logger.info("*************** 结束执行用例 ***************")
