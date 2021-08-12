@@ -44,8 +44,13 @@ class Test_startRollcall_app():
             logger.info("getGroupMemberCount_app")
             result_getGroupMemberCount_app = getGroupMemberCount_app(groupId, uuid, access_token=access_token)
             assert result_getGroupMemberCount_app.response.status_code == 200
-            logger.info("群组数量为：{}".format(result_getGroupMemberCount_app.response.json()["rt"]["sumCount"]))
-            count = randomRangeNum(1, result_getGroupMemberCount_app.response.json()["rt"]["sumCount"] - 1)
+            sumCount = result_getGroupMemberCount_app.response.json()["rt"]["sumCount"]
+            logger.info("群组数量为：{}".format(sumCount))
+            if sumCount == 1:
+                # logger.info("人数不够,无法创建随机点名！")
+                count = 1
+            else:
+                count = randomRangeNum(1, sumCount - 1)
             logger.info("startRollcall_app")
             result_startRollcall_app = startRollcall_app(count, groupId, uuid, access_token=access_token)
             assert result_startRollcall_app.response.status_code == 200

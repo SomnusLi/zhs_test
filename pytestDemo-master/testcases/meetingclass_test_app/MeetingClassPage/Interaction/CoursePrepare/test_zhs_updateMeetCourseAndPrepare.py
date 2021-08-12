@@ -17,14 +17,14 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("见面课模块")
 @allure.feature("app教师端")
-class Test_selectCoursePrepareOperater():
+class Test_updateMeetCourseAndPrepare():
     """app选择备课计划"""
 
     @allure.story("互动-备课")
     @allure.description("app查询备课计划")
     @allure.title("app查询备课计划")
     @pytest.mark.single
-    def test_zhs_selectCoursePrepareOperater(self, login_fixture_teacher_app):
+    def test_zhs_updateMeetCourseAndPrepare(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -69,4 +69,4 @@ class Test_selectCoursePrepareOperater():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_selectCoursePrepareOperater.py"])
+    pytest.main(["-q", "-s", "test_zhs_updateMeetCourseAndPrepare.py"])

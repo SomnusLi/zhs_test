@@ -2404,3 +2404,54 @@ def updateMeetCourseAndPrepare(coursePreparId, meetCourseId, access_token):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def findCoursePrepareChildenApp(parentId, uuid, access_token):
+    """
+    app查询当前备课计划的所有子卡片
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "parentId": parentId,
+        "uuid": uuid
+    }
+    res = MeetingClass.findCoursePrepareChildenApp(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findCoursePrepareDetail(coursePreparId, meetCourseId, uuid, access_token):
+    """
+    app查看备课卡片的详细信息
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "coursePreparId": coursePreparId,
+        "meetCourseId": meetCourseId,
+        "uuid": uuid
+    }
+    res = MeetingClass.findCoursePrepareDetail(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

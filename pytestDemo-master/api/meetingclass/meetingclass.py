@@ -585,5 +585,15 @@ class MeetingClass(RestClient):
             "https://app-hike.zhihuishu.com/appAidedteaching/meetCourse/updateMeetCourseAndPrepare",
             **kwargs)
 
+    def findCoursePrepareChildenApp(self, **kwargs):
+        # app查询当前备课计划的所有子卡片
+        return self.post(
+            "https://hike-teaching.zhihuishu.com/coursePrepare/findCoursePrepareChildenApp", **kwargs)
+
+    def findCoursePrepareDetail(self, **kwargs):
+        # app查看备课卡片的详细信息
+        return self.post(
+            "https://hike-teaching.zhihuishu.com/coursePrepare/findCoursePrepareDetail", **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

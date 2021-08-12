@@ -30,7 +30,6 @@ class Test_queryTeacherSchoolId():
         user_info = login_fixture_teacher
         uuid = user_info.uuid
         account = user_info.account
-        password = user_info.request.body[29:37]
         step_login(account, uuid)
         cookies = user_info.cookies
         logger.info("queryTeacherSchoolId")
@@ -40,15 +39,6 @@ class Test_queryTeacherSchoolId():
         # assert result.response.json().get("status") == except_status
         # assert set(six.viewitems(except_msg)).issubset(set(six.viewitems(result.msg)))
         logger.info("*************** 结束执行用例 ***************")
-
-    # @allure.story("获取某个用户信息")
-    # @allure.description("该用例是针对获取单个用户信息接口的测试")
-    # @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
-    # @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-    # @allure.title("【 {username}，{except_result}，{except_code}，{except_msg} 】")
-    # @pytest.mark.single
-    # @pytest.mark.parametrize("username, except_result, except_code, except_msg",
-    #                          api_data["test_get_get_one_user_info"])
 
 
 if __name__ == '__main__':

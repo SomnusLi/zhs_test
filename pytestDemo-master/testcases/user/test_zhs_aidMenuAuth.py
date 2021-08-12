@@ -30,9 +30,9 @@ class Test_aidMenuAuth():
         user_info = login_fixture_teacher
         uuid = user_info.uuid
         account = user_info.account
-        password = user_info.request.body[29:37]
+        cookies = user_info.cookies
         step_login(account, uuid)
-        result = aidMenuAuth(uuid, cookies=requests.utils.dict_from_cookiejar(user_info.cookies))
+        result = aidMenuAuth(uuid, cookies=cookies)
         assert result.response.status_code == 200
         logger.info("code ==>> 实际结果：{}".format(result.response.json().get("status")))
         logger.info("*************** 结束执行用例 ***************")
