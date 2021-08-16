@@ -595,5 +595,34 @@ class MeetingClass(RestClient):
         return self.post(
             "https://hike-teaching.zhihuishu.com/coursePrepare/findCoursePrepareDetail", **kwargs)
 
+    def chatVotePublishFastVote_app(self, **kwargs):
+        # app开始快速投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVotePublishFastVote",
+            **kwargs)
+
+    def chatVoteDetail_app(self, **kwargs):
+        # app获取投票详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVoteDetail", **kwargs)
+
+    def chatVoteDetailOptionCount_app(self, **kwargs):
+        # app获取各选项投票人数
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVoteDetailOptionCount",
+            **kwargs)
+
+    def chatVoteDetailOptionVotersList_app(self, **kwargs):
+        # app获取投票各选项详情
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVoteDetailOptionVotersList",
+            **kwargs)
+
+    def chatVoteDetailSelectedOption_app(self, **kwargs):
+        # app获取投票选项集合
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVoteDetailSelectedOption",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

@@ -50,7 +50,7 @@ class Test_chatVotePublishFastVote():
             if type == 1:
                 optionCount = randomRangeNum(2, 10)
             elif type == 2:
-                optionCount = randomRangeNum(2, 9)
+                optionCount = 2
             elif type == 3:
                 optionCount = randomRangeNum(2, 10)
             limitTime = randomRangeNum(0, 180) * 60
