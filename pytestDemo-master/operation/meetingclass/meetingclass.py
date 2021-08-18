@@ -2585,3 +2585,63 @@ def chatVoteDetailSelectedOption_app(uuid, voteId, access_token):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def chatVoteFinish_app(uuid, voteId, access_token):
+    """
+    app结束投票
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "voteId": voteId
+    }
+    res = MeetingClass.chatVoteFinish_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatCreateVote_app(correctAnswer, groupIds, isAnonymous, isMultiple, isSaveWaitPublish, isVoterScan, limitTime,
+                       uuid, voteOptions, voteQuestion, voteTimerSend, access_token):
+    """
+    app创建投票
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "correctAnswer": correctAnswer,
+        "groupIds": groupIds,
+        "isAnonymous": isAnonymous,
+        "isMultiple": isMultiple,
+        "isSaveWaitPublish": isSaveWaitPublish,
+        "isVoterScan": isVoterScan,
+        "limitTime": limitTime,
+        "voteOptions": voteOptions,
+        "voteQuestion": voteQuestion,
+        "voteTimerSend": voteTimerSend
+    }
+    res = MeetingClass.chatCreateVote_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

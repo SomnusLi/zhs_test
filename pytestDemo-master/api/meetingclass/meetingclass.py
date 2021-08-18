@@ -624,5 +624,15 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVoteDetailSelectedOption",
             **kwargs)
 
+    def chatVoteFinish_app(self, **kwargs):
+        # app结束投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVoteFinish", **kwargs)
+
+    def chatCreateVote_app(self, **kwargs):
+        # app创建投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatCreateVote", **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)
