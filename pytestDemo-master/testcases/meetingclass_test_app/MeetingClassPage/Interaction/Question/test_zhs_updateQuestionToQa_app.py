@@ -67,13 +67,12 @@ class Test_updateQuestionToQa_app():
                     resilt_questionList_app = questionList_app(pageSize, pageNum, rushQuestionId, sequenceType,
                                                                access_token=access_token)
                     assert resilt_questionList_app.response.status_code == 200
-                    logger.info("app提问下的问题列表为：{}".format(resilt_questionList_app.response.json()["rt"]["questionList"]))
+                    allQuestionList = resilt_questionList_app.response.json()["rt"]["questionList"]
+                    logger.info("app提问下的问题列表为：{}".format(allQuestionList))
                     sync = True
-                    t = 0
-                    while sync and t <= len(resilt_questionList_app.response.json()["rt"]["questionList"]):
-                        questionList = random.sample(resilt_questionList_app.response.json()["rt"]["questionList"], 1)[
-                            0]
-                        t = t + 1
+                    while sync and allQuestionList != []:
+                        questionList = random.sample(allQuestionList, 1)[0]
+                        allQuestionList.remove(questionList)
                         questionId = questionList["questionId"]
                         logger.info("questionDetail_app")
                         result_questionDetail_app = questionDetail_app(groupId, questionId, recruitId, uuid,

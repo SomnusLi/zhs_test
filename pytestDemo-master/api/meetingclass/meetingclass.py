@@ -363,6 +363,12 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatDeleteVote",
             **kwargs)
 
+    def chatVotePublishAnswers(self, **kwargs):
+        # 发布投票答案
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/vote/chatVotePublishAnswers",
+            **kwargs)
+
     def findRunningPreemptive(self, **kwargs):
         # 查询群下正在进行的抢答
         return self.post(
@@ -633,6 +639,23 @@ class MeetingClass(RestClient):
         # app创建投票
         return self.post(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatCreateVote", **kwargs)
+
+    def chatVotePublishAnswers_app(self, **kwargs):
+        # app公布投票答案
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatVotePublishAnswers",
+            **kwargs)
+
+    def chatDeleteVote_app(self, **kwargs):
+        # app删除投票
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/vote/chatDeleteVote", **kwargs)
+
+    def unSendActivityList_app(self, **kwargs):
+        # app查询待发布活动列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetScreen/unSendActivityList",
+            **kwargs)
 
 
 MeetingClass = MeetingClass(api_root_url)

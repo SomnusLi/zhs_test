@@ -65,7 +65,7 @@ class Test_chatVoteDetailOptionVotersList_app():
             if voteids == []:
                 logger.info("没有投票")
             else:
-                voteId = random.sample(voteids, 1)
+                voteId = random.sample(voteids, 1)[0]
                 logger.info("chatVoteDetail_app")
                 result_chatVoteDetail_app = chatVoteDetail_app(uuid, voteId, access_token=access_token)
                 assert result_chatVoteDetail_app.response.status_code == 200

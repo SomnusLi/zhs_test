@@ -17,14 +17,14 @@ def step_login(account, uuid):
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("见面课模块")
 @allure.feature("app教师端")
-class Test_chatVoteDetailSelectedOption_app():
-    """app获取投票选项集合"""
+class Test_chatDeleteVote_app():
+    """app删除投票"""
 
     @allure.story("互动-投票")
-    @allure.description("app获取投票选项集合")
-    @allure.title("app获取投票选项集合")
+    @allure.description("app删除投票")
+    @allure.title("app删除投票")
     @pytest.mark.single
-    def test_zhs_chatVoteDetailSelectedOption_app(self, login_fixture_teacher_app):
+    def test_zhs_chatDeleteVote_app(self, login_fixture_teacher_app):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info_app = login_fixture_teacher_app
@@ -66,17 +66,14 @@ class Test_chatVoteDetailSelectedOption_app():
                 logger.info("没有投票")
             else:
                 voteId = random.sample(voteids, 1)[0]
-                result_chatVoteDetailSelectedOption_app = chatVoteDetailSelectedOption_app(uuid, voteId,
-                                                                                           access_token=access_token)
-                assert result_chatVoteDetailSelectedOption_app.response.status_code == 200
-                if result_chatVoteDetailSelectedOption_app.response.status_code == 200:
-                    logger.info("投票id为{}，voteSelectedOptionId为：{}".format(voteId,
-                                                                          result_chatVoteDetailSelectedOption_app.response.json()[
-                                                                              "rt"]["voteSelectedOptionId"]))
+                result_chatDeleteVote_app = chatDeleteVote_app(uuid, voteId, access_token=access_token)
+                assert result_chatDeleteVote_app.response.status_code == 200
+                if result_chatDeleteVote_app.response.status_code == 200:
+                    logger.info("投票id为{}，返回信息为：{}".format(voteId, result_chatDeleteVote_app.response.json()["rt"]))
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_chatVoteDetailSelectedOption_app.py"])
+    pytest.main(["-q", "-s", "test_zhs_chatDeleteVote_app.py"])

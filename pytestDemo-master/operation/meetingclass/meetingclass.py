@@ -1420,6 +1420,31 @@ def chatDeleteVote(voteId, uuid, cookies):
     return result
 
 
+def chatVotePublishAnswers(groupId, uuid, voteId, cookies):
+    """
+    发布投票答案
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "voteId": voteId,
+        "uuid": uuid,
+        "groupId": groupId
+    }
+    res = MeetingClass.chatVotePublishAnswers(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
 def findRunningPreemptive(groupId, uuid, cookies):
     """
     查询群下正在进行的抢答
@@ -2636,6 +2661,85 @@ def chatCreateVote_app(correctAnswer, groupIds, isAnonymous, isMultiple, isSaveW
         "voteTimerSend": voteTimerSend
     }
     res = MeetingClass.chatCreateVote_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatVotePublishAnswers_app(groupId, uuid, voteId, access_token):
+    """
+    app公布投票答案
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "groupId": groupId,
+        "voteId": voteId
+    }
+    res = MeetingClass.chatVotePublishAnswers_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def chatDeleteVote_app(uuid, voteId, access_token):
+    """
+    app删除投票
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "voteId": voteId
+    }
+    res = MeetingClass.chatDeleteVote_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def unSendActivityList_app(groupId, meetCourseId, pageId, pageSize, uuid, access_token):
+    """
+    app查询待发布活动列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "groupId": groupId,
+        "meetCourseId": meetCourseId,
+        "pageId": pageId,
+        "pageSize": pageSize
+    }
+    res = MeetingClass.unSendActivityList_app(data=data, headers=header)
     result.success = False
     if res.status_code == 200:
         result.success = True
