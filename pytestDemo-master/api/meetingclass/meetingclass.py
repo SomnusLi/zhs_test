@@ -657,5 +657,17 @@ class MeetingClass(RestClient):
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetScreen/unSendActivityList",
             **kwargs)
 
+    def unSendActivityPublish_app(self, **kwargs):
+        # app查询待发布活动列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetScreen/unSendActivityPublish",
+            **kwargs)
+
+    def getBrainStormListV2_app(self, **kwargs):
+        # app查询头脑风暴列表
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/brainStorm/getBrainStormListV2",
+            **kwargs)
+
 
 MeetingClass = MeetingClass(api_root_url)

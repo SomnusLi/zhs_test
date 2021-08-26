@@ -2749,3 +2749,58 @@ def unSendActivityList_app(groupId, meetCourseId, pageId, pageSize, uuid, access
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def unSendActivityPublish_app(dataId, dataType, meetCourseId, uuid, access_token):
+    """
+    app查询待发布活动列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "dataId": dataId,
+        "meetCourseId": meetCourseId,
+        "dataType": dataType
+    }
+    res = MeetingClass.unSendActivityPublish_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def getBrainStormListV2_app(groupId, page, pageSize, type, uuid, access_token):
+    """
+    app查询头脑风暴列表
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "access_token": access_token
+    }
+    data = {
+        "uuid": uuid,
+        "groupId": groupId,
+        "page": page,
+        "pageSize": pageSize,
+        "type": type
+    }
+    res = MeetingClass.getBrainStormListV2_app(data=data, headers=header)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

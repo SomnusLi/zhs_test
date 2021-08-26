@@ -45,12 +45,12 @@ class Test_chatCreateVote_app():
             assert result_getMeetCourseInfo_app.response.status_code == 200
             groupIds = result_getMeetCourseInfo_app.response.json()["rt"]["groupId"]
             limitTime = randomRangeNum(0, 180) * 60
-            isMultiple = randomRangeNum(0, 1)  # 0 不可多选 1可多选
+            isMultiple = 1  # randomRangeNum(0, 1)  # 0 不可多选 1可多选
             isAnonymous = randomRangeNum(0, 1)  # 0公开 1不公开
             isSaveWaitPublish = randomRangeNum(0, 1)  # 0 立即发布 1保存到稍后发布
             isVoterScan = randomRangeNum(0, 1)  # 0 不允许参与者 查看结果 1 允许查看结果
             voteOptions = "["
-            voteOptionsnum = randomRangeNum(1, 9)  # 选项个数
+            voteOptionsnum = randomRangeNum(2, 9)  # 选项个数
             logger.info(voteOptionsnum)
             correctAnswerList = []
             for i in range(0, voteOptionsnum):
