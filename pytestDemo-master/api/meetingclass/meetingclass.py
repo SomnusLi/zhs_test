@@ -49,7 +49,7 @@ class MeetingClass(RestClient):
             **kwargs)
 
     def creatMeetCourse(self, courseId, classIds, recruitId, hours, uuid, **kwargs):
-        # 创建见面课
+        # 创建见面课（课堂工具）
         return self.get(
             "https://app-hike.zhihuishu.com/appAidedteaching/webMeetCourse/meetCourse/createMeetCourse?courseId={}&classIds={}&recruitId={}&hours={}&uuid={}&dateFormate={}".format(
                 courseId, classIds, recruitId, hours, uuid, int(round(time.time() * 1000))),
@@ -131,6 +131,12 @@ class MeetingClass(RestClient):
         # 开启直播
         return self.post(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/startMeetingCourseLiving",
+            **kwargs)
+
+    def createMeetingCourseLiving(self, **kwargs):
+        # 创建见面课（语音直播）
+        return self.post(
+            "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/webMeetCourse/common/createMeetingCourseLiving",
             **kwargs)
 
     def saveMeetCourseLivingPcFlag(self, **kwargs):

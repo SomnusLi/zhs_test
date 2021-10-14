@@ -18,7 +18,7 @@ def step_login(account, uuid):
 @allure.feature("web教师端")
 class Test_endMeetCourseClass():
     """结束见面课"""
-
+    @pytest.mark.skip
     @allure.story("见面课信息")
     @allure.description("结束见面课")
     @allure.title("结束见面课")
@@ -42,6 +42,9 @@ class Test_endMeetCourseClass():
             result_endMeetCourse = endMeetCourse(meetCourseId, uuid,
                                                  cookies=cookies)
             assert result_endMeetCourse.response.status_code == 200
+            if result_endMeetCourse.response.status_code == 200 and result_endMeetCourse.response.json()["rt"][
+                "resultStatus"] == 1:
+                logger.info("关闭见面课成功")
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")

@@ -17,13 +17,13 @@ def step_login(account, uuid):
 @allure.epic("见面课模块")
 @allure.feature("web教师端")
 class Test_creatMeetCourse():
-    """创建见面课"""
+    """创建见面课（课堂工具）"""
 
     @allure.story("创建见面课")
-    @allure.description("创建见面课")
+    @allure.description("创建见面课（课堂工具）")
     @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
-    @allure.title("创建见面课")
+    @allure.title("创建见面课（课堂工具）")
     @pytest.mark.single
     def test_zhs_creatMeetCourse(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
@@ -49,7 +49,7 @@ class Test_creatMeetCourse():
                                                                  cookies=cookies)
             assert result_getUserRoleByCourseId.response.status_code == 200
             if result_getUserRoleByCourseId.response.json()["rt"] == 2:
-                logger.info("该老师无权限开启见面课")
+                logger.info("该老师无权限开启见面课（课堂工具）")
             else:
                 result_getRecruitIdByCourseId = getRecruitIdByCourseId(courseId, cookies=cookies)
                 assert result_getRecruitIdByCourseId.response.status_code == 200

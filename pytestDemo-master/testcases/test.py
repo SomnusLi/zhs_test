@@ -58,12 +58,13 @@ class Test_test():
                 is_cookies_expired = True
         if is_cookies_expired:
             chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument("--headless")
+            # chrome_options.add_argument("--headless")
             chrome_options.add_argument("--no-sandbox")
             chromedriver_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
                                              "config\chromedriver.exe")
             logger.info(chromedriver_path)
             logger.info(chrome_options)
+
             browser = webdriver.Chrome(chromedriver_path, options=chrome_options)
             browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
                 "source": """
@@ -97,7 +98,7 @@ class Test_test():
             browser.find_element_by_xpath("//*[@id='lUsername']").send_keys("13122285260")
             time.sleep(1)
             browser.find_element_by_xpath("//*[@id='lPassword']").clear()
-            browser.find_element_by_xpath("//*[@id='lPassword']").send_keys("Aa111111")
+            browser.find_element_by_xpath("//*[@id='lPassword']").send_keys("Aa123456")
             time.sleep(1)
             browser.find_element_by_xpath("//*[@id='f_sign_up']/div[1]/span").click()
             try:
@@ -118,16 +119,12 @@ class Test_test():
                     logger.info("没有找到登录验证元素，无需登录验证")
             except:
                 logger.info("无需登录验证")
-
-            browser.get("https://appcomm-user.zhihuishu.com/app-commserv-user/userInfo/checkNeedAuth")
-            time.sleep(20)
-            request_log = browser.get_log('performance')
-            logger.info(request_log)
+            time.sleep(100)
             list_cookies = browser.get_cookies()
             cookies = {}
             for s in list_cookies:
                 cookies[s["name"]] = s["value"]
-            browser.quit()
+            # browser.quit()
             cookies_data = {
                 "cookies": cookies,
                 "account": 13122285260,

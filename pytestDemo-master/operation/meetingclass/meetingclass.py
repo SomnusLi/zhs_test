@@ -139,7 +139,7 @@ def getSelectClassInfo(uuid, recruitId, cookies):
 
 def creatMeetCourse(uuid, courseId, classIds, recruitId, cookies):
     """
-    创建见面课
+    创建见面课（课堂工具）
 
     """
     result = ResultBase()
@@ -438,6 +438,44 @@ def startMeetingCourseLiving(groupId, openLiveFromType, meetCourseId, uuid, cook
     }
     res = MeetingClass.startMeetingCourseLiving(data=data,
                                                 headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def createMeetingCourseLiving(courseId, classIds, recruitId, hours, deviceId, equipmentNo, openLiveFromType, screenType,
+                              playBackStatus, fromType, meetCourseAuth, timestamp, uuid, dateFormate, cookies):
+    """
+    创建见面课（语音直播）
+    """
+
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseAuth": meetCourseAuth,
+        "timestamp": timestamp,
+        "dateFormate": dateFormate,
+        "deviceId": deviceId,
+        "equipmentNo": equipmentNo,
+        "screenType": screenType,
+        "playBackStatus": playBackStatus,
+        "fromType": fromType,
+        "recruitId": recruitId,
+        "hours": hours,
+        "courseId": courseId,
+        "openLiveFromType": openLiveFromType,
+        "classIds": classIds,
+        "uuid": uuid
+    }
+    res = MeetingClass.createMeetingCourseLiving(data=data, headers=header, cookies=cookies)
     result.success = False
     if res.status_code == 200:
         result.success = True

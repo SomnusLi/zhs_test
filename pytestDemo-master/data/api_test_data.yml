@@ -43,4 +43,4 @@ test_zhs_login:
 test_zhs_app_login:
   # 用户名,密码
   # account, password
-  - [ "13122285260", "Aa111111" ]
+  - [ "13122285260", "Aa123456" ]

@@ -19,6 +19,7 @@ def step_login(account, uuid):
 class Test_endMeetingCourseLiving():
     """关闭直播"""
 
+    @pytest.mark.skip
     @allure.story("见面课直播")
     @allure.description("关闭直播")
     @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")

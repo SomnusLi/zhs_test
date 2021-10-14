@@ -1,5 +1,7 @@
-pytest==4.5.0
-PyMySQL==0.9.3
+pytest~=6.2.4
+PyMySQL~=1.0.2
 allure-pytest==2.8.6
-requests==2.20.0
-PyYAML==5.3.1
+requests~=2.26.0
+PyYAML~=5.4.1
+
+selenium~=3.141.0
