@@ -2842,3 +2842,86 @@ def getBrainStormListV2_app(groupId, page, pageSize, type, uuid, access_token):
     result.response = res
     logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
+
+
+def findWhiteboardInfo(meetCourseId, appType, uuid, dateFormate, cookies):
+    """
+    查询正在进行中直播课堂的白板信息
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "appType": appType,
+        "meetCourseId": meetCourseId,
+        "uuid": uuid,
+        "dateFormate": dateFormate
+    }
+
+    res = MeetingClass.findWhiteboardInfo(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def findWhiteboardStatus(meetCourseId, uuid, dateFormate, cookies):
+    """
+    查询正在进行中直播课堂的白板状态
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "uuid": uuid,
+        "dateFormate": dateFormate
+    }
+
+    res = MeetingClass.findWhiteboardStatus(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result
+
+
+def setWhiteboardStatus(meetCourseId, type, uuid, dateFormate, cookies):
+    """
+    更改直播课堂的白板状态
+
+    """
+    result = ResultBase()
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "meetCourseId": meetCourseId,
+        "uuid": uuid,
+        "dateFormate": dateFormate,
+        "type": type
+    }
+
+    res = MeetingClass.setWhiteboardStatus(data=data, headers=header, cookies=cookies)
+    result.success = False
+    if res.status_code == 200:
+        result.success = True
+    else:
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.status_code, res.text)
+    result.msg = res.json()
+    result.response = res
+    logger.info("查询结果 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return result

@@ -76,7 +76,7 @@ class MeetingClass(RestClient):
             **kwargs)
 
     def findMeetcourseUserAuthData(self, **kwargs):
-        # 查询见面课直播
+        # 查询见面课用户直播权限
         return self.post(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/meetingCourse/findMeetcourseUserAuthData",
             **kwargs)
@@ -674,6 +674,21 @@ class MeetingClass(RestClient):
         return self.post(
             "https://ctapp.zhihuishu.com/app-commonserv-classroomtools/commonChat/brainStorm/getBrainStormListV2",
             **kwargs)
+
+    def findWhiteboardInfo(self, **kwargs):
+        # 查询正在进行中直播课堂的白板信息
+        return self.post("https://ctapp.zhihuishu.com/app-commonserv-classroomtools/whiteboard/findWhiteboardInfo",
+                         **kwargs)
+
+    def findWhiteboardStatus(self, **kwargs):
+        # 查询正在进行中直播课堂的白板状态
+        return self.post("https://ctapp.zhihuishu.com/app-commonserv-classroomtools/whiteboard/findWhiteboardStatus",
+                         **kwargs)
+
+    def setWhiteboardStatus(self, **kwargs):
+        # 更改直播课堂的白板状态
+        return self.post("https://ctapp.zhihuishu.com/app-commonserv-classroomtools/whiteboard/setWhiteboardStatus",
+                         **kwargs)
 
 
 MeetingClass = MeetingClass(api_root_url)

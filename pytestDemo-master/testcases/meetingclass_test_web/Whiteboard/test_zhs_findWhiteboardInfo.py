@@ -1,3 +1,5 @@
+import time
+
 import pytest
 import allure
 from operation.course.course import *
@@ -17,15 +19,13 @@ def step_login(account, uuid):
 @allure.epic("见面课模块")
 @allure.feature("web教师端")
 class Test_findMeetCourseLiveStatus():
-    """查询正在进行中的见面课基本信息"""
+    """查询正在进行中直播课堂的白板信息"""
 
     @allure.story("见面课直播")
-    @allure.description("查询正在进行中的见面课基本信息")
-    @allure.issue("https://www.zhihuishu.com/", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://www.zhihuishu.com/", name="点击，跳转到对应用例的链接地址")
-    @allure.title("查询正在进行中的见面课基本信息")
+    @allure.description("查询正在进行中直播课堂的白板信息")
+    @allure.title("查询正在进行中直播课堂的白板信息")
     @pytest.mark.single
-    def test_zhs_findMeetCourseLiveStatus(self, login_fixture_teacher):
+    def test_zhs_findWhiteboardInfo(self, login_fixture_teacher):
         logger.info("*************** 开始执行用例 ***************")
         # login_fixture前置登录
         user_info = login_fixture_teacher
@@ -49,15 +49,23 @@ class Test_findMeetCourseLiveStatus():
             if result_findMeetCourseLiveStatus.response.status_code == 200:
                 if openLiveFromType == -1:
                     logger.info("见面课类型为课堂工具")
-                if openLiveFromType == 1:
-                    logger.info("见面课类型为直播课堂（语音）")
-                if openLiveFromType == 2:
-                    logger.info("见面课类型为直播课堂（视频）")
-
+                else:
+                    if openLiveFromType == 1:
+                        logger.info("见面课类型为直播课堂（语音）")
+                    if openLiveFromType == 2:
+                        logger.info("见面课类型为直播课堂（视频）")
+                    logger.info("findWhiteboardInfo")
+                    appType = 3  # ??
+                    dateFormate = int(round(time.time() * 1000))
+                    result_findWhiteboardInfo = findWhiteboardInfo(meetCourseId, appType, uuid, dateFormate,
+                                                                   cookies=cookies)
+                    assert result_findWhiteboardInfo.response.status_code == 200
+                    if result_findWhiteboardInfo.response.status_code == 200:
+                        logger.info("白板信息为：{}".format(result_findWhiteboardInfo.response.json()["rt"]))
         else:
             logger.info("没有正在开启的见面课")
         logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_zhs_findMeetCourseLiveStatus.py"])
+    pytest.main(["-q", "-s", "test_zhs_findWhiteboardInfo.py"])
